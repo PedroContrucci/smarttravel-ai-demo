@@ -11,7 +11,7 @@ import {
   ChevronDown, Eye, Crown, Flame, Mail, Lock, UserPlus, 
   Home, Map, BookOpen, Bell, Sunrise, Sunset, Coffee, Moon, 
   Sun, PlaneTakeoff, PlaneLanding, ArrowLeftRight, ChevronUp,
-  ThumbsDown, MessageSquare, Flag, Trash2, Image
+  ThumbsDown, MessageSquare, Flag, Trash2, Image, Car, Copy
 } from 'lucide-react';
 
 // ============================================
@@ -129,7 +129,7 @@ const DESTINATIONS_DATABASE = {
   'Tóquio, Japão': {
     continent: 'Ásia', country: 'Japão', currency: '¥', currencyRate: 0.04, image: '🗾',
     coverUrl: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200',
-    description: 'Tradição milenar encontra tecnologia futurista. Templos, anime e gastronomia única.',
+    description: 'Tradição milenar encontra tecnologia futurista.',
     timezone: 'JST (UTC+9)', language: 'Japonês', bestSeason: 'Mar - Mai', avgTemp: '16°C',
     flights: [
       { id: 'tf1', name: 'ANA - 1 Conexão', price: 7200, duration: '24h', class: 'Econômica', rating: 4.8, departure: '23:55', arrival: '05:55+2', stops: 1 },
@@ -138,7 +138,7 @@ const DESTINATIONS_DATABASE = {
       { id: 'tf4', name: 'Qatar - 1 Conexão', price: 5250, duration: '30h', class: 'Econômica', rating: 4.5, departure: '02:00', arrival: '14:00+2', stops: 1 },
     ],
     hotels: [
-      { id: 'th1', name: 'Aman Tokyo', stars: 5, price: 6200, perNight: true, location: 'Otemachi', rating: 4.9, amenities: ['Spa', 'Vista Imperial', 'Zen'] },
+      { id: 'th1', name: 'Aman Tokyo', stars: 5, price: 6200, perNight: true, location: 'Otemachi', rating: 4.9, amenities: ['Spa', 'Vista Imperial'] },
       { id: 'th2', name: 'Park Hyatt Tokyo', stars: 5, price: 3800, perNight: true, location: 'Shinjuku', rating: 4.8, amenities: ['Piscina', 'New York Bar'] },
       { id: 'th3', name: 'Shinjuku Granbell', stars: 4, price: 720, perNight: true, location: 'Shinjuku', rating: 4.4, amenities: ['Design', 'Rooftop'] },
       { id: 'th4', name: 'Khaosan Tokyo', stars: 2, price: 145, perNight: true, location: 'Asakusa', rating: 4.1, amenities: ['Social', 'Tradicional'] },
@@ -163,7 +163,7 @@ const DESTINATIONS_DATABASE = {
   'Roma, Itália': {
     continent: 'Europa', country: 'Itália', currency: '€', currencyRate: 6.2, image: '🏛️',
     coverUrl: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200',
-    description: 'A cidade eterna, berço do Império Romano e do Renascimento.',
+    description: 'A cidade eterna, berço do Império Romano.',
     timezone: 'CET (UTC+1)', language: 'Italiano', bestSeason: 'Abr - Jun', avgTemp: '18°C',
     flights: [
       { id: 'rf1', name: 'Alitalia - Direto', price: 4200, duration: '12h', class: 'Econômica', rating: 4.3, departure: '22:00', arrival: '13:00+1', stops: 0 },
@@ -189,10 +189,41 @@ const DESTINATIONS_DATABASE = {
       { id: 'ra6', name: 'Trastevere Food Tour', price: 95, duration: '3h', type: 'Gastronomia', rating: 4.6, childFriendly: true, period: 'noite', location: 'Trastevere' },
     ]
   },
+  'Miami, EUA': {
+    continent: 'América do Norte', country: 'Estados Unidos', currency: '$', currencyRate: 6.0, image: '🌴',
+    coverUrl: 'https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?w=1200',
+    description: 'Praias de South Beach, Art Deco e vida noturna latina.',
+    timezone: 'EST (UTC-5)', language: 'Inglês/Espanhol', bestSeason: 'Nov - Abr', avgTemp: '26°C',
+    flights: [
+      { id: 'mf1', name: 'American Airlines - Direto', price: 3200, duration: '8h', class: 'Econômica', rating: 4.3, departure: '23:00', arrival: '05:00+1', stops: 0 },
+      { id: 'mf2', name: 'LATAM - Direto', price: 2800, duration: '8h', class: 'Econômica', rating: 4.4, departure: '22:00', arrival: '04:00+1', stops: 0 },
+      { id: 'mf3', name: 'Azul - 1 Conexão', price: 2400, duration: '11h', class: 'Econômica', rating: 4.2, departure: '20:00', arrival: '05:00+1', stops: 1 },
+    ],
+    hotels: [
+      { id: 'mh1', name: 'Faena Miami Beach', stars: 5, price: 3500, perNight: true, location: 'Mid-Beach', rating: 4.9, amenities: ['Praia', 'Spa', 'Shows'] },
+      { id: 'mh2', name: 'The Setai', stars: 5, price: 2800, perNight: true, location: 'South Beach', rating: 4.8, amenities: ['3 Piscinas', 'Spa'] },
+      { id: 'mh3', name: 'Freehand Miami', stars: 3, price: 420, perNight: true, location: 'Miami Beach', rating: 4.4, amenities: ['Piscina', 'Bar'] },
+      { id: 'mh4', name: 'Generator Miami', stars: 2, price: 180, perNight: true, location: 'South Beach', rating: 4.1, amenities: ['Social', 'Rooftop'] },
+    ],
+    restaurants: [
+      { id: 'mr1', name: 'Zuma', price: 380, type: 'Japanese', cuisine: 'Japonesa', rating: 4.8, period: 'noite' },
+      { id: 'mr2', name: 'Joe\'s Stone Crab', price: 250, type: 'Seafood', cuisine: 'Frutos do Mar', rating: 4.7, period: 'noite' },
+      { id: 'mr3', name: 'Versailles', price: 65, type: 'Cubana', cuisine: 'Cubana', rating: 4.6, period: 'tarde' },
+      { id: 'mr4', name: 'KYU', price: 150, type: 'Asian BBQ', cuisine: 'Asiática', rating: 4.7, period: 'noite' },
+    ],
+    activities: [
+      { id: 'ma1', name: 'South Beach', price: 0, duration: '4h', type: 'Praia', rating: 4.7, childFriendly: true, period: 'manhã', location: 'South Beach' },
+      { id: 'ma2', name: 'Art Deco Walking Tour', price: 65, duration: '2h', type: 'Tour', rating: 4.5, childFriendly: true, period: 'manhã', location: 'Ocean Drive' },
+      { id: 'ma3', name: 'Everglades Tour', price: 145, duration: '5h', type: 'Natureza', rating: 4.6, childFriendly: true, period: 'manhã', location: 'Everglades' },
+      { id: 'ma4', name: 'Wynwood Walls', price: 0, duration: '2h', type: 'Arte', rating: 4.7, childFriendly: true, period: 'tarde', location: 'Wynwood' },
+      { id: 'ma5', name: 'Key West Day Trip', price: 280, duration: '12h', type: 'Day Trip', rating: 4.5, childFriendly: true, period: 'manhã', location: 'Key West' },
+      { id: 'ma6', name: 'Vizcaya Museum', price: 95, duration: '3h', type: 'Museu', rating: 4.6, childFriendly: true, period: 'tarde', location: 'Coconut Grove' },
+    ]
+  },
   'Cancún, México': {
     continent: 'América do Norte', country: 'México', currency: 'MXN', currencyRate: 0.35, image: '🏝️',
     coverUrl: 'https://images.unsplash.com/photo-1552074284-5e88ef1aef18?w=1200',
-    description: 'Praias caribenhas, ruínas maias, cenotes e resorts all-inclusive.',
+    description: 'Praias caribenhas, ruínas maias e cenotes.',
     timezone: 'CST (UTC-6)', language: 'Espanhol', bestSeason: 'Dez - Abr', avgTemp: '28°C',
     flights: [
       { id: 'cf1', name: 'Aeroméxico - Direto', price: 2800, duration: '7h', class: 'Econômica', rating: 4.3, departure: '06:00', arrival: '11:00', stops: 0 },
@@ -213,14 +244,13 @@ const DESTINATIONS_DATABASE = {
       { id: 'ca2', name: 'Xcaret Park', price: 450, duration: '10h', type: 'Parque', rating: 4.8, childFriendly: true, period: 'manhã', location: 'Riviera Maya' },
       { id: 'ca3', name: 'Isla Mujeres', price: 180, duration: '6h', type: 'Praia', rating: 4.7, childFriendly: true, period: 'manhã', location: 'Isla Mujeres' },
       { id: 'ca4', name: 'Cenote Ik Kil', price: 95, duration: '4h', type: 'Natureza', rating: 4.8, childFriendly: true, period: 'manhã', location: 'Valladolid' },
-      { id: 'ca5', name: 'Snorkel em Cozumel', price: 220, duration: '6h', type: 'Aventura', rating: 4.7, childFriendly: true, period: 'manhã', location: 'Cozumel' },
-      { id: 'ca6', name: 'Ruínas de Tulum', price: 180, duration: '6h', type: 'Histórico', rating: 4.6, childFriendly: true, period: 'manhã', location: 'Tulum' },
+      { id: 'ca5', name: 'Snorkel Cozumel', price: 220, duration: '6h', type: 'Aventura', rating: 4.7, childFriendly: true, period: 'manhã', location: 'Cozumel' },
     ]
   },
   'Barcelona, Espanha': {
     continent: 'Europa', country: 'Espanha', currency: '€', currencyRate: 6.2, image: '🏖️',
     coverUrl: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1200',
-    description: 'Arte de Gaudí, praias mediterrâneas e vida noturna vibrante.',
+    description: 'Arte de Gaudí, praias mediterrâneas e vida noturna.',
     timezone: 'CET (UTC+1)', language: 'Espanhol/Catalão', bestSeason: 'Mai - Set', avgTemp: '20°C',
     flights: [
       { id: 'bf1', name: 'Iberia - 1 Conexão', price: 2800, duration: '14h', class: 'Econômica', rating: 4.2, departure: '21:00', arrival: '14:00+1', stops: 1 },
@@ -242,49 +272,21 @@ const DESTINATIONS_DATABASE = {
       { id: 'ba3', name: 'Casa Batlló', price: 120, duration: '1h30', type: 'Arquitetura', rating: 4.8, childFriendly: true, period: 'manhã', location: 'Passeig de Gràcia' },
       { id: 'ba4', name: 'Camp Nou Tour', price: 95, duration: '2h', type: 'Esporte', rating: 4.6, childFriendly: true, period: 'tarde', location: 'Les Corts' },
       { id: 'ba5', name: 'Barceloneta Beach', price: 0, duration: '3h', type: 'Gratuito', rating: 4.5, childFriendly: true, period: 'tarde', location: 'Barceloneta' },
-      { id: 'ba6', name: 'Gothic Quarter Tour', price: 45, duration: '2h', type: 'Tour', rating: 4.6, childFriendly: true, period: 'manhã', location: 'Barri Gòtic' },
-    ]
-  },
-  'Miami, EUA': {
-    continent: 'América do Norte', country: 'Estados Unidos', currency: '$', currencyRate: 6.0, image: '🌴',
-    coverUrl: 'https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?w=1200',
-    description: 'Praias de South Beach, Art Deco, vida noturna latina e sol o ano todo.',
-    timezone: 'EST (UTC-5)', language: 'Inglês/Espanhol', bestSeason: 'Nov - Abr', avgTemp: '26°C',
-    flights: [
-      { id: 'mf1', name: 'American Airlines - Direto', price: 3200, duration: '8h', class: 'Econômica', rating: 4.3, departure: '23:00', arrival: '05:00+1', stops: 0 },
-      { id: 'mf2', name: 'LATAM - Direto', price: 2800, duration: '8h', class: 'Econômica', rating: 4.4, departure: '22:00', arrival: '04:00+1', stops: 0 },
-    ],
-    hotels: [
-      { id: 'mh1', name: 'Faena Miami Beach', stars: 5, price: 3500, perNight: true, location: 'Mid-Beach', rating: 4.9, amenities: ['Praia', 'Spa', 'Shows'] },
-      { id: 'mh2', name: 'Freehand Miami', stars: 3, price: 420, perNight: true, location: 'Miami Beach', rating: 4.4, amenities: ['Piscina', 'Bar'] },
-      { id: 'mh3', name: 'Generator Miami', stars: 2, price: 180, perNight: true, location: 'South Beach', rating: 4.1, amenities: ['Social', 'Rooftop'] },
-    ],
-    restaurants: [
-      { id: 'mr1', name: 'Zuma', price: 380, type: 'Japanese', cuisine: 'Japonesa', rating: 4.8, period: 'noite' },
-      { id: 'mr2', name: 'Joe\'s Stone Crab', price: 250, type: 'Seafood', cuisine: 'Frutos do Mar', rating: 4.7, period: 'noite' },
-      { id: 'mr3', name: 'Versailles', price: 65, type: 'Cubana', cuisine: 'Cubana', rating: 4.6, period: 'tarde' },
-    ],
-    activities: [
-      { id: 'ma1', name: 'South Beach', price: 0, duration: '4h', type: 'Praia', rating: 4.7, childFriendly: true, period: 'manhã', location: 'South Beach' },
-      { id: 'ma2', name: 'Art Deco Walking Tour', price: 65, duration: '2h', type: 'Tour', rating: 4.5, childFriendly: true, period: 'manhã', location: 'Ocean Drive' },
-      { id: 'ma3', name: 'Everglades Tour', price: 145, duration: '5h', type: 'Natureza', rating: 4.6, childFriendly: true, period: 'manhã', location: 'Everglades' },
-      { id: 'ma4', name: 'Wynwood Walls', price: 0, duration: '2h', type: 'Arte', rating: 4.7, childFriendly: true, period: 'tarde', location: 'Wynwood' },
-      { id: 'ma5', name: 'Key West Day Trip', price: 280, duration: '12h', type: 'Day Trip', rating: 4.5, childFriendly: true, period: 'manhã', location: 'Key West' },
     ]
   },
   'Dubai, Emirados Árabes': {
     continent: 'Ásia', country: 'Emirados Árabes', currency: 'AED', currencyRate: 1.65, image: '🏙️',
     coverUrl: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200',
-    description: 'Luxo extremo, arranha-céus futuristas, deserto e compras de outro mundo.',
+    description: 'Luxo extremo, arranha-céus futuristas e deserto.',
     timezone: 'GST (UTC+4)', language: 'Árabe/Inglês', bestSeason: 'Nov - Mar', avgTemp: '28°C',
     flights: [
       { id: 'df1', name: 'Emirates - Direto', price: 5800, duration: '14h', class: 'Econômica', rating: 4.8, departure: '03:00', arrival: '22:00', stops: 0 },
       { id: 'df2', name: 'Qatar - 1 Conexão', price: 4200, duration: '18h', class: 'Econômica', rating: 4.5, departure: '01:00', arrival: '22:00', stops: 1 },
     ],
     hotels: [
-      { id: 'dh1', name: 'Burj Al Arab', stars: 5, price: 8500, perNight: true, location: 'Jumeirah', rating: 4.9, amenities: ['Icônico', 'Butler', 'Helipad'] },
-      { id: 'dh2', name: 'Atlantis The Palm', stars: 5, price: 3200, perNight: true, location: 'Palm Jumeirah', rating: 4.7, amenities: ['Aquaventure', 'Aquário'] },
-      { id: 'dh3', name: 'Rove Downtown', stars: 4, price: 650, perNight: true, location: 'Downtown', rating: 4.4, amenities: ['Burj Khalifa View', 'Moderno'] },
+      { id: 'dh1', name: 'Burj Al Arab', stars: 5, price: 8500, perNight: true, location: 'Jumeirah', rating: 4.9, amenities: ['Icônico', 'Butler'] },
+      { id: 'dh2', name: 'Atlantis The Palm', stars: 5, price: 3200, perNight: true, location: 'Palm Jumeirah', rating: 4.7, amenities: ['Aquaventure'] },
+      { id: 'dh3', name: 'Rove Downtown', stars: 4, price: 650, perNight: true, location: 'Downtown', rating: 4.4, amenities: ['Burj Khalifa View'] },
     ],
     restaurants: [
       { id: 'dr1', name: 'At.mosphere', price: 650, type: 'Fine Dining', cuisine: 'Internacional', rating: 4.8, period: 'noite' },
@@ -301,43 +303,179 @@ const DESTINATIONS_DATABASE = {
 };
 
 // ============================================
-// COMMUNITY ITINERARIES DATABASE
+// COMMUNITY ITINERARIES WITH DAILY DETAILS
 // ============================================
 const COMMUNITY_ITINERARIES = [
-  // Paris
-  { id: 'ci1', title: 'Paris Romântica - Lua de Mel', destination: 'Paris, França', author: { name: 'Marina Silva', avatar: '👩', verified: true }, duration: 7, budget: 35000, travelers: 2, likes: 2847, saves: 1203, rating: 4.9, reviews: 234, tags: ['romantic', 'luxury'], highlights: ['Torre Eiffel ao Pôr do Sol', 'Cruzeiro Privado no Sena', 'Jantar no Le Jules Verne'], featured: true, comments: [{ user: 'Ana', text: 'Roteiro perfeito! Fiz na lua de mel', rating: 5 }] },
-  { id: 'ci2', title: 'Paris com Crianças - 5 Dias Mágicos', destination: 'Paris, França', author: { name: 'Carlos Mendes', avatar: '👨', verified: true }, duration: 5, budget: 28000, travelers: 4, likes: 1523, saves: 892, rating: 4.7, reviews: 156, tags: ['family'], highlights: ['Disneyland Paris', 'Tour de Bicicleta', 'Piquenique no Jardim'], featured: false, comments: [] },
-  { id: 'ci3', title: 'Paris Econômico - Mochileiro', destination: 'Paris, França', author: { name: 'Fernanda Lima', avatar: '👩', verified: false }, duration: 6, budget: 8500, travelers: 1, likes: 2156, saves: 1450, rating: 4.6, reviews: 198, tags: ['budget'], highlights: ['Museus Gratuitos', 'Boulangeries Locais', 'Passeios a Pé'], featured: false, comments: [] },
-  
-  // Nova York
-  { id: 'ci4', title: 'NYC em 5 Dias - Primeiro Impacto', destination: 'Nova York, EUA', author: { name: 'Juliana Costa', avatar: '👩', verified: true }, duration: 5, budget: 22000, travelers: 2, likes: 3421, saves: 1567, rating: 4.8, reviews: 312, tags: ['culture'], highlights: ['Top of the Rock', 'Broadway - Hamilton', 'Central Park'], featured: true, comments: [{ user: 'Pedro', text: 'Seguimos e foi incrível!', rating: 5 }] },
-  { id: 'ci5', title: 'NYC de Luxo - The Best of', destination: 'Nova York, EUA', author: { name: 'Roberto Alves', avatar: '👨', verified: true }, duration: 7, budget: 65000, travelers: 2, likes: 1234, saves: 567, rating: 4.9, reviews: 89, tags: ['luxury'], highlights: ['The Plaza Hotel', 'Helicóptero Manhattan', 'Per Se Restaurant'], featured: false, comments: [] },
-  { id: 'ci6', title: 'NYC com Adolescentes', destination: 'Nova York, EUA', author: { name: 'Patricia Souza', avatar: '👩', verified: false }, duration: 6, budget: 32000, travelers: 4, likes: 987, saves: 456, rating: 4.5, reviews: 78, tags: ['family'], highlights: ['NBA Game MSG', 'Top of the Rock', 'Brooklyn Bridge'], featured: false, comments: [] },
-  
-  // Tóquio
-  { id: 'ci7', title: 'Tóquio em Família - Aventura Kids', destination: 'Tóquio, Japão', author: { name: 'Pedro Santos', avatar: '👨', verified: true }, duration: 10, budget: 55000, travelers: 4, likes: 1956, saves: 892, rating: 4.8, reviews: 167, tags: ['family'], highlights: ['DisneySea Tokyo', 'teamLab Planets', 'Aula de Sushi'], featured: true, comments: [] },
-  { id: 'ci8', title: 'Tóquio para Otakus - Anime Tour', destination: 'Tóquio, Japão', author: { name: 'Lucas Yamamoto', avatar: '👨', verified: true }, duration: 8, budget: 25000, travelers: 2, likes: 2345, saves: 1678, rating: 4.9, reviews: 234, tags: ['culture'], highlights: ['Akihabara Full Day', 'Anime Studios', 'Maid Cafés'], featured: false, comments: [] },
-  { id: 'ci9', title: 'Tóquio Gastronômico - Sabores', destination: 'Tóquio, Japão', author: { name: 'Bianca Ferreira', avatar: '👩', verified: false }, duration: 7, budget: 42000, travelers: 2, likes: 1567, saves: 890, rating: 4.7, reviews: 145, tags: ['gastro'], highlights: ['Tsukiji Market', 'Ramen Hopping', 'Sukiyabashi Jiro'], featured: false, comments: [] },
-  
-  // Cancún
-  { id: 'ci10', title: 'Cancún All-Inclusive Relax', destination: 'Cancún, México', author: { name: 'Amanda Ribeiro', avatar: '👩', verified: true }, duration: 7, budget: 18000, travelers: 2, likes: 2890, saves: 1450, rating: 4.8, reviews: 267, tags: ['beach', 'romantic'], highlights: ['Resort Le Blanc', 'Isla Mujeres', 'Cenotes'], featured: true, comments: [] },
-  { id: 'ci11', title: 'Cancún Aventura - Maias e Cenotes', destination: 'Cancún, México', author: { name: 'Diego Torres', avatar: '👨', verified: false }, duration: 6, budget: 15000, travelers: 2, likes: 1678, saves: 890, rating: 4.6, reviews: 134, tags: ['adventure', 'culture'], highlights: ['Chichén Itzá', 'Cenote Hopping', 'Snorkel Cozumel'], featured: false, comments: [] },
-  
-  // Roma
-  { id: 'ci12', title: 'Roma Histórica - Império Romano', destination: 'Roma, Itália', author: { name: 'Marcos Oliveira', avatar: '👨', verified: true }, duration: 6, budget: 28000, travelers: 2, likes: 2134, saves: 1023, rating: 4.8, reviews: 189, tags: ['culture'], highlights: ['Coliseu VIP', 'Vaticano Sem Fila', 'Fórum Romano'], featured: true, comments: [] },
-  { id: 'ci13', title: 'Roma Gastronômica - Mangia!', destination: 'Roma, Itália', author: { name: 'Giovanna Rossi', avatar: '👩', verified: true }, duration: 5, budget: 22000, travelers: 2, likes: 1890, saves: 945, rating: 4.9, reviews: 156, tags: ['gastro'], highlights: ['Aula de Pasta', 'Food Tour Trastevere', 'Gelato Tour'], featured: false, comments: [] },
-  
-  // Barcelona
-  { id: 'ci14', title: 'Barcelona - Gaudí e Praias', destination: 'Barcelona, Espanha', author: { name: 'Sofia Martinez', avatar: '👩', verified: true }, duration: 6, budget: 24000, travelers: 2, likes: 2456, saves: 1234, rating: 4.7, reviews: 198, tags: ['beach', 'culture'], highlights: ['Sagrada Família', 'Park Güell', 'Barceloneta'], featured: true, comments: [] },
-  { id: 'ci15', title: 'Barcelona Futebol e Tapas', destination: 'Barcelona, Espanha', author: { name: 'Rafael Costa', avatar: '👨', verified: false }, duration: 5, budget: 20000, travelers: 2, likes: 1567, saves: 789, rating: 4.6, reviews: 123, tags: ['gastro'], highlights: ['Camp Nou', 'Tapas Tour', 'El Clásico'], featured: false, comments: [] },
-  
   // Miami
-  { id: 'ci16', title: 'Miami Beach Life', destination: 'Miami, EUA', author: { name: 'Camila Andrade', avatar: '👩', verified: true }, duration: 5, budget: 18000, travelers: 2, likes: 2678, saves: 1345, rating: 4.7, reviews: 212, tags: ['beach'], highlights: ['South Beach', 'Pool Parties', 'Art Deco Tour'], featured: true, comments: [] },
-  { id: 'ci17', title: 'Miami com Crianças', destination: 'Miami, EUA', author: { name: 'Eduardo Lima', avatar: '👨', verified: false }, duration: 6, budget: 25000, travelers: 4, likes: 1234, saves: 678, rating: 4.5, reviews: 98, tags: ['family'], highlights: ['Zoo Miami', 'Everglades', 'Seaquarium'], featured: false, comments: [] },
-  
-  // Dubai
-  { id: 'ci18', title: 'Dubai Luxo Extremo', destination: 'Dubai, Emirados Árabes', author: { name: 'Helena Borges', avatar: '👩', verified: true }, duration: 7, budget: 85000, travelers: 2, likes: 1890, saves: 945, rating: 4.9, reviews: 134, tags: ['luxury'], highlights: ['Burj Al Arab', 'Desert Safari VIP', 'At.mosphere Dinner'], featured: true, comments: [] },
-  { id: 'ci19', title: 'Dubai em Família', destination: 'Dubai, Emirados Árabes', author: { name: 'Ricardo Nunes', avatar: '👨', verified: true }, duration: 6, budget: 45000, travelers: 4, likes: 1456, saves: 723, rating: 4.7, reviews: 112, tags: ['family'], highlights: ['Aquaventure', 'Desert Safari', 'Dubai Frame'], featured: false, comments: [] },
+  {
+    id: 'ci-miami-1', title: 'Miami Beach Life', destination: 'Miami, EUA',
+    author: { name: 'Camila Andrade', avatar: '👩', verified: true },
+    duration: 5, budget: 18000, travelers: 2, likes: 2678, saves: 1345, rating: 4.7, reviews: 212,
+    tags: ['beach'], highlights: ['South Beach', 'Pool Parties', 'Art Deco Tour'], featured: true,
+    flightId: 'mf2', hotelId: 'mh3',
+    dailySchedule: {
+      1: [{ type: 'transfer', name: 'Transfer Aeroporto/Hotel', location: 'Aeroporto → Hotel', price: 280, duration: '2h', period: 'manhã' }, { activityId: 'ma1' }, { restaurantId: 'mr1' }],
+      2: [{ activityId: 'ma4' }, { restaurantId: 'mr2' }],
+      3: [{ activityId: 'ma3' }, { restaurantId: 'mr3' }],
+      4: [{ activityId: 'ma2' }, { activityId: 'ma6' }, { restaurantId: 'mr4' }],
+      5: [{ activityId: 'ma1' }]
+    },
+    comments: [{ user: 'Fernanda', text: 'Roteiro perfeito para quem quer praia e badalação!', rating: 5 }]
+  },
+  {
+    id: 'ci-miami-2', title: 'Miami com Crianças', destination: 'Miami, EUA',
+    author: { name: 'Eduardo Lima', avatar: '👨', verified: false },
+    duration: 6, budget: 25000, travelers: 4, likes: 1234, saves: 678, rating: 4.5, reviews: 98,
+    tags: ['family'], highlights: ['Zoo Miami', 'Everglades', 'Seaquarium'], featured: false,
+    flightId: 'mf1', hotelId: 'mh3',
+    dailySchedule: {
+      1: [{ type: 'transfer', name: 'Transfer Aeroporto/Hotel', location: 'Aeroporto → Hotel', price: 280, duration: '2h', period: 'manhã' }, { activityId: 'ma1' }],
+      2: [{ activityId: 'ma3' }, { restaurantId: 'mr3' }],
+      3: [{ activityId: 'ma4' }, { restaurantId: 'mr3' }],
+      4: [{ activityId: 'ma6' }, { restaurantId: 'mr3' }],
+      5: [{ activityId: 'ma1' }, { restaurantId: 'mr2' }],
+      6: [{ activityId: 'ma2' }]
+    },
+    comments: []
+  },
+  // Paris
+  {
+    id: 'ci-paris-1', title: 'Paris Romântica - Lua de Mel', destination: 'Paris, França',
+    author: { name: 'Marina Silva', avatar: '👩', verified: true },
+    duration: 7, budget: 35000, travelers: 2, likes: 2847, saves: 1203, rating: 4.9, reviews: 234,
+    tags: ['romantic', 'luxury'], highlights: ['Torre Eiffel ao Pôr do Sol', 'Cruzeiro no Sena', 'Jantar Le Cinq'], featured: true,
+    flightId: 'pf1', hotelId: 'ph3',
+    dailySchedule: {
+      1: [{ type: 'transfer', name: 'Transfer Aeroporto/Hotel', location: 'CDG → Hotel', price: 350, duration: '1h30', period: 'manhã' }, { activityId: 'pa1' }, { restaurantId: 'pr4' }],
+      2: [{ activityId: 'pa2' }, { restaurantId: 'pr3' }, { activityId: 'pa3' }],
+      3: [{ activityId: 'pa4' }, { restaurantId: 'pr2' }],
+      4: [{ activityId: 'pa6' }, { activityId: 'pa5' }, { restaurantId: 'pr5' }],
+      5: [{ activityId: 'pa10' }, { restaurantId: 'pr6' }, { activityId: 'pa9' }],
+      6: [{ activityId: 'pa8' }, { restaurantId: 'pr1' }],
+      7: [{ type: 'free', name: 'Manhã Livre / Compras', location: 'Champs-Élysées', price: 0, duration: '3h', period: 'manhã' }]
+    },
+    comments: [{ user: 'Ana', text: 'Roteiro perfeito! Fiz na lua de mel', rating: 5 }]
+  },
+  {
+    id: 'ci-paris-2', title: 'Paris com Crianças', destination: 'Paris, França',
+    author: { name: 'Carlos Mendes', avatar: '👨', verified: true },
+    duration: 5, budget: 28000, travelers: 4, likes: 1523, saves: 892, rating: 4.7, reviews: 156,
+    tags: ['family'], highlights: ['Disneyland Paris', 'Torre Eiffel', 'Jardim de Luxemburgo'], featured: false,
+    flightId: 'pf3', hotelId: 'ph4',
+    dailySchedule: {
+      1: [{ type: 'transfer', name: 'Transfer Aeroporto/Hotel', location: 'CDG → Hotel', price: 350, duration: '1h30', period: 'manhã' }, { activityId: 'pa1' }],
+      2: [{ activityId: 'pa7' }],
+      3: [{ activityId: 'pa2' }, { restaurantId: 'pr3' }],
+      4: [{ activityId: 'pa10' }, { activityId: 'pa5' }, { restaurantId: 'pr5' }],
+      5: [{ activityId: 'pa9' }]
+    },
+    comments: []
+  },
+  {
+    id: 'ci-paris-3', title: 'Paris Econômico', destination: 'Paris, França',
+    author: { name: 'Fernanda Lima', avatar: '👩', verified: false },
+    duration: 6, budget: 12000, travelers: 1, likes: 2156, saves: 1450, rating: 4.6, reviews: 198,
+    tags: ['budget'], highlights: ['Museus Gratuitos', 'Boulangeries Locais', 'Passeios a Pé'], featured: false,
+    flightId: 'pf3', hotelId: 'ph6',
+    dailySchedule: {
+      1: [{ type: 'transfer', name: 'Metrô Aeroporto/Hostel', location: 'CDG → Hostel', price: 45, duration: '2h', period: 'manhã' }, { activityId: 'pa10' }],
+      2: [{ activityId: 'pa2' }, { restaurantId: 'pr3' }],
+      3: [{ activityId: 'pa5' }, { activityId: 'pa9' }],
+      4: [{ activityId: 'pa6' }, { restaurantId: 'pr6' }],
+      5: [{ activityId: 'pa1' }, { activityId: 'pa3' }],
+      6: [{ type: 'free', name: 'Check-out / Compras', location: 'Marais', price: 0, duration: '3h', period: 'manhã' }]
+    },
+    comments: []
+  },
+  // Nova York
+  {
+    id: 'ci-nyc-1', title: 'NYC em 5 Dias - Primeiro Impacto', destination: 'Nova York, EUA',
+    author: { name: 'Juliana Costa', avatar: '👩', verified: true },
+    duration: 5, budget: 22000, travelers: 2, likes: 3421, saves: 1567, rating: 4.8, reviews: 312,
+    tags: ['culture'], highlights: ['Top of the Rock', 'Broadway - Hamilton', 'Central Park'], featured: true,
+    flightId: 'nf3', hotelId: 'nh4',
+    dailySchedule: {
+      1: [{ type: 'transfer', name: 'Transfer JFK/Hotel', location: 'JFK → Hotel', price: 320, duration: '1h30', period: 'manhã' }, { activityId: 'na9' }, { restaurantId: 'nr3' }],
+      2: [{ activityId: 'na2' }, { activityId: 'na7' }, { restaurantId: 'nr2' }],
+      3: [{ activityId: 'na5' }, { activityId: 'na6' }, { restaurantId: 'nr4' }],
+      4: [{ activityId: 'na4' }, { activityId: 'na10' }, { activityId: 'na3' }],
+      5: [{ activityId: 'na8' }, { restaurantId: 'nr5' }]
+    },
+    comments: [{ user: 'Pedro', text: 'Seguimos e foi incrível!', rating: 5 }]
+  },
+  {
+    id: 'ci-nyc-2', title: 'NYC de Luxo', destination: 'Nova York, EUA',
+    author: { name: 'Roberto Alves', avatar: '👨', verified: true },
+    duration: 7, budget: 65000, travelers: 2, likes: 1234, saves: 567, rating: 4.9, reviews: 89,
+    tags: ['luxury'], highlights: ['The Plaza Hotel', 'Helicóptero Manhattan', 'Per Se Restaurant'], featured: false,
+    flightId: 'nf4', hotelId: 'nh1',
+    dailySchedule: {
+      1: [{ type: 'transfer', name: 'Limusine JFK/Hotel', location: 'JFK → The Plaza', price: 850, duration: '1h', period: 'manhã' }, { restaurantId: 'nr1' }],
+      2: [{ activityId: 'na5' }, { activityId: 'na4' }, { restaurantId: 'nr1' }],
+      3: [{ activityId: 'na2' }, { activityId: 'na6' }],
+      4: [{ activityId: 'na3' }, { restaurantId: 'nr5' }],
+      5: [{ activityId: 'na1' }, { activityId: 'na10' }],
+      6: [{ activityId: 'na7' }, { activityId: 'na8' }],
+      7: [{ type: 'free', name: 'Compras 5th Avenue', location: '5th Avenue', price: 0, duration: '4h', period: 'manhã' }]
+    },
+    comments: []
+  },
+  // Tokyo
+  {
+    id: 'ci-tokyo-1', title: 'Tóquio em Família', destination: 'Tóquio, Japão',
+    author: { name: 'Pedro Santos', avatar: '👨', verified: true },
+    duration: 10, budget: 55000, travelers: 4, likes: 1956, saves: 892, rating: 4.8, reviews: 167,
+    tags: ['family'], highlights: ['DisneySea Tokyo', 'teamLab Planets', 'Aula de Sushi'], featured: true,
+    flightId: 'tf4', hotelId: 'th3',
+    dailySchedule: {
+      1: [{ type: 'transfer', name: 'Transfer Narita/Hotel', location: 'Narita → Hotel', price: 450, duration: '2h', period: 'manhã' }, { activityId: 'ta2' }],
+      2: [{ activityId: 'ta6' }],
+      3: [{ activityId: 'ta3' }, { activityId: 'ta5' }, { restaurantId: 'tr2' }],
+      4: [{ activityId: 'ta4' }],
+      5: [{ activityId: 'ta7' }, { restaurantId: 'tr3' }],
+      6: [{ activityId: 'ta1' }, { activityId: 'ta8' }],
+      7: [{ type: 'free', name: 'Dia de Compras', location: 'Ginza', price: 0, duration: '6h', period: 'manhã' }, { restaurantId: 'tr4' }],
+      8: [{ activityId: 'ta2' }, { restaurantId: 'tr2' }],
+      9: [{ activityId: 'ta5' }, { activityId: 'ta3' }],
+      10: [{ type: 'free', name: 'Check-out', location: 'Hotel', price: 0, duration: '2h', period: 'manhã' }]
+    },
+    comments: []
+  },
+  {
+    id: 'ci-tokyo-2', title: 'Tóquio Anime Tour', destination: 'Tóquio, Japão',
+    author: { name: 'Lucas Yamamoto', avatar: '👨', verified: true },
+    duration: 8, budget: 25000, travelers: 2, likes: 2345, saves: 1678, rating: 4.9, reviews: 234,
+    tags: ['culture'], highlights: ['Akihabara Full Day', 'Anime Studios', 'Maid Cafés'], featured: false,
+    flightId: 'tf4', hotelId: 'th4',
+    dailySchedule: {
+      1: [{ type: 'transfer', name: 'Transfer Narita/Hostel', location: 'Narita → Asakusa', price: 280, duration: '2h', period: 'manhã' }, { activityId: 'ta2' }],
+      2: [{ activityId: 'ta7' }, { restaurantId: 'tr2' }],
+      3: [{ activityId: 'ta3' }, { activityId: 'ta5' }],
+      4: [{ activityId: 'ta7' }, { restaurantId: 'tr3' }],
+      5: [{ activityId: 'ta1' }, { activityId: 'ta8' }],
+      6: [{ activityId: 'ta6' }],
+      7: [{ activityId: 'ta7' }, { restaurantId: 'tr2' }],
+      8: [{ type: 'free', name: 'Último dia em Akihabara', location: 'Akihabara', price: 0, duration: '4h', period: 'manhã' }]
+    },
+    comments: []
+  },
+  // Roma
+  {
+    id: 'ci-roma-1', title: 'Roma Histórica', destination: 'Roma, Itália',
+    author: { name: 'Marcos Oliveira', avatar: '👨', verified: true },
+    duration: 6, budget: 28000, travelers: 2, likes: 2134, saves: 1023, rating: 4.8, reviews: 189,
+    tags: ['culture'], highlights: ['Coliseu VIP', 'Vaticano Sem Fila', 'Fórum Romano'], featured: true,
+    flightId: 'rf2', hotelId: 'rh2',
+    dailySchedule: {
+      1: [{ type: 'transfer', name: 'Transfer Fiumicino/Hotel', location: 'FCO → Hotel', price: 280, duration: '1h', period: 'manhã' }, { activityId: 'ra3' }, { restaurantId: 'rr3' }],
+      2: [{ activityId: 'ra1' }, { restaurantId: 'rr2' }],
+      3: [{ activityId: 'ra2' }, { restaurantId: 'rr3' }],
+      4: [{ activityId: 'ra4' }, { activityId: 'ra6' }],
+      5: [{ activityId: 'ra5' }, { restaurantId: 'rr1' }],
+      6: [{ type: 'free', name: 'Manhã Livre', location: 'Trastevere', price: 0, duration: '3h', period: 'manhã' }]
+    },
+    comments: []
+  },
 ];
 
 // ============================================
@@ -391,7 +529,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }) => {
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {mode === 'register' && (
             <div>
-              <label className="text-sm font-medium text-slate-600 block mb-1">Nome completo</label>
+              <label className="text-sm font-medium text-slate-600 block mb-1">Nome</label>
               <div className="relative"><User size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" /><input type="text" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl" placeholder="Seu nome" required /></div>
             </div>
           )}
@@ -411,12 +549,46 @@ const AuthModal = ({ isOpen, onClose, onLogin }) => {
   );
 };
 
-// Day Card (Calendar Style - matching the uploaded design)
-const DayCard = ({ day, startDate, items, isFirst, isLast, origin, destination, flight, onEditItem, onAddItem }) => {
-  const dateInfo = formatDate(startDate, day - 1);
+// AI Insight Card
+const AIInsightCard = ({ insight, onAction }) => {
+  const colors = {
+    warning: { bg: 'bg-amber-50 border-amber-200', icon: 'text-amber-500', btn: 'bg-amber-500' },
+    success: { bg: 'bg-emerald-50 border-emerald-200', icon: 'text-emerald-500', btn: 'bg-emerald-500' },
+    info: { bg: 'bg-blue-50 border-blue-200', icon: 'text-blue-500', btn: 'bg-blue-500' },
+    danger: { bg: 'bg-red-50 border-red-200', icon: 'text-red-500', btn: 'bg-red-500' },
+  };
+  const style = colors[insight.type] || colors.info;
+  const Icon = insight.icon;
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all min-w-[320px] flex-shrink-0">
+    <div className={`p-3 rounded-xl border ${style.bg}`}>
+      <div className="flex items-start gap-3">
+        <Icon size={18} className={style.icon} />
+        <div className="flex-1 min-w-0">
+          <p className="text-sm text-slate-700">{insight.message}</p>
+          {insight.action && (
+            <button onClick={() => onAction && onAction(insight)} className={`mt-2 px-3 py-1 ${style.btn} text-white text-xs font-medium rounded-lg`}>
+              {insight.action}
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Day Card with total cost
+const DayCard = ({ day, startDate, items, isFirst, isLast, origin, destination, flight, totalPayingTravelers }) => {
+  const dateInfo = formatDate(startDate, day - 1);
+  
+  // Calculate day total
+  let dayTotal = 0;
+  if (isFirst && flight) dayTotal += flight.price * totalPayingTravelers; // Flight cost on first day
+  items.forEach(item => { dayTotal += (item.price || 0); });
+  if (isLast && flight) dayTotal += flight.price * totalPayingTravelers; // Return flight on last day
+
+  return (
+    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all">
       {/* Header */}
       <div className="bg-gradient-to-r from-teal-700 to-teal-800 p-4 text-white">
         <div className="flex items-center justify-between">
@@ -424,51 +596,49 @@ const DayCard = ({ day, startDate, items, isFirst, isLast, origin, destination, 
             <p className="text-teal-200 text-xs font-medium tracking-wide">{dateInfo.weekday}</p>
             <p className="text-3xl font-bold">{dateInfo.day}/{dateInfo.month}</p>
           </div>
-          {isFirst && (
-            <div className="px-3 py-1.5 bg-amber-400 text-amber-900 text-xs font-bold rounded-full flex items-center gap-1.5">
-              <PlaneLanding size={14} /> Chegada
-            </div>
-          )}
-          {isLast && (
-            <div className="px-3 py-1.5 bg-blue-400 text-blue-900 text-xs font-bold rounded-full flex items-center gap-1.5">
-              <PlaneTakeoff size={14} /> Partida
-            </div>
-          )}
+          <div className="flex items-center gap-2">
+            {isFirst && <span className="px-2 py-1 bg-amber-400 text-amber-900 text-xs font-bold rounded-full flex items-center gap-1"><PlaneLanding size={12} /> Chegada</span>}
+            {isLast && <span className="px-2 py-1 bg-blue-400 text-blue-900 text-xs font-bold rounded-full flex items-center gap-1"><PlaneTakeoff size={12} /> Partida</span>}
+          </div>
+        </div>
+        {/* Day Total */}
+        <div className="mt-2 pt-2 border-t border-white/20 flex items-center justify-between">
+          <span className="text-teal-200 text-xs">Custo do dia:</span>
+          <span className="font-bold">R$ {dayTotal.toLocaleString('pt-BR')}</span>
         </div>
       </div>
 
       {/* Content */}
       <div className="p-4 space-y-3">
-        {/* First day: Arrival */}
+        {/* First day: Flight arrival */}
         {isFirst && flight && (
-          <div onClick={() => onEditItem('flight', flight)} className="cursor-pointer group">
+          <div className="group">
             <div className="flex items-center gap-2 mb-2">
               <span className="px-2.5 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded-full flex items-center gap-1"><Sunrise size={12} /> Manhã</span>
             </div>
-            <h4 className="font-bold text-slate-800 group-hover:text-teal-600 transition-colors">Transfer Aeroporto/Hotel</h4>
-            <p className="text-sm text-slate-500 flex items-center gap-1 mt-1"><MapPin size={12} className="text-rose-400" />{origin.split(' ')[0]} → Hotel</p>
+            <h4 className="font-bold text-slate-800">Chegada - {flight.name}</h4>
+            <p className="text-sm text-slate-500 flex items-center gap-1 mt-1"><MapPin size={12} className="text-rose-400" />{origin.split(' ')[0]} → {destination.split(',')[0]}</p>
             <div className="flex items-center gap-3 mt-2">
-              <span className="px-2 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded">R$ {(flight.price * 0.1).toFixed(0)}</span>
-              <span className="text-xs text-slate-400 flex items-center gap-1"><Clock size={10} /> 2h</span>
+              <span className="px-2 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded">R$ {(flight.price * totalPayingTravelers).toLocaleString('pt-BR')}</span>
+              <span className="text-xs text-slate-400">{flight.duration} • {totalPayingTravelers} passageiro(s)</span>
             </div>
           </div>
         )}
 
-        {/* Activities for the day */}
+        {/* Items */}
         {items.map((item, idx) => {
           const periodStyle = getPeriodStyle(item.period);
           const PeriodIcon = periodStyle.icon;
-
           return (
-            <div key={idx} onClick={() => onEditItem(item.category, item.data)} className="cursor-pointer group border-t border-slate-100 pt-3 first:border-0 first:pt-0">
+            <div key={idx} className="border-t border-slate-100 pt-3 first:border-0 first:pt-0">
               <div className="flex items-center gap-2 mb-2">
                 <span className={`px-2.5 py-1 ${periodStyle.bg} ${periodStyle.text} text-xs font-semibold rounded-full flex items-center gap-1`}>
                   <PeriodIcon size={12} /> {periodStyle.label}
                 </span>
-                {item.special && <span className="px-2 py-0.5 bg-cyan-100 text-cyan-700 text-xs rounded-full">{item.special}</span>}
+                {item.childFriendly && <span className="text-xs text-pink-500">Kids OK</span>}
               </div>
-              <h4 className="font-bold text-slate-800 group-hover:text-teal-600 transition-colors">{item.name}</h4>
-              <p className="text-sm text-slate-500 flex items-center gap-1 mt-1"><MapPin size={12} className="text-rose-400" />{item.location}</p>
+              <h4 className="font-bold text-slate-800">{item.name}</h4>
+              <p className="text-sm text-slate-500 flex items-center gap-1 mt-1"><MapPin size={12} className="text-rose-400" />{item.location || item.cuisine}</p>
               <div className="flex items-center gap-3 mt-2">
                 {item.price === 0 ? (
                   <span className="px-2 py-1 bg-emerald-50 text-emerald-600 text-xs font-semibold rounded flex items-center gap-1"><Sparkles size={10} /> Gratuito</span>
@@ -476,29 +646,28 @@ const DayCard = ({ day, startDate, items, isFirst, isLast, origin, destination, 
                   <span className="px-2 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded">R$ {item.price.toLocaleString('pt-BR')}</span>
                 )}
                 {item.duration && <span className="text-xs text-slate-400 flex items-center gap-1"><Clock size={10} /> {item.duration}</span>}
-                {item.childFriendly && <span className="text-xs text-pink-500">Kids OK</span>}
               </div>
             </div>
           );
         })}
 
-        {/* Last day: Departure */}
+        {/* Last day: Return flight */}
         {isLast && flight && (
-          <div onClick={() => onEditItem('flight', flight)} className="cursor-pointer group border-t border-slate-100 pt-3">
+          <div className="border-t border-slate-100 pt-3">
             <div className="flex items-center gap-2 mb-2">
               <span className="px-2.5 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full flex items-center gap-1"><Moon size={12} /> Noite</span>
             </div>
-            <h4 className="font-bold text-slate-800 group-hover:text-teal-600 transition-colors">Voo de Volta</h4>
+            <h4 className="font-bold text-slate-800">Voo de Volta - {flight.name}</h4>
             <p className="text-sm text-slate-500 flex items-center gap-1 mt-1"><MapPin size={12} className="text-rose-400" />{destination.split(',')[0]} → {origin.split(' ')[0]}</p>
             <div className="flex items-center gap-3 mt-2">
-              <span className="px-2 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded">R$ {flight.price.toLocaleString('pt-BR')}</span>
+              <span className="px-2 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded">R$ {(flight.price * totalPayingTravelers).toLocaleString('pt-BR')}</span>
               <span className="text-xs text-slate-400">{flight.duration}</span>
             </div>
           </div>
         )}
 
         {/* Add Activity */}
-        <button onClick={() => onAddItem(day)} className="w-full py-3 border-2 border-dashed border-slate-200 rounded-xl text-slate-400 hover:border-teal-400 hover:text-teal-500 transition-colors flex items-center justify-center gap-2 text-sm">
+        <button className="w-full py-2.5 border-2 border-dashed border-slate-200 rounded-xl text-slate-400 hover:border-teal-400 hover:text-teal-500 transition-colors flex items-center justify-center gap-2 text-sm">
           <Plus size={16} /> Adicionar atividade
         </button>
       </div>
@@ -506,32 +675,35 @@ const DayCard = ({ day, startDate, items, isFirst, isLast, origin, destination, 
   );
 };
 
-// Community Itinerary Card
-const CommunityCard = ({ itinerary, onView, onLike, compact = false }) => {
+// Community Card
+const CommunityCard = ({ itinerary, onView, onLike, onUse, compact = false }) => {
   const destData = DESTINATIONS_DATABASE[itinerary.destination];
   const typeLabels = { romantic: '💕 Romântico', family: '👨‍👩‍👧 Família', budget: '💰 Econômico', luxury: '👑 Luxo', culture: '🏛️ Cultural', beach: '🏖️ Praia', adventure: '🏔️ Aventura', gastro: '🍽️ Gastronomia' };
 
   if (compact) {
     return (
-      <div onClick={() => onView(itinerary)} className="bg-white rounded-xl border border-slate-200 p-3 hover:shadow-md transition-all cursor-pointer">
+      <div className="bg-white rounded-xl border border-slate-200 p-3 hover:shadow-md transition-all">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-lg bg-cover bg-center" style={{ backgroundImage: `url(${destData?.coverUrl})` }} />
+          <div className="w-12 h-12 rounded-lg bg-cover bg-center flex-shrink-0" style={{ backgroundImage: `url(${destData?.coverUrl})` }} />
           <div className="flex-1 min-w-0">
             <h4 className="font-semibold text-sm text-slate-800 truncate">{itinerary.title}</h4>
             <p className="text-xs text-slate-500">{itinerary.duration} dias • {itinerary.destination.split(',')[0]}</p>
           </div>
-          <div className="text-right">
+          <div className="text-right flex-shrink-0">
             <div className="flex items-center gap-1 text-amber-500"><Star size={12} className="fill-amber-500" /><span className="text-xs font-bold">{itinerary.rating}</span></div>
             <p className="text-xs text-slate-400">{itinerary.likes} ❤️</p>
           </div>
         </div>
+        <button onClick={() => onUse && onUse(itinerary)} className="w-full mt-2 py-1.5 bg-teal-50 text-teal-600 text-xs font-medium rounded-lg hover:bg-teal-100 flex items-center justify-center gap-1">
+          <Copy size={12} /> Usar este roteiro
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all group">
-      <div className="relative h-36 bg-cover bg-center" style={{ backgroundImage: `url(${destData?.coverUrl})` }}>
+    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all">
+      <div className="relative h-32 bg-cover bg-center" style={{ backgroundImage: `url(${destData?.coverUrl})` }}>
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
         {itinerary.featured && <div className="absolute top-3 left-3 px-2 py-1 bg-amber-500 text-white text-xs font-bold rounded-full flex items-center gap-1"><Crown size={12} /> DESTAQUE</div>}
         <div className="absolute bottom-3 left-3 right-3">
@@ -544,7 +716,7 @@ const CommunityCard = ({ itinerary, onView, onLike, compact = false }) => {
           <span className="text-xl">{itinerary.author.avatar}</span>
           <div className="flex-1">
             <p className="text-xs font-medium text-slate-700">{itinerary.author.name} {itinerary.author.verified && <UserCheck size={10} className="inline text-teal-500" />}</p>
-            <p className="text-[10px] text-slate-400">{itinerary.duration} dias • {itinerary.travelers} viajantes</p>
+            <p className="text-[10px] text-slate-400">{itinerary.duration} dias • R$ {itinerary.budget.toLocaleString('pt-BR')}</p>
           </div>
           <div className="flex items-center gap-1 text-amber-500"><Star size={12} className="fill-amber-500" /><span className="text-xs font-bold">{itinerary.rating}</span></div>
         </div>
@@ -553,74 +725,12 @@ const CommunityCard = ({ itinerary, onView, onLike, compact = false }) => {
         </div>
         <div className="flex items-center justify-between pt-3 border-t border-slate-100">
           <div className="flex items-center gap-3">
-            <button onClick={(e) => { e.stopPropagation(); onLike(itinerary.id); }} className="flex items-center gap-1 text-slate-400 hover:text-rose-500 text-xs"><Heart size={14} />{itinerary.likes}</button>
+            <button onClick={() => onLike && onLike(itinerary.id)} className="flex items-center gap-1 text-slate-400 hover:text-rose-500 text-xs"><Heart size={14} />{itinerary.likes}</button>
             <span className="flex items-center gap-1 text-slate-400 text-xs"><MessageSquare size={14} />{itinerary.comments?.length || 0}</span>
           </div>
-          <button onClick={() => onView(itinerary)} className="px-3 py-1.5 bg-teal-600 text-white text-xs font-medium rounded-lg hover:bg-teal-700">Ver Roteiro</button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Itinerary Detail Modal
-const ItineraryDetailModal = ({ isOpen, onClose, itinerary, onRate }) => {
-  const [newComment, setNewComment] = useState('');
-  const [rating, setRating] = useState(5);
-  if (!isOpen || !itinerary) return null;
-
-  const destData = DESTINATIONS_DATABASE[itinerary.destination];
-
-  return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
-        <div className="relative h-48 bg-cover bg-center" style={{ backgroundImage: `url(${destData?.coverUrl})` }}>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-          <button onClick={onClose} className="absolute top-4 right-4 p-2 bg-black/30 rounded-full text-white hover:bg-black/50"><X size={20} /></button>
-          <div className="absolute bottom-4 left-4 right-4">
-            <h2 className="text-2xl font-bold text-white">{itinerary.title}</h2>
-            <p className="text-white/80">{itinerary.destination} • {itinerary.duration} dias</p>
-          </div>
-        </div>
-
-        <div className="p-6 overflow-y-auto max-h-[50vh]">
-          <div className="flex items-center gap-4 mb-6">
-            <span className="text-3xl">{itinerary.author.avatar}</span>
-            <div>
-              <p className="font-semibold text-slate-800">{itinerary.author.name} {itinerary.author.verified && <UserCheck size={14} className="inline text-teal-500" />}</p>
-              <p className="text-sm text-slate-500">Orçamento: R$ {itinerary.budget.toLocaleString('pt-BR')} • {itinerary.travelers} viajantes</p>
-            </div>
-            <div className="ml-auto text-right">
-              <div className="flex items-center gap-1 text-amber-500"><Star size={16} className="fill-amber-500" /><span className="font-bold">{itinerary.rating}</span></div>
-              <p className="text-xs text-slate-400">{itinerary.reviews} avaliações</p>
-            </div>
-          </div>
-
-          <h3 className="font-bold text-slate-800 mb-3">✨ Destaques</h3>
-          <div className="flex flex-wrap gap-2 mb-6">
-            {itinerary.highlights.map((h, i) => <span key={i} className="px-3 py-1.5 bg-teal-50 text-teal-700 text-sm rounded-full">{h}</span>)}
-          </div>
-
-          <h3 className="font-bold text-slate-800 mb-3">💬 Comentários ({itinerary.comments?.length || 0})</h3>
-          <div className="space-y-3 mb-6">
-            {(itinerary.comments || []).map((c, i) => (
-              <div key={i} className="p-3 bg-slate-50 rounded-xl">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-medium text-sm">{c.user}</span>
-                  <div className="flex items-center gap-0.5">{Array(c.rating).fill(0).map((_, i) => <Star key={i} size={12} className="fill-amber-400 text-amber-400" />)}</div>
-                </div>
-                <p className="text-sm text-slate-600">{c.text}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="p-4 bg-slate-50 rounded-xl">
-            <h4 className="font-semibold text-sm mb-3">Deixe sua avaliação</h4>
-            <div className="flex items-center gap-1 mb-3">
-              {[1, 2, 3, 4, 5].map(n => <button key={n} onClick={() => setRating(n)} className={`p-1 ${n <= rating ? 'text-amber-400' : 'text-slate-300'}`}><Star size={20} className={n <= rating ? 'fill-amber-400' : ''} /></button>)}
-            </div>
-            <textarea value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Conte sua experiência..." className="w-full p-3 border border-slate-200 rounded-xl text-sm resize-none" rows={3} />
-            <button className="mt-2 px-4 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700">Enviar Avaliação</button>
+          <div className="flex gap-2">
+            <button onClick={() => onUse && onUse(itinerary)} className="px-2 py-1 bg-teal-50 text-teal-600 text-xs font-medium rounded-lg hover:bg-teal-100 flex items-center gap-1"><Copy size={12} /> Usar</button>
+            <button onClick={() => onView && onView(itinerary)} className="px-2 py-1 bg-teal-600 text-white text-xs font-medium rounded-lg hover:bg-teal-700">Ver</button>
           </div>
         </div>
       </div>
@@ -628,110 +738,67 @@ const ItineraryDetailModal = ({ isOpen, onClose, itinerary, onRate }) => {
   );
 };
 
-// User Profile Page
+// Profile Page
 const ProfilePage = ({ user, userProfile, setUserProfile, onLogout }) => {
-  const [activeTab, setActiveTab] = useState('info');
+  const [activeTab, setActiveTab] = useState('profile');
   const [editing, setEditing] = useState(false);
   const [tempProfile, setTempProfile] = useState(userProfile || { type: '', interests: [], preferredBudget: 'medium' });
 
-  const handleSave = () => {
-    setUserProfile(tempProfile);
-    setEditing(false);
-  };
-
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Profile Header */}
       <div className="bg-gradient-to-r from-teal-600 to-teal-700 rounded-2xl p-6 text-white mb-6">
         <div className="flex items-center gap-4">
           <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center text-4xl">{user.avatar}</div>
           <div className="flex-1">
             <h1 className="text-2xl font-bold">{user.name}</h1>
             <p className="text-teal-200">{user.email}</p>
-            <p className="text-sm text-teal-300 mt-1">Membro desde {user.joinDate} • {user.trips || 0} viagens • {user.reviews || 0} avaliações</p>
           </div>
           <button onClick={onLogout} className="px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 flex items-center gap-2"><LogOut size={16} /> Sair</button>
         </div>
       </div>
 
-      {/* Tabs */}
       <div className="flex gap-2 mb-6">
-        {[{ id: 'info', label: 'Informações', icon: User }, { id: 'profile', label: 'Perfil Viajante', icon: Compass }, { id: 'trips', label: 'Minhas Viagens', icon: Map }, { id: 'saved', label: 'Salvos', icon: Bookmark }].map(tab => (
-          <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`px-4 py-2 rounded-lg font-medium flex items-center gap-2 ${activeTab === tab.id ? 'bg-teal-600 text-white' : 'bg-white text-slate-600 hover:bg-slate-50'}`}>
+        {[{ id: 'profile', label: 'Perfil Viajante', icon: Compass }].map(tab => (
+          <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`px-4 py-2 rounded-lg font-medium flex items-center gap-2 ${activeTab === tab.id ? 'bg-teal-600 text-white' : 'bg-white text-slate-600'}`}>
             <tab.icon size={16} /> {tab.label}
           </button>
         ))}
       </div>
 
-      {/* Tab Content */}
       <div className="bg-white rounded-2xl border border-slate-200 p-6">
-        {activeTab === 'info' && (
-          <div className="space-y-4">
-            <h2 className="text-lg font-bold text-slate-800 mb-4">Informações Pessoais</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div><label className="text-sm font-medium text-slate-500">Nome Completo</label><input type="text" defaultValue={user.name} className="w-full mt-1 px-4 py-2 border border-slate-200 rounded-xl" /></div>
-              <div><label className="text-sm font-medium text-slate-500">E-mail</label><input type="email" defaultValue={user.email} className="w-full mt-1 px-4 py-2 border border-slate-200 rounded-xl" /></div>
-              <div><label className="text-sm font-medium text-slate-500">Telefone</label><input type="tel" placeholder="+55 (11) 99999-9999" className="w-full mt-1 px-4 py-2 border border-slate-200 rounded-xl" /></div>
-              <div><label className="text-sm font-medium text-slate-500">Cidade</label><input type="text" placeholder="São Paulo, SP" className="w-full mt-1 px-4 py-2 border border-slate-200 rounded-xl" /></div>
-            </div>
-            <button className="mt-4 px-6 py-2 bg-teal-600 text-white font-medium rounded-xl">Salvar Alterações</button>
-          </div>
-        )}
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-lg font-bold text-slate-800">Perfil do Viajante</h2>
+          {!editing ? <button onClick={() => setEditing(true)} className="px-4 py-2 border border-teal-600 text-teal-600 rounded-lg">Editar</button> : <button onClick={() => { setUserProfile(tempProfile); setEditing(false); }} className="px-4 py-2 bg-teal-600 text-white rounded-lg">Salvar</button>}
+        </div>
 
-        {activeTab === 'profile' && (
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-bold text-slate-800">Perfil do Viajante</h2>
-              {!editing ? <button onClick={() => setEditing(true)} className="px-4 py-2 border border-teal-600 text-teal-600 rounded-lg hover:bg-teal-50">Editar</button> : <button onClick={handleSave} className="px-4 py-2 bg-teal-600 text-white rounded-lg">Salvar</button>}
-            </div>
+        <h3 className="font-semibold text-slate-700 mb-3">Seu estilo de viagem</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+          {TRAVELER_TYPES.map(type => (
+            <button key={type.id} onClick={() => editing && setTempProfile({...tempProfile, type: type.id})} disabled={!editing} className={`p-4 rounded-xl border-2 text-center transition-all ${tempProfile.type === type.id ? 'border-teal-500 bg-teal-50' : 'border-slate-200'}`}>
+              <type.icon size={24} className={tempProfile.type === type.id ? 'text-teal-600 mx-auto' : 'text-slate-400 mx-auto'} />
+              <p className="font-medium text-sm mt-2">{type.name}</p>
+            </button>
+          ))}
+        </div>
 
-            <h3 className="font-semibold text-slate-700 mb-3">Seu estilo de viagem</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-              {TRAVELER_TYPES.map(type => (
-                <button key={type.id} onClick={() => editing && setTempProfile({...tempProfile, type: type.id})} disabled={!editing} className={`p-4 rounded-xl border-2 text-center transition-all ${tempProfile.type === type.id ? 'border-teal-500 bg-teal-50' : 'border-slate-200'} ${editing ? 'hover:border-teal-300' : ''}`}>
-                  <type.icon size={24} className={tempProfile.type === type.id ? 'text-teal-600 mx-auto' : 'text-slate-400 mx-auto'} />
-                  <p className="font-medium text-sm mt-2">{type.name}</p>
-                </button>
-              ))}
-            </div>
+        <h3 className="font-semibold text-slate-700 mb-3">Interesses</h3>
+        <div className="flex flex-wrap gap-2 mb-6">
+          {INTEREST_TAGS.map(tag => (
+            <button key={tag} onClick={() => { if (!editing) return; setTempProfile({...tempProfile, interests: tempProfile.interests?.includes(tag) ? tempProfile.interests.filter(i => i !== tag) : [...(tempProfile.interests || []), tag]}); }} disabled={!editing} className={`px-4 py-2 rounded-full text-sm font-medium ${tempProfile.interests?.includes(tag) ? 'bg-teal-600 text-white' : 'bg-slate-100 text-slate-600'}`}>
+              {tag}
+            </button>
+          ))}
+        </div>
 
-            <h3 className="font-semibold text-slate-700 mb-3">Interesses</h3>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {INTEREST_TAGS.map(tag => (
-                <button key={tag} onClick={() => { if (!editing) return; setTempProfile({...tempProfile, interests: tempProfile.interests.includes(tag) ? tempProfile.interests.filter(i => i !== tag) : [...tempProfile.interests, tag]}); }} disabled={!editing} className={`px-4 py-2 rounded-full text-sm font-medium ${tempProfile.interests.includes(tag) ? 'bg-teal-600 text-white' : 'bg-slate-100 text-slate-600'} ${editing ? 'hover:opacity-80' : ''}`}>
-                  {tag}
-                </button>
-              ))}
-            </div>
-
-            <h3 className="font-semibold text-slate-700 mb-3">Orçamento preferido</h3>
-            <div className="grid grid-cols-3 gap-3">
-              {[{ id: 'budget', label: 'Econômico', desc: 'Até R$ 15k' }, { id: 'medium', label: 'Médio', desc: 'R$ 15k - 40k' }, { id: 'luxury', label: 'Luxo', desc: 'Acima de R$ 40k' }].map(opt => (
-                <button key={opt.id} onClick={() => editing && setTempProfile({...tempProfile, preferredBudget: opt.id})} disabled={!editing} className={`p-4 rounded-xl border-2 text-center ${tempProfile.preferredBudget === opt.id ? 'border-teal-500 bg-teal-50' : 'border-slate-200'}`}>
-                  <p className="font-medium">{opt.label}</p>
-                  <p className="text-xs text-slate-500">{opt.desc}</p>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'trips' && (
-          <div className="text-center py-12">
-            <Map size={48} className="text-slate-300 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-slate-800 mb-2">Nenhuma viagem ainda</h3>
-            <p className="text-slate-500 mb-4">Suas viagens planejadas aparecerão aqui</p>
-            <button className="px-6 py-2 bg-teal-600 text-white font-medium rounded-xl">Planejar Viagem</button>
-          </div>
-        )}
-
-        {activeTab === 'saved' && (
-          <div className="text-center py-12">
-            <Bookmark size={48} className="text-slate-300 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-slate-800 mb-2">Nada salvo ainda</h3>
-            <p className="text-slate-500">Roteiros que você salvar aparecerão aqui</p>
-          </div>
-        )}
+        <h3 className="font-semibold text-slate-700 mb-3">Orçamento preferido</h3>
+        <div className="grid grid-cols-3 gap-3">
+          {[{ id: 'budget', label: 'Econômico', desc: 'Até R$ 15k' }, { id: 'medium', label: 'Médio', desc: 'R$ 15k - 40k' }, { id: 'luxury', label: 'Luxo', desc: 'Acima de R$ 40k' }].map(opt => (
+            <button key={opt.id} onClick={() => editing && setTempProfile({...tempProfile, preferredBudget: opt.id})} disabled={!editing} className={`p-4 rounded-xl border-2 text-center ${tempProfile.preferredBudget === opt.id ? 'border-teal-500 bg-teal-50' : 'border-slate-200'}`}>
+              <p className="font-medium">{opt.label}</p>
+              <p className="text-xs text-slate-500">{opt.desc}</p>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -741,23 +808,20 @@ const ProfilePage = ({ user, userProfile, setUserProfile, onLogout }) => {
 // MAIN APP
 // ============================================
 export default function App() {
-  // Auth & User
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState({ type: '', interests: [], preferredBudget: 'medium' });
   const [showAuthModal, setShowAuthModal] = useState(false);
-
-  // Navigation
   const [currentView, setCurrentView] = useState('landing');
 
   // Planning State
   const [origin, setOrigin] = useState('São Paulo (GRU)');
   const [destination, setDestination] = useState('');
-  const [startDate, setStartDate] = useState('2026-04-15');
-  const [endDate, setEndDate] = useState('2026-04-22');
+  const [startDate, setStartDate] = useState('2026-04-14');
+  const [endDate, setEndDate] = useState('2026-04-20');
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [childrenAges, setChildrenAges] = useState([]);
-  const [totalBudget, setTotalBudget] = useState(35000);
+  const [totalBudget, setTotalBudget] = useState(30000);
 
   // Itinerary State
   const [itineraryGenerated, setItineraryGenerated] = useState(false);
@@ -772,9 +836,7 @@ export default function App() {
   const [showItineraryModal, setShowItineraryModal] = useState(false);
 
   // UI State
-  const [searchQuery, setSearchQuery] = useState('');
   const [selectedContinent, setSelectedContinent] = useState('all');
-  const [swapModal, setSwapModal] = useState({ open: false, category: null, item: null });
 
   // Computed Values
   const currentData = destination ? DESTINATIONS_DATABASE[destination] : null;
@@ -782,30 +844,79 @@ export default function App() {
   const payingChildren = useMemo(() => childrenAges.filter(age => age > 2).length, [childrenAges]);
   const totalPayingTravelers = adults + payingChildren;
 
+  // Costs calculation
   const costs = useMemo(() => {
-    if (!itineraryGenerated) return { flights: 0, hotels: 0, activities: 0, total: 0 };
+    if (!itineraryGenerated) return { flights: 0, hotels: 0, activities: 0, food: 0, transport: 0, total: 0 };
+    
     const flightCost = (selectedFlight?.price || 0) * totalPayingTravelers * 2;
     const hotelCost = (selectedHotel?.price || 0) * tripDays;
+    
     let activitiesCost = 0;
+    let foodCost = 0;
+    let transportCost = 0;
+    
     Object.values(daySchedule).forEach(day => {
-      day.forEach(item => { activitiesCost += (item.price || 0); });
+      day.forEach(item => {
+        if (item.type === 'transfer') transportCost += (item.price || 0);
+        else if (item.category === 'restaurant') foodCost += (item.price || 0);
+        else activitiesCost += (item.price || 0);
+      });
     });
-    return { flights: flightCost, hotels: hotelCost, activities: activitiesCost * totalPayingTravelers, total: flightCost + hotelCost + activitiesCost * totalPayingTravelers };
+    
+    return { 
+      flights: flightCost, 
+      hotels: hotelCost, 
+      activities: activitiesCost * totalPayingTravelers, 
+      food: foodCost * totalPayingTravelers,
+      transport: transportCost,
+      total: flightCost + hotelCost + (activitiesCost + foodCost) * totalPayingTravelers + transportCost
+    };
   }, [selectedFlight, selectedHotel, daySchedule, tripDays, totalPayingTravelers, itineraryGenerated]);
 
   const remaining = totalBudget - costs.total;
   const isOverBudget = remaining < 0;
 
+  // AI Insights
+  const insights = useMemo(() => {
+    if (!itineraryGenerated || !currentData) return [];
+    const list = [];
+
+    if (isOverBudget) {
+      const cheaperHotel = currentData.hotels.find(h => h.price < selectedHotel?.price);
+      list.push({ type: 'danger', icon: AlertTriangle, message: `Orçamento excedido em R$ ${Math.abs(remaining).toLocaleString('pt-BR')}! ${cheaperHotel ? `Troque para ${cheaperHotel.name} e economize.` : ''}`, action: 'Ver Hotéis' });
+    } else if (remaining > totalBudget * 0.25) {
+      const betterHotel = currentData.hotels.find(h => h.stars === 5 && h.price * tripDays <= remaining + (selectedHotel?.price || 0) * tripDays);
+      if (betterHotel && betterHotel.id !== selectedHotel?.id) {
+        list.push({ type: 'success', icon: Sparkles, message: `Upgrade disponível! ${betterHotel.name} (5★) cabe no seu orçamento.`, action: 'Ver Upgrade' });
+      }
+    }
+
+    if (userProfile.type === 'family' && children > 0) {
+      const kidActivities = Object.values(daySchedule).flat().filter(i => i.childFriendly);
+      if (kidActivities.length < tripDays) {
+        list.push({ type: 'info', icon: Lightbulb, message: 'Seu perfil é Família. Adicionamos atividades kids-friendly ao roteiro.' });
+      }
+    }
+
+    if (userProfile.type === 'gastro') {
+      list.push({ type: 'info', icon: Utensils, message: 'Baseado no seu perfil Gastronômico, priorizamos restaurantes bem avaliados.' });
+    }
+
+    if (userProfile.type === 'budget' && costs.total > totalBudget * 0.8) {
+      list.push({ type: 'warning', icon: Wallet, message: 'Dica: Inclua mais atividades gratuitas para economizar no roteiro.' });
+    }
+
+    return list.slice(0, 3);
+  }, [itineraryGenerated, currentData, isOverBudget, remaining, totalBudget, selectedHotel, tripDays, userProfile, daySchedule, costs, children]);
+
   // Filter destinations
   const filteredDestinations = useMemo(() => {
     return Object.entries(DESTINATIONS_DATABASE).filter(([name, data]) => {
-      const matchesSearch = name.toLowerCase().includes(searchQuery.toLowerCase()) || data.country.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesContinent = selectedContinent === 'all' || data.continent === selectedContinent;
-      return matchesSearch && matchesContinent;
+      return selectedContinent === 'all' || data.continent === selectedContinent;
     });
-  }, [searchQuery, selectedContinent]);
+  }, [selectedContinent]);
 
-  // Filter community itineraries
+  // Filter community
   const filteredCommunity = useMemo(() => {
     return COMMUNITY_ITINERARIES.filter(it => {
       const matchesDest = communityFilter.destination === 'all' || it.destination === communityFilter.destination;
@@ -815,7 +926,6 @@ export default function App() {
   }, [communityFilter]);
 
   const continents = ['all', ...new Set(Object.values(DESTINATIONS_DATABASE).map(d => d.continent))];
-  const destinations = ['all', ...Object.keys(DESTINATIONS_DATABASE)];
 
   // Generate Itinerary
   const generateItinerary = () => {
@@ -823,7 +933,7 @@ export default function App() {
     setIsGenerating(true);
     setTimeout(() => {
       const data = DESTINATIONS_DATABASE[destination];
-      const budget = { flights: totalBudget * 0.30, hotels: totalBudget * 0.30 };
+      const budget = { flights: totalBudget * 0.35, hotels: totalBudget * 0.30 };
 
       const affordableFlights = data.flights.filter(f => f.price * totalPayingTravelers * 2 <= budget.flights);
       const bestFlight = affordableFlights.sort((a, b) => b.rating - a.rating)[0] || data.flights[data.flights.length - 1];
@@ -832,17 +942,20 @@ export default function App() {
       const affordableHotels = data.hotels.filter(h => h.price <= hotelBudgetPerNight);
       const bestHotel = affordableHotels.sort((a, b) => b.rating - a.rating)[0] || data.hotels[data.hotels.length - 1];
 
-      // Build day schedule
+      // Build schedule
       const schedule = {};
-      const activities = [...data.activities].sort((a, b) => b.rating - a.rating);
+      const activities = children > 0 
+        ? [...data.activities].sort((a, b) => (b.childFriendly ? 1 : 0) - (a.childFriendly ? 1 : 0) || b.rating - a.rating)
+        : [...data.activities].sort((a, b) => b.rating - a.rating);
       const restaurants = data.restaurants;
 
       for (let d = 1; d <= tripDays; d++) {
         schedule[d] = [];
-        // Add activity
+        if (d === 1) {
+          schedule[d].push({ type: 'transfer', name: 'Transfer Aeroporto/Hotel', location: `Aeroporto → ${bestHotel.location}`, price: Math.round(bestFlight.price * 0.05), duration: '2h', period: 'manhã' });
+        }
         const act = activities[(d - 1) % activities.length];
         if (act) schedule[d].push({ ...act, category: 'activity' });
-        // Add restaurant
         const rest = restaurants[(d - 1) % restaurants.length];
         if (rest) schedule[d].push({ ...rest, category: 'restaurant', location: rest.cuisine });
       }
@@ -855,17 +968,60 @@ export default function App() {
     }, 2000);
   };
 
+  // Use Community Itinerary
+  const useCommunityItinerary = (itinerary) => {
+    const data = DESTINATIONS_DATABASE[itinerary.destination];
+    if (!data) return;
+
+    setDestination(itinerary.destination);
+    setTotalBudget(itinerary.budget);
+    
+    const flight = data.flights.find(f => f.id === itinerary.flightId) || data.flights[0];
+    const hotel = data.hotels.find(h => h.id === itinerary.hotelId) || data.hotels[0];
+    
+    // Build schedule from community itinerary
+    const schedule = {};
+    Object.entries(itinerary.dailySchedule).forEach(([day, items]) => {
+      schedule[day] = items.map(item => {
+        if (item.type === 'transfer' || item.type === 'free') return item;
+        if (item.activityId) {
+          const act = data.activities.find(a => a.id === item.activityId);
+          return act ? { ...act, category: 'activity' } : null;
+        }
+        if (item.restaurantId) {
+          const rest = data.restaurants.find(r => r.id === item.restaurantId);
+          return rest ? { ...rest, category: 'restaurant', location: rest.cuisine } : null;
+        }
+        return null;
+      }).filter(Boolean);
+    });
+
+    // Adjust dates
+    const today = new Date();
+    const start = new Date(today);
+    start.setDate(today.getDate() + 30);
+    const end = new Date(start);
+    end.setDate(start.getDate() + itinerary.duration);
+    
+    setStartDate(start.toISOString().split('T')[0]);
+    setEndDate(end.toISOString().split('T')[0]);
+    setSelectedFlight(flight);
+    setSelectedHotel(hotel);
+    setDaySchedule(schedule);
+    setItineraryGenerated(true);
+    setShowItineraryModal(false);
+    setCurrentView('plan');
+  };
+
   // Reset
   useEffect(() => { setItineraryGenerated(false); setDaySchedule({}); }, [destination]);
   useEffect(() => { if (children > childrenAges.length) setChildrenAges([...childrenAges, ...Array(children - childrenAges.length).fill(5)]); else if (children < childrenAges.length) setChildrenAges(childrenAges.slice(0, children)); }, [children]);
-
-  const handleLike = (id) => { /* API call */ };
 
   // ============================================
   // VIEWS
   // ============================================
 
-  // Landing Page
+  // Landing
   if (currentView === 'landing') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-teal-900 to-slate-900">
@@ -876,26 +1032,19 @@ export default function App() {
           </div>
         </header>
         <div className="max-w-7xl mx-auto px-4 py-16 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-500/20 rounded-full text-teal-300 text-sm mb-6"><Sparkles size={16} />Plataforma Colaborativa de Viagens</div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">Viaje <span className="text-teal-400">Inteligente</span>,<br />Viaje <span className="text-amber-400">Conectado</span></h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-10">Crie roteiros personalizados com IA, descubra viagens da comunidade, e planeje experiências inesquecíveis.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <button onClick={() => setCurrentView('plan')} className="px-8 py-4 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow-lg flex items-center justify-center gap-2"><Sparkles size={20} />Criar Roteiro com IA</button>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">Viaje <span className="text-teal-400">Inteligente</span></h1>
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-10">Crie roteiros personalizados com IA ou use roteiros da comunidade.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button onClick={() => setCurrentView('plan')} className="px-8 py-4 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl flex items-center justify-center gap-2"><Sparkles size={20} />Criar Roteiro com IA</button>
             <button onClick={() => setCurrentView('community')} className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl flex items-center justify-center gap-2"><Users size={20} />Explorar Comunidade</button>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            {[{ icon: Globe, value: '8+', label: 'Destinos' }, { icon: Users, value: '50k+', label: 'Viajantes' }, { icon: BookOpen, value: '19+', label: 'Roteiros' }, { icon: Star, value: '4.8', label: 'Avaliação' }].map((s, i) => (
-              <div key={i} className="p-4 bg-white/5 backdrop-blur rounded-xl border border-white/10"><s.icon size={24} className="text-teal-400 mx-auto mb-2" /><div className="text-3xl font-bold text-white">{s.value}</div><div className="text-sm text-slate-400">{s.label}</div></div>
-            ))}
-          </div>
         </div>
-        <footer className="py-8 border-t border-white/10"><p className="text-center text-slate-500 text-sm">© 2026 SmartTravel AI • Demo para Investidores</p></footer>
         <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} onLogin={setUser} />
       </div>
     );
   }
 
-  // Profile Page
+  // Profile
   if (currentView === 'profile') {
     if (!user) { setCurrentView('landing'); return null; }
     return (
@@ -917,7 +1066,7 @@ export default function App() {
     );
   }
 
-  // Community Page
+  // Community
   if (currentView === 'community') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-teal-50/30 to-slate-100">
@@ -934,7 +1083,7 @@ export default function App() {
 
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex items-center justify-between mb-8">
-            <div><h1 className="text-3xl font-bold text-slate-800">Roteiros da Comunidade</h1><p className="text-slate-500">Descubra e avalie viagens criadas por outros viajantes</p></div>
+            <div><h1 className="text-3xl font-bold text-slate-800">Roteiros da Comunidade</h1><p className="text-slate-500">Descubra e replique viagens de outros viajantes</p></div>
             <button onClick={() => setCurrentView('plan')} className="px-6 py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 flex items-center gap-2"><Plus size={20} /> Criar Roteiro</button>
           </div>
 
@@ -944,30 +1093,56 @@ export default function App() {
               <div className="flex-1 min-w-[200px]">
                 <label className="text-xs font-medium text-slate-500 mb-1 block">Destino</label>
                 <select value={communityFilter.destination} onChange={(e) => setCommunityFilter({...communityFilter, destination: e.target.value})} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl">
-                  <option value="all">Todos os destinos</option>
-                  {destinations.slice(1).map(d => <option key={d} value={d}>{d}</option>)}
+                  <option value="all">Todos</option>
+                  {Object.keys(DESTINATIONS_DATABASE).map(d => <option key={d} value={d}>{d}</option>)}
                 </select>
               </div>
               <div className="flex-1 min-w-[200px]">
-                <label className="text-xs font-medium text-slate-500 mb-1 block">Tipo de Viagem</label>
+                <label className="text-xs font-medium text-slate-500 mb-1 block">Tipo</label>
                 <select value={communityFilter.type} onChange={(e) => setCommunityFilter({...communityFilter, type: e.target.value})} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl">
-                  <option value="all">Todos os tipos</option>
+                  <option value="all">Todos</option>
                   {TRAVELER_TYPES.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
                 </select>
               </div>
             </div>
           </div>
 
-          {/* Results count */}
-          <p className="text-sm text-slate-500 mb-4">{filteredCommunity.length} roteiros encontrados</p>
-
-          {/* Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredCommunity.map(it => <CommunityCard key={it.id} itinerary={it} onView={(i) => { setSelectedItinerary(i); setShowItineraryModal(true); }} onLike={handleLike} />)}
+            {filteredCommunity.map(it => <CommunityCard key={it.id} itinerary={it} onView={(i) => { setSelectedItinerary(i); setShowItineraryModal(true); }} onLike={() => {}} onUse={useCommunityItinerary} />)}
           </div>
         </div>
 
-        <ItineraryDetailModal isOpen={showItineraryModal} onClose={() => setShowItineraryModal(false)} itinerary={selectedItinerary} />
+        {/* Itinerary Modal */}
+        {showItineraryModal && selectedItinerary && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+              <div className="relative h-40 bg-cover bg-center" style={{ backgroundImage: `url(${DESTINATIONS_DATABASE[selectedItinerary.destination]?.coverUrl})` }}>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                <button onClick={() => setShowItineraryModal(false)} className="absolute top-4 right-4 p-2 bg-black/30 rounded-full text-white"><X size={20} /></button>
+                <div className="absolute bottom-4 left-4">
+                  <h2 className="text-2xl font-bold text-white">{selectedItinerary.title}</h2>
+                  <p className="text-white/80">{selectedItinerary.destination}</p>
+                </div>
+              </div>
+              <div className="p-6 overflow-y-auto max-h-[50vh]">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-3xl">{selectedItinerary.author.avatar}</span>
+                  <div>
+                    <p className="font-semibold">{selectedItinerary.author.name}</p>
+                    <p className="text-sm text-slate-500">{selectedItinerary.duration} dias • R$ {selectedItinerary.budget.toLocaleString('pt-BR')}</p>
+                  </div>
+                </div>
+                <h3 className="font-bold mb-2">✨ Destaques</h3>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {selectedItinerary.highlights.map((h, i) => <span key={i} className="px-3 py-1 bg-teal-50 text-teal-700 text-sm rounded-full">{h}</span>)}
+                </div>
+                <button onClick={() => useCommunityItinerary(selectedItinerary)} className="w-full py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 flex items-center justify-center gap-2">
+                  <Copy size={18} /> Usar Este Roteiro
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
         <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} onLogin={setUser} />
       </div>
     );
@@ -998,9 +1173,9 @@ export default function App() {
                 <div><label className="text-xs font-medium text-slate-500 mb-1 block">Destino</label><div className="px-4 py-3 bg-teal-50 border border-teal-200 rounded-xl font-medium text-teal-700">{destination || 'Escolha abaixo ↓'}</div></div>
               </div>
               <div className="flex flex-wrap gap-2 mb-4">{continents.map(c => <button key={c} onClick={() => setSelectedContinent(c)} className={`px-3 py-1.5 text-xs font-medium rounded-lg ${selectedContinent === c ? 'bg-teal-600 text-white' : 'bg-slate-100 text-slate-600'}`}>{c === 'all' ? 'Todos' : c}</button>)}</div>
-              <div className="grid grid-cols-3 md:grid-cols-4 gap-3 max-h-48 overflow-y-auto">
+              <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
                 {filteredDestinations.map(([name, data]) => (
-                  <button key={name} onClick={() => setDestination(name)} className={`relative overflow-hidden rounded-xl h-24 group ${destination === name ? 'ring-4 ring-teal-500 ring-offset-2' : ''}`}>
+                  <button key={name} onClick={() => setDestination(name)} className={`relative overflow-hidden rounded-xl h-20 group ${destination === name ? 'ring-4 ring-teal-500 ring-offset-2' : ''}`}>
                     <div className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform" style={{ backgroundImage: `url(${data.coverUrl})` }} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                     <div className="absolute bottom-2 left-2"><span className="text-lg">{data.image}</span><p className="text-white text-xs font-bold">{name.split(',')[0]}</p></div>
@@ -1021,7 +1196,7 @@ export default function App() {
                 </div>
                 {children > 0 && (
                   <div className="mt-3 p-3 bg-amber-50 rounded-xl border border-amber-200">
-                    <p className="text-xs font-medium text-amber-700 mb-2 flex items-center gap-1"><Baby size={14} />Idades (0-2 anos: voo grátis)</p>
+                    <p className="text-xs font-medium text-amber-700 mb-2 flex items-center gap-1"><Baby size={14} />Idades (0-2: voo grátis)</p>
                     <div className="flex flex-wrap gap-2">{Array.from({ length: children }, (_, i) => (<select key={i} value={childrenAges[i] || 5} onChange={(e) => { const a = [...childrenAges]; a[i] = parseInt(e.target.value); setChildrenAges(a); }} className="px-2 py-1 bg-white border border-amber-300 rounded-lg text-sm">{Array.from({ length: 18 }, (_, age) => <option key={age} value={age}>{age}</option>)}</select>))}</div>
                   </div>
                 )}
@@ -1035,16 +1210,16 @@ export default function App() {
               </div>
             )}
 
-            {/* Calendar View */}
+            {/* Calendar Grid - 3 columns */}
             {itineraryGenerated && (
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <div><h2 className="text-xl font-bold text-slate-800 flex items-center gap-2"><Calendar size={22} className="text-teal-600" />Seu Roteiro</h2><p className="text-slate-500">{origin.split(' ')[0]} → {destination} • {tripDays} dias</p></div>
                   <button onClick={() => setItineraryGenerated(false)} className="text-sm text-teal-600 hover:underline flex items-center gap-1"><RefreshCw size={14} />Regenerar</button>
                 </div>
-                <div className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {Array.from({ length: tripDays }, (_, i) => i + 1).map(day => (
-                    <DayCard key={day} day={day} startDate={startDate} items={(daySchedule[day] || []).map(item => ({ ...item, location: item.location || item.cuisine || currentData?.description?.slice(0, 20) }))} isFirst={day === 1} isLast={day === tripDays} origin={origin} destination={destination} flight={selectedFlight} onEditItem={(cat, item) => setSwapModal({ open: true, category: cat, item })} onAddItem={(d) => setSwapModal({ open: true, category: 'activity', item: null })} />
+                    <DayCard key={day} day={day} startDate={startDate} items={daySchedule[day] || []} isFirst={day === 1} isLast={day === tripDays} origin={origin} destination={destination} flight={selectedFlight} totalPayingTravelers={totalPayingTravelers} />
                   ))}
                 </div>
               </div>
@@ -1054,7 +1229,7 @@ export default function App() {
               <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center">
                 <Globe size={48} className="text-teal-300 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-slate-800 mb-2">Escolha um destino</h3>
-                <p className="text-slate-500">Selecione de onde você está partindo e para onde quer ir</p>
+                <p className="text-slate-500">Selecione para onde você quer ir</p>
               </div>
             )}
           </div>
@@ -1063,7 +1238,7 @@ export default function App() {
           <div className="space-y-6">
             {/* Budget */}
             <div className={`bg-gradient-to-br from-teal-600 to-teal-800 rounded-2xl p-6 text-white ${!itineraryGenerated && 'opacity-50'}`}>
-              <div className="flex items-center justify-between mb-3"><h3 className="font-semibold">Orçamento</h3><Wallet size={20} /></div>
+              <div className="flex items-center justify-between mb-2"><h3 className="font-semibold">Orçamento</h3><Wallet size={20} /></div>
               <div className="text-3xl font-bold">R$ {totalBudget.toLocaleString('pt-BR')}</div>
               {itineraryGenerated && (
                 <>
@@ -1072,27 +1247,39 @@ export default function App() {
                     {isOverBudget ? `Excedido: R$ ${Math.abs(remaining).toLocaleString('pt-BR')}` : `Disponível: R$ ${remaining.toLocaleString('pt-BR')}`}
                   </div>
                   <div className="mt-4 pt-4 border-t border-white/20 space-y-2 text-sm">
-                    <div className="flex justify-between"><span className="opacity-80">Voos (ida+volta)</span><span>R$ {costs.flights.toLocaleString('pt-BR')}</span></div>
-                    <div className="flex justify-between"><span className="opacity-80">Hotel ({tripDays} noites)</span><span>R$ {costs.hotels.toLocaleString('pt-BR')}</span></div>
-                    <div className="flex justify-between"><span className="opacity-80">Atividades</span><span>R$ {costs.activities.toLocaleString('pt-BR')}</span></div>
+                    <div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Plane size={14} />Voos (ida+volta)</span><span>R$ {costs.flights.toLocaleString('pt-BR')}</span></div>
+                    <div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Hotel size={14} />Hotel ({tripDays} noites)</span><span>R$ {costs.hotels.toLocaleString('pt-BR')}</span></div>
+                    <div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Camera size={14} />Passeios</span><span>R$ {costs.activities.toLocaleString('pt-BR')}</span></div>
+                    <div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Utensils size={14} />Alimentação</span><span>R$ {costs.food.toLocaleString('pt-BR')}</span></div>
+                    <div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Car size={14} />Transporte Local</span><span>R$ {costs.transport.toLocaleString('pt-BR')}</span></div>
                     <div className="flex justify-between font-bold pt-2 border-t border-white/20"><span>Total</span><span>R$ {costs.total.toLocaleString('pt-BR')}</span></div>
                   </div>
                 </>
               )}
             </div>
 
-            {/* Top Community Itineraries */}
+            {/* AI Insights */}
+            {itineraryGenerated && insights.length > 0 && (
+              <div className="bg-white rounded-2xl border border-slate-200 p-4">
+                <h3 className="font-bold text-slate-800 mb-3 flex items-center gap-2"><Sparkles size={16} className="text-teal-600" />Insights da IA</h3>
+                <div className="space-y-3">
+                  {insights.map((insight, i) => <AIInsightCard key={i} insight={insight} />)}
+                </div>
+              </div>
+            )}
+
+            {/* Top Community */}
             {destination && (
               <div className="bg-white rounded-2xl border border-slate-200 p-4">
                 <h3 className="font-bold text-slate-800 mb-3 flex items-center gap-2"><Crown size={16} className="text-amber-500" />Top Roteiros - {destination.split(',')[0]}</h3>
                 <div className="space-y-2">
-                  {COMMUNITY_ITINERARIES.filter(i => i.destination === destination).slice(0, 3).map(it => <CommunityCard key={it.id} itinerary={it} onView={(i) => { setSelectedItinerary(i); setShowItineraryModal(true); }} onLike={handleLike} compact />)}
+                  {COMMUNITY_ITINERARIES.filter(i => i.destination === destination).slice(0, 3).map(it => <CommunityCard key={it.id} itinerary={it} onView={() => {}} onLike={() => {}} onUse={useCommunityItinerary} compact />)}
                   {COMMUNITY_ITINERARIES.filter(i => i.destination === destination).length === 0 && <p className="text-sm text-slate-400 text-center py-4">Nenhum roteiro ainda</p>}
                 </div>
               </div>
             )}
 
-            {/* Download Button */}
+            {/* Download */}
             {itineraryGenerated && (
               <button disabled={isOverBudget} className={`w-full py-4 font-bold rounded-xl flex items-center justify-center gap-2 ${isOverBudget ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white'}`}>
                 {isOverBudget ? <><AlertTriangle size={20} />Ajuste o orçamento</> : <><Download size={20} />Baixar PDF do Roteiro</>}
@@ -1102,35 +1289,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Swap Modal */}
-      {swapModal.open && currentData && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
-            <div className="p-4 border-b border-slate-200 flex items-center justify-between">
-              <h3 className="font-bold text-slate-800">Escolher {swapModal.category === 'flight' ? 'Voo' : swapModal.category === 'hotel' ? 'Hotel' : 'Atividade'}</h3>
-              <button onClick={() => setSwapModal({ open: false, category: null, item: null })} className="p-2 hover:bg-slate-100 rounded-lg"><X size={20} /></button>
-            </div>
-            <div className="p-4 overflow-y-auto max-h-[60vh] space-y-3">
-              {(swapModal.category === 'flight' ? currentData.flights : swapModal.category === 'hotel' ? currentData.hotels : currentData.activities).map(item => (
-                <div key={item.id} onClick={() => { if (swapModal.category === 'flight') setSelectedFlight(item); else if (swapModal.category === 'hotel') setSelectedHotel(item); setSwapModal({ open: false, category: null, item: null }); }} className="p-4 rounded-xl border border-slate-200 cursor-pointer hover:border-teal-400 hover:shadow-md transition-all">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h4 className="font-semibold text-slate-800">{item.name}</h4>
-                      <p className="text-sm text-slate-500">{item.duration || item.location} {item.stars && `• ${'★'.repeat(item.stars)}`}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold text-teal-600">R$ {item.price.toLocaleString('pt-BR')}</p>
-                      {item.perNight && <p className="text-xs text-slate-400">/noite</p>}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      <ItineraryDetailModal isOpen={showItineraryModal} onClose={() => setShowItineraryModal(false)} itinerary={selectedItinerary} />
       <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} onLogin={setUser} />
     </div>
   );
