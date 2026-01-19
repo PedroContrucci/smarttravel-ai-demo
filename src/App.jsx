@@ -1,6 +1,24 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Plane, Hotel, Utensils, Camera, MapPin, Calendar, Users, Wallet, TrendingDown, TrendingUp, Sparkles, Check, AlertTriangle, Lightbulb, Globe, Star, Clock, X, Plus, RefreshCw, Heart, User, LogOut, Bookmark, Baby, UserCheck, Mountain, Building, Palmtree, Crown, Map, Sunrise, Sun, Moon, PlaneTakeoff, PlaneLanding, MessageSquare, Car, Copy, Download, Anchor, Music, ShoppingBag, Sliders, ChevronDown, ChevronUp, Trash2, Eye, Coffee, Bed, ArrowUpCircle, ArrowDownCircle, FileText, Briefcase, Activity, DollarSign, Stethoscope, AlertCircle, ChevronRight, Image, List, BookOpen, Zap, BarChart3, ArrowRight, Shield, Banknote, Target, Timer } from 'lucide-react';
+import { Plane, Hotel, Utensils, Camera, MapPin, Calendar, Users, Wallet, TrendingDown, TrendingUp, Sparkles, Check, AlertTriangle, Lightbulb, Globe, Star, Clock, X, Plus, RefreshCw, Heart, User, LogOut, Bookmark, Baby, UserCheck, Mountain, Building, Palmtree, Crown, Map, Sunrise, Sun, Moon, PlaneTakeoff, PlaneLanding, MessageSquare, Car, Copy, Download, Anchor, Music, ShoppingBag, Sliders, ChevronDown, ChevronUp, Trash2, Eye, Coffee, Bed, ArrowUpCircle, ArrowDownCircle, FileText, Briefcase, Activity, DollarSign, AlertCircle, ChevronRight, BookOpen, Zap, BarChart3, ArrowRight, Shield, Banknote, Target, Timer } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart, ReferenceLine } from 'recharts';
+
+// ============================================================
+// 🚀 SMARTTRAVEL AI v2.0 - BUILD VERIFICADO
+// ============================================================
+console.log('%c🚀 SMARTTRAVEL AI v2.0 CARREGADO!', 'background: #10b981; color: white; font-size: 20px; padding: 10px;');
+
+// Ícones alternativos (para compatibilidade)
+const Volume2 = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>;
+const Thermometer = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>;
+const Umbrella = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"></path></svg>;
+const Shirt = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg>;
+const Languages = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>;
+const Stethoscope = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"></path><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"></path><circle cx="20" cy="10" r="2"></circle></svg>;
+const Image = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>;
+const List = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>;
+
+// VERSÃO DO APP
+const APP_VERSION = "2.0.0-UPGRADED";
 
 // ========== CORE ENGINE ==========
 const CITY_OFFSETS = { 'São Paulo (GRU)': -3, 'Rio de Janeiro (GIG)': -3, 'Brasília (BSB)': -3, 'Belo Horizonte (CNF)': -3, 'Salvador (SSA)': -3, 'Fortaleza (FOR)': -3, 'Recife (REC)': -3, 'Porto Alegre (POA)': -3, 'Curitiba (CWB)': -3, 'Manaus (MAO)': -4, 'Florianópolis (FLN)': -3, 'Natal (NAT)': -3, 'Paris, França': 1, 'Londres, UK': 0, 'Roma, Itália': 1, 'Barcelona, Espanha': 1, 'Lisboa, Portugal': 0, 'Amsterdam, Holanda': 1, 'Santorini, Grécia': 2, 'Nova York, EUA': -5, 'Miami, EUA': -5, 'Los Angeles, EUA': -8, 'Cancún, México': -5, 'Buenos Aires, Argentina': -3, 'Tóquio, Japão': 9, 'Dubai, EAU': 4, 'Bangkok, Tailândia': 7, 'Bali, Indonésia': 8, 'Singapura': 8, 'Sydney, Austrália': 10, 'Maldivas': 5, 'Cape Town, África do Sul': 2 };
@@ -60,31 +78,100 @@ const CURRENCY_DATABASE = {
   MVR: { name: 'Rufia', symbol: 'Rf', flag: '🇲🇻' }
 };
 
+// CORRIGIDO: Paridade 1 BRL = X Moeda Estrangeira
 const EXCHANGE_RATES = {
-  'BRL-EUR': { rate: 0.163, trend: 'up', volatility: 0.08 },
-  'BRL-USD': { rate: 0.171, trend: 'stable', volatility: 0.05 },
-  'BRL-JPY': { rate: 25.8, trend: 'down', volatility: 0.12 },
-  'BRL-AED': { rate: 0.628, trend: 'stable', volatility: 0.04 },
-  'BRL-MVR': { rate: 2.64, trend: 'stable', volatility: 0.03 }
+  'BRL-EUR': { rate: 0.163, trend: 'up', volatility: 0.08 },     // 1 BRL = 0.163 EUR (~R$6.13/EUR)
+  'BRL-USD': { rate: 0.175, trend: 'stable', volatility: 0.05 }, // 1 BRL = 0.175 USD (~R$5.71/USD)
+  'BRL-JPY': { rate: 26.2, trend: 'down', volatility: 0.12 },    // 1 BRL = 26.2 JPY
+  'BRL-AED': { rate: 0.643, trend: 'stable', volatility: 0.04 }, // 1 BRL = 0.643 AED
+  'BRL-MVR': { rate: 2.70, trend: 'stable', volatility: 0.03 }   // 1 BRL = 2.70 MVR
 };
 
+// UPGRADED: Projeção de 12 meses no futuro
 const generateForexHistory = (basePair, months = 6) => {
   const baseRate = EXCHANGE_RATES[basePair]?.rate || 1;
   const volatility = EXCHANGE_RATES[basePair]?.volatility || 0.05;
   const trend = EXCHANGE_RATES[basePair]?.trend || 'stable';
   const data = [];
   let currentRate = baseRate * (1 - volatility * 2);
-  for (let i = -months; i <= 3; i++) {
+  // Histórico de 6 meses + Projeção de 12 meses
+  for (let i = -months; i <= 12; i++) {
     const date = new Date();
     date.setMonth(date.getMonth() + i);
-    const monthName = date.toLocaleDateString('pt-BR', { month: 'short' });
-    const trendFactor = trend === 'up' ? 0.015 : trend === 'down' ? -0.012 : 0.002;
+    const monthName = date.toLocaleDateString('pt-BR', { month: 'short', year: i >= 6 ? '2-digit' : undefined });
+    const trendFactor = trend === 'up' ? 0.012 : trend === 'down' ? -0.010 : 0.002;
     const noise = (Math.random() - 0.5) * volatility * baseRate;
-    currentRate = currentRate * (1 + trendFactor) + noise;
-    currentRate = Math.max(baseRate * 0.85, Math.min(baseRate * 1.15, currentRate));
-    data.push({ month: monthName, rate: parseFloat(currentRate.toFixed(4)), projected: i > 0, isCurrent: i === 0 });
+    const seasonalFactor = Math.sin((i / 12) * Math.PI * 2) * 0.02 * baseRate;
+    currentRate = currentRate * (1 + trendFactor) + noise + seasonalFactor;
+    currentRate = Math.max(baseRate * 0.80, Math.min(baseRate * 1.25, currentRate));
+    data.push({ month: monthName, rate: parseFloat(currentRate.toFixed(4)), projected: i > 0, isCurrent: i === 0, monthIndex: i });
   }
   return data;
+};
+
+// UPGRADED: Análise avançada com estratégia recomendada e índice de confiança
+const calculateAdvancedBuySignal = (forexData, tripDate) => {
+  const currentRate = forexData.find(d => d.isCurrent)?.rate || 0;
+  const projectedRates = forexData.filter(d => d.projected);
+  const avgProjected = projectedRates.reduce((a, b) => a + b.rate, 0) / projectedRates.length;
+  const minProjected = Math.min(...projectedRates.map(r => r.rate));
+  const maxProjected = Math.max(...projectedRates.map(r => r.rate));
+  const percentChange = ((avgProjected - currentRate) / currentRate) * 100;
+  const volatilityRange = ((maxProjected - minProjected) / currentRate) * 100;
+  
+  // Encontra o melhor mês para compra
+  const bestMonth = projectedRates.reduce((best, curr) => curr.rate < best.rate ? curr : best, projectedRates[0]);
+  
+  // Calcula índice de confiança (0-100%)
+  const trendConsistency = projectedRates.filter((r, i, arr) => 
+    i === 0 || (percentChange < 0 ? r.rate <= arr[i-1].rate : r.rate >= arr[i-1].rate)
+  ).length / projectedRates.length;
+  const confidenceIndex = Math.round(Math.min(95, Math.max(45, trendConsistency * 70 + (100 - volatilityRange) * 0.3)));
+  
+  let strategy, signal, message, color, icon, recommendation;
+  
+  if (percentChange < -3 && volatilityRange < 15) {
+    // Tendência de queda clara - Lump Sum
+    signal = 'wait';
+    strategy = 'LUMP_SUM';
+    color = 'amber';
+    icon = Timer;
+    message = `AGUARDE: Tendência de queda de ${Math.abs(percentChange).toFixed(1)}%`;
+    recommendation = {
+      type: 'Lump Sum (Compra Única)',
+      description: `Aguarde e compre o valor total em ${bestMonth.month}`,
+      rationale: 'Tendência de queda consistente identificada. Melhor aguardar o ponto mais baixo.',
+      potentialSavings: ((currentRate - bestMonth.rate) / currentRate * 100).toFixed(1)
+    };
+  } else if (percentChange > 3) {
+    // Tendência de alta - Compra imediata
+    signal = 'buy';
+    strategy = 'BUY_NOW';
+    color = 'emerald';
+    icon = Zap;
+    message = `COMPRE AGORA: Tendência de alta de ${percentChange.toFixed(1)}%`;
+    recommendation = {
+      type: 'Compra Imediata',
+      description: 'Aproveite a cotação atual antes da valorização',
+      rationale: 'Projeção indica valorização da moeda estrangeira nos próximos meses.',
+      potentialSavings: percentChange.toFixed(1)
+    };
+  } else {
+    // Mercado estável - DCA
+    signal = 'neutral';
+    strategy = 'DCA';
+    color = 'blue';
+    icon = Target;
+    message = 'ESTÁVEL: Mercado lateral, ideal para DCA';
+    recommendation = {
+      type: 'DCA (Dollar Cost Averaging)',
+      description: 'Compre mensalmente até a viagem para diluir riscos',
+      rationale: 'Mercado sem tendência clara. Estratégia de compras parceladas reduz exposição à volatilidade.',
+      potentialSavings: (volatilityRange / 2).toFixed(1)
+    };
+  }
+  
+  return { signal, strategy, message, color, icon, recommendation, confidenceIndex, bestMonth, percentChange, volatilityRange };
 };
 
 const calculateBuySignal = (forexData) => {
@@ -97,7 +184,7 @@ const calculateBuySignal = (forexData) => {
   return { signal: 'neutral', message: 'ESTÁVEL: Momento neutro para compra', color: 'slate', icon: Target };
 };
 
-const PredictiveExchangeEngine = ({ origin, destination, tripBudget }) => {
+const PredictiveExchangeEngine = ({ origin, destination, tripBudget, tripDate }) => {
   const destCurrency = useMemo(() => {
     if (destination?.includes('França') || destination?.includes('Itália') || destination?.includes('Espanha')) return 'EUR';
     if (destination?.includes('EUA')) return 'USD';
@@ -112,39 +199,46 @@ const PredictiveExchangeEngine = ({ origin, destination, tripBudget }) => {
   const directRate = EXCHANGE_RATES[directPair]?.rate || 0.17;
   const globalRate = EXCHANGE_RATES[globalPair]?.rate || 0.17;
   const forexHistory = useMemo(() => generateForexHistory(directPair), [directPair]);
-  const buySignal = useMemo(() => calculateBuySignal(forexHistory), [forexHistory]);
+  const advancedSignal = useMemo(() => calculateAdvancedBuySignal(forexHistory, tripDate), [forexHistory, tripDate]);
   const estimatedExpense = tripBudget * 0.6;
   const destAmount = estimatedExpense * directRate;
-  const BuySignalIcon = buySignal.icon;
+  const BuySignalIcon = advancedSignal.icon;
 
   return (
-    <div className="bg-gradient-to-br from-emerald-50 via-white to-teal-50 rounded-2xl border border-emerald-200 overflow-hidden shadow-lg">
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 flex items-center gap-3">
-        <div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm"><Banknote size={24} className="text-white" /></div>
-        <div><h3 className="font-bold text-white text-lg">Motor de Câmbio Preditivo</h3><p className="text-emerald-100 text-sm">Análise IA para otimização de conversão</p></div>
+    <div className="bg-gradient-to-br from-emerald-50 via-white to-teal-50 rounded-2xl border border-emerald-200 overflow-hidden shadow-lg exchange-analysis-section">
+      <div className="bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm"><Banknote size={24} className="text-white" /></div>
+          <div><h3 className="font-bold text-white text-lg">Motor de Câmbio Preditivo</h3><p className="text-emerald-100 text-sm">Análise IA com visão de 12 meses</p></div>
+        </div>
+        {/* Índice de Confiança */}
+        <div className="text-right">
+          <div className="flex items-center gap-2">
+            <div className="relative w-16 h-16">
+              <svg className="w-16 h-16 transform -rotate-90">
+                <circle cx="32" cy="32" r="28" stroke="rgba(255,255,255,0.2)" strokeWidth="6" fill="none" />
+                <circle cx="32" cy="32" r="28" stroke="white" strokeWidth="6" fill="none" strokeDasharray={`${advancedSignal.confidenceIndex * 1.76} 176`} strokeLinecap="round" />
+              </svg>
+              <div className="absolute inset-0 flex items-center justify-center"><span className="text-white font-bold text-sm">{advancedSignal.confidenceIndex}%</span></div>
+            </div>
+            <div className="text-left"><p className="text-xs text-emerald-200">Índice de</p><p className="text-sm font-bold text-white">Confiança IA</p></div>
+          </div>
+        </div>
       </div>
       <div className="p-6 space-y-6">
         <div className="grid grid-cols-3 gap-4">
           <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition-all">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <span className="text-2xl">{CURRENCY_DATABASE.BRL.flag}</span>
-              <ArrowRight size={16} className="text-teal-500" />
-              <span className="text-2xl">{CURRENCY_DATABASE[destCurrency]?.flag}</span>
-            </div>
+            <div className="flex items-center justify-center gap-2 mb-3"><span className="text-2xl">{CURRENCY_DATABASE.BRL.flag}</span><ArrowRight size={16} className="text-teal-500" /><span className="text-2xl">{CURRENCY_DATABASE[destCurrency]?.flag}</span></div>
             <p className="text-center text-2xl font-bold text-slate-800">{CURRENCY_DATABASE[destCurrency]?.symbol} {directRate.toFixed(destCurrency === 'JPY' ? 2 : 3)}</p>
-            <p className="text-center text-xs text-slate-500 mt-1">Cotação Direta</p>
+            <p className="text-center text-xs text-slate-500 mt-1">1 BRL = X {destCurrency}</p>
             <div className={`mt-2 text-center text-xs px-2 py-1 rounded-full ${EXCHANGE_RATES[directPair]?.trend === 'up' ? 'bg-red-100 text-red-600' : EXCHANGE_RATES[directPair]?.trend === 'down' ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-600'}`}>
-              {EXCHANGE_RATES[directPair]?.trend === 'up' ? '↑ Alta' : EXCHANGE_RATES[directPair]?.trend === 'down' ? '↓ Queda' : '→ Estável'}
+              {EXCHANGE_RATES[directPair]?.trend === 'up' ? '↑ Real desvalorizando' : EXCHANGE_RATES[directPair]?.trend === 'down' ? '↓ Real valorizando' : '→ Estável'}
             </div>
           </div>
           <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition-all">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <span className="text-2xl">{CURRENCY_DATABASE.BRL.flag}</span>
-              <ArrowRight size={16} className="text-blue-500" />
-              <span className="text-2xl">{CURRENCY_DATABASE[globalCurrency]?.flag}</span>
-            </div>
+            <div className="flex items-center justify-center gap-2 mb-3"><span className="text-2xl">{CURRENCY_DATABASE.BRL.flag}</span><ArrowRight size={16} className="text-blue-500" /><span className="text-2xl">{CURRENCY_DATABASE[globalCurrency]?.flag}</span></div>
             <p className="text-center text-2xl font-bold text-slate-800">{CURRENCY_DATABASE[globalCurrency]?.symbol} {globalRate.toFixed(3)}</p>
-            <p className="text-center text-xs text-slate-500 mt-1">Via {globalCurrency}</p>
+            <p className="text-center text-xs text-slate-500 mt-1">Referência Global</p>
             <div className="mt-2 text-center text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-600">Moeda Global</div>
           </div>
           <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition-all">
@@ -154,38 +248,62 @@ const PredictiveExchangeEngine = ({ origin, destination, tripBudget }) => {
             <div className="mt-2 text-center text-xs px-2 py-1 rounded-full bg-teal-100 text-teal-600">60% do orçamento</div>
           </div>
         </div>
-        <div className={`p-4 rounded-xl border-2 ${buySignal.signal === 'buy' ? 'bg-emerald-50 border-emerald-300' : buySignal.signal === 'wait' ? 'bg-amber-50 border-amber-300' : 'bg-slate-50 border-slate-300'}`}>
-          <div className="flex items-center gap-3">
-            <div className={`p-3 rounded-xl ${buySignal.signal === 'buy' ? 'bg-emerald-500' : buySignal.signal === 'wait' ? 'bg-amber-500' : 'bg-slate-500'}`}>
-              <BuySignalIcon size={24} className="text-white" />
+        
+        {/* Estratégia Recomendada - NOVA SEÇÃO */}
+        <div className={`p-5 rounded-xl border-2 ${advancedSignal.signal === 'buy' ? 'bg-emerald-50 border-emerald-300' : advancedSignal.signal === 'wait' ? 'bg-amber-50 border-amber-300' : 'bg-blue-50 border-blue-300'}`}>
+          <div className="flex items-start gap-4">
+            <div className={`p-4 rounded-xl flex-shrink-0 ${advancedSignal.signal === 'buy' ? 'bg-emerald-500' : advancedSignal.signal === 'wait' ? 'bg-amber-500' : 'bg-blue-500'}`}>
+              <BuySignalIcon size={28} className="text-white" />
             </div>
             <div className="flex-1">
-              <p className={`font-bold text-lg ${buySignal.signal === 'buy' ? 'text-emerald-700' : buySignal.signal === 'wait' ? 'text-amber-700' : 'text-slate-700'}`}>
-                {buySignal.signal === 'buy' ? '⭐ ' : buySignal.signal === 'wait' ? '⏳ ' : ''}{buySignal.message}
-              </p>
-              <p className="text-sm text-slate-600 mt-1">Análise baseada em tendências de mercado e projeção de 90 dias</p>
+              <div className="flex items-center gap-2 mb-2">
+                <span className={`px-3 py-1 rounded-full text-xs font-bold ${advancedSignal.signal === 'buy' ? 'bg-emerald-200 text-emerald-800' : advancedSignal.signal === 'wait' ? 'bg-amber-200 text-amber-800' : 'bg-blue-200 text-blue-800'}`}>
+                  {advancedSignal.strategy === 'DCA' ? '📊 DCA' : advancedSignal.strategy === 'LUMP_SUM' ? '🎯 LUMP SUM' : '⚡ COMPRA IMEDIATA'}
+                </span>
+                <p className={`font-bold text-lg ${advancedSignal.signal === 'buy' ? 'text-emerald-700' : advancedSignal.signal === 'wait' ? 'text-amber-700' : 'text-blue-700'}`}>
+                  {advancedSignal.message}
+                </p>
+              </div>
+              <div className="bg-white/60 rounded-lg p-4 mt-3">
+                <h4 className="font-bold text-slate-800 mb-2">📋 Estratégia Recomendada: {advancedSignal.recommendation.type}</h4>
+                <p className="text-slate-600 text-sm mb-2">{advancedSignal.recommendation.description}</p>
+                <p className="text-xs text-slate-500 italic">{advancedSignal.recommendation.rationale}</p>
+                <div className="mt-3 flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <TrendingDown size={16} className="text-emerald-500" />
+                    <span className="text-sm text-slate-600">Economia potencial: <strong className="text-emerald-600">{advancedSignal.recommendation.potentialSavings}%</strong></span>
+                  </div>
+                  {advancedSignal.strategy === 'LUMP_SUM' && advancedSignal.bestMonth && (
+                    <div className="flex items-center gap-2">
+                      <Calendar size={16} className="text-amber-500" />
+                      <span className="text-sm text-slate-600">Melhor mês: <strong className="text-amber-600">{advancedSignal.bestMonth.month}</strong></span>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        
         <div className="bg-white rounded-xl p-4 border border-slate-200">
           <div className="flex items-center justify-between mb-4">
             <h4 className="font-semibold text-slate-700 flex items-center gap-2"><BarChart3 size={18} className="text-teal-600" />Tendência BRL/{destCurrency}</h4>
-            <span className="text-xs text-slate-500">Últimos 6 meses + Projeção 3 meses</span>
+            <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded-full">📈 6 meses histórico + 12 meses projeção</span>
           </div>
-          <ResponsiveContainer width="100%" height={200}>
+          <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={forexHistory}>
               <defs><linearGradient id="colorRate" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#14b8a6" stopOpacity={0.3}/><stop offset="95%" stopColor="#14b8a6" stopOpacity={0}/></linearGradient></defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-              <XAxis dataKey="month" tick={{ fontSize: 11 }} stroke="#94a3b8" />
-              <YAxis tick={{ fontSize: 11 }} stroke="#94a3b8" domain={['dataMin - 0.01', 'dataMax + 0.01']} />
-              <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid #e2e8f0' }} formatter={(value) => [`${CURRENCY_DATABASE[destCurrency]?.symbol} ${value}`, 'Taxa']} />
-              <ReferenceLine x={forexHistory.find(d => d.isCurrent)?.month} stroke="#f59e0b" strokeDasharray="5 5" label={{ value: 'Hoje', position: 'top', fontSize: 10 }} />
-              <Area type="monotone" dataKey="rate" stroke="#14b8a6" strokeWidth={2} fill="url(#colorRate)" dot={(props) => { const { cx, cy, payload } = props; if (payload.projected) return <circle cx={cx} cy={cy} r={4} fill="#f59e0b" stroke="#fff" strokeWidth={2} />; if (payload.isCurrent) return <circle cx={cx} cy={cy} r={6} fill="#14b8a6" stroke="#fff" strokeWidth={2} />; return <circle cx={cx} cy={cy} r={3} fill="#14b8a6" />; }} />
+              <XAxis dataKey="month" tick={{ fontSize: 10 }} stroke="#94a3b8" interval={1} />
+              <YAxis tick={{ fontSize: 10 }} stroke="#94a3b8" domain={['dataMin - 0.01', 'dataMax + 0.01']} />
+              <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid #e2e8f0' }} formatter={(value, name, props) => [`${CURRENCY_DATABASE[destCurrency]?.symbol} ${value}`, props.payload.projected ? 'Projeção' : 'Histórico']} />
+              <ReferenceLine x={forexHistory.find(d => d.isCurrent)?.month} stroke="#f59e0b" strokeDasharray="5 5" label={{ value: 'Hoje', position: 'top', fontSize: 10, fill: '#f59e0b' }} />
+              <Area type="monotone" dataKey="rate" stroke="#14b8a6" strokeWidth={2} fill="url(#colorRate)" dot={(props) => { const { cx, cy, payload } = props; if (payload.projected) return <circle cx={cx} cy={cy} r={3} fill="#f59e0b" stroke="#fff" strokeWidth={1} />; if (payload.isCurrent) return <circle cx={cx} cy={cy} r={6} fill="#14b8a6" stroke="#fff" strokeWidth={2} />; return <circle cx={cx} cy={cy} r={2} fill="#14b8a6" />; }} />
             </AreaChart>
           </ResponsiveContainer>
           <div className="flex items-center justify-center gap-6 mt-3">
             <span className="flex items-center gap-2 text-xs text-slate-600"><span className="w-3 h-3 rounded-full bg-teal-500"></span> Histórico</span>
-            <span className="flex items-center gap-2 text-xs text-slate-600"><span className="w-3 h-3 rounded-full bg-amber-500"></span> Projeção IA</span>
+            <span className="flex items-center gap-2 text-xs text-slate-600"><span className="w-3 h-3 rounded-full bg-amber-500"></span> Projeção IA (12 meses)</span>
           </div>
         </div>
         <div className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl p-4 border border-slate-200">
@@ -194,6 +312,7 @@ const PredictiveExchangeEngine = ({ origin, destination, tripBudget }) => {
             <li className="text-sm text-slate-600 flex items-center gap-2"><ChevronRight size={12} className="text-emerald-500 flex-shrink-0" />Use cartões com IOF reduzido (1.1% vs 6.38%)</li>
             <li className="text-sm text-slate-600 flex items-center gap-2"><ChevronRight size={12} className="text-emerald-500 flex-shrink-0" />Evite trocar em aeroportos (-15% em média)</li>
             <li className="text-sm text-slate-600 flex items-center gap-2"><ChevronRight size={12} className="text-emerald-500 flex-shrink-0" />Considere conta global (Wise, Nomad)</li>
+            {advancedSignal.strategy === 'DCA' && <li className="text-sm text-slate-600 flex items-center gap-2"><ChevronRight size={12} className="text-blue-500 flex-shrink-0" /><strong>DCA:</strong> Divida compras mensalmente até a viagem</li>}
           </ul>
         </div>
       </div>
@@ -201,16 +320,130 @@ const PredictiveExchangeEngine = ({ origin, destination, tripBudget }) => {
   );
 };
 
-// ========== DESTINATION GUIDES ==========
+// ========== DESTINATION GUIDES (CORRIGIDO - Paridade 1 BRL = X Moeda) ==========
 const DESTINATION_GUIDES = {
-  'Paris, França': { visa: { required: false, info: 'Brasileiros não precisam de visto para estadias de até 90 dias no Espaço Schengen.', docs: ['Passaporte válido (6 meses)', 'Comprovante de hospedagem', 'Seguro viagem obrigatório', 'Passagem de volta'] }, health: { vaccines: ['Nenhuma vacina obrigatória'], insurance: 'Seguro viagem obrigatório - cobertura mínima €30.000', tips: ['Leve kit básico de medicamentos'] }, currency: { code: 'EUR', name: 'Euro', symbol: '€', rate: 6.15, trend: 'up', tips: ['Use cartões com IOF reduzido', 'Evite trocar em aeroportos'] } },
-  'Miami, EUA': { visa: { required: true, info: 'Visto B1/B2 americano obrigatório para brasileiros.', docs: ['Passaporte válido', 'Formulário DS-160', 'Comprovante financeiro', 'Vínculo com Brasil'] }, health: { vaccines: ['Nenhuma obrigatória'], insurance: 'Altamente recomendado (saúde cara nos EUA)', tips: ['Mantenha documentos do seguro acessíveis'] }, currency: { code: 'USD', name: 'Dólar', symbol: '$', rate: 5.85, trend: 'stable', tips: ['Gorjetas de 15-20% são esperadas'] } },
-  'Tóquio, Japão': { visa: { required: false, info: 'Brasileiros têm isenção de visto para estadias de até 90 dias.', docs: ['Passaporte válido', 'Comprovante de hospedagem', 'Passagem de volta'] }, health: { vaccines: ['Nenhuma obrigatória'], insurance: 'Recomendado', tips: ['Sistema de saúde excelente'] }, currency: { code: 'JPY', name: 'Iene', symbol: '¥', rate: 0.039, trend: 'down', tips: ['Japão ainda usa muito dinheiro'] } },
-  'Dubai, EAU': { visa: { required: false, info: 'Brasileiros recebem visto de 90 dias na chegada.', docs: ['Passaporte válido (6 meses)', 'Reserva de hotel'] }, health: { vaccines: ['Nenhuma obrigatória'], insurance: 'Recomendado', tips: ['Clima extremo no verão'] }, currency: { code: 'AED', name: 'Dirham', symbol: 'د.إ', rate: 1.59, trend: 'stable', tips: ['Dólar amplamente aceito'] } },
-  'Maldivas': { visa: { required: false, info: 'Visto de 30 dias gratuito na chegada.', docs: ['Passaporte válido (6 meses)', 'Reserva de hotel'] }, health: { vaccines: ['Febre amarela se vindo de área endêmica'], insurance: 'Obrigatório', tips: ['Leve protetor solar reef-safe'] }, currency: { code: 'MVR', name: 'Rufia', symbol: 'Rf', rate: 0.38, trend: 'stable', tips: ['Dólar aceito em resorts'] } }
+  'Paris, França': { visa: { required: false, info: 'Brasileiros não precisam de visto para estadias de até 90 dias no Espaço Schengen.', docs: ['Passaporte válido (6 meses)', 'Comprovante de hospedagem', 'Seguro viagem obrigatório', 'Passagem de volta'] }, health: { vaccines: ['Nenhuma vacina obrigatória'], insurance: 'Seguro viagem obrigatório - cobertura mínima €30.000', tips: ['Leve kit básico de medicamentos'] }, currency: { code: 'EUR', name: 'Euro', symbol: '€', rate: 0.163, trend: 'up', tips: ['Use cartões com IOF reduzido', 'Evite trocar em aeroportos'] } },
+  'Miami, EUA': { visa: { required: true, info: 'Visto B1/B2 americano obrigatório para brasileiros.', docs: ['Passaporte válido', 'Formulário DS-160', 'Comprovante financeiro', 'Vínculo com Brasil'] }, health: { vaccines: ['Nenhuma obrigatória'], insurance: 'Altamente recomendado (saúde cara nos EUA)', tips: ['Mantenha documentos do seguro acessíveis'] }, currency: { code: 'USD', name: 'Dólar', symbol: '$', rate: 0.175, trend: 'stable', tips: ['Gorjetas de 15-20% são esperadas'] } },
+  'Tóquio, Japão': { visa: { required: false, info: 'Brasileiros têm isenção de visto para estadias de até 90 dias.', docs: ['Passaporte válido', 'Comprovante de hospedagem', 'Passagem de volta'] }, health: { vaccines: ['Nenhuma obrigatória'], insurance: 'Recomendado', tips: ['Sistema de saúde excelente'] }, currency: { code: 'JPY', name: 'Iene', symbol: '¥', rate: 26.2, trend: 'down', tips: ['Japão ainda usa muito dinheiro'] } },
+  'Dubai, EAU': { visa: { required: false, info: 'Brasileiros recebem visto de 90 dias na chegada.', docs: ['Passaporte válido (6 meses)', 'Reserva de hotel'] }, health: { vaccines: ['Nenhuma obrigatória'], insurance: 'Recomendado', tips: ['Clima extremo no verão'] }, currency: { code: 'AED', name: 'Dirham', symbol: 'د.إ', rate: 0.643, trend: 'stable', tips: ['Dólar amplamente aceito'] } },
+  'Maldivas': { visa: { required: false, info: 'Visto de 30 dias gratuito na chegada.', docs: ['Passaporte válido (6 meses)', 'Reserva de hotel'] }, health: { vaccines: ['Febre amarela se vindo de área endêmica'], insurance: 'Obrigatório', tips: ['Leve protetor solar reef-safe'] }, currency: { code: 'MVR', name: 'Rufia', symbol: 'Rf', rate: 2.70, trend: 'stable', tips: ['Dólar aceito em resorts'] } }
 };
 
-const printStyles = `@media print { @page { margin: 0.8cm; size: A4; } body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .no-print { display: none !important; } .print-avoid-break { page-break-inside: avoid; } }`;
+// ========== ESSENTIAL LANGUAGE MODULE ==========
+const ESSENTIAL_PHRASES = {
+  'Paris, França': { language: 'Francês', flag: '🇫🇷', phrases: [{ phrase: "Où est l'hôpital?", translation: "Onde fica o hospital?", phonetic: "u é lopitál" }, { phrase: "Pouvez-vous m'aider?", translation: "Pode me ajudar?", phonetic: "puvê vu medê" }, { phrase: "Je ne comprends pas", translation: "Não entendo", phonetic: "je nê comprã pá" }, { phrase: "L'addition, s'il vous plaît", translation: "A conta, por favor", phonetic: "ladissiõ sil vu plê" }, { phrase: "Combien ça coûte?", translation: "Quanto custa?", phonetic: "combiã sa cut" }] },
+  'Miami, EUA': { language: 'Inglês', flag: '🇺🇸', phrases: [{ phrase: "Where is the hospital?", translation: "Onde fica o hospital?", phonetic: "uér is de róspitól" }, { phrase: "Can you help me?", translation: "Pode me ajudar?", phonetic: "kén iú rélp mi" }, { phrase: "I don't understand", translation: "Não entendo", phonetic: "ái dont anderstând" }, { phrase: "The check, please", translation: "A conta, por favor", phonetic: "de tchék, pliz" }, { phrase: "How much is this?", translation: "Quanto custa isso?", phonetic: "rau mâtch is dis" }] },
+  'Tóquio, Japão': { language: 'Japonês', flag: '🇯🇵', phrases: [{ phrase: "病院はどこですか?", translation: "Onde fica o hospital?", phonetic: "byouin wa doko desu ka" }, { phrase: "助けてください", translation: "Por favor, me ajude", phonetic: "tasukete kudasai" }, { phrase: "わかりません", translation: "Não entendo", phonetic: "wakarimasen" }, { phrase: "お会計お願いします", translation: "A conta, por favor", phonetic: "okaikei onegaishimasu" }, { phrase: "いくらですか?", translation: "Quanto custa?", phonetic: "ikura desu ka" }] },
+  'Dubai, EAU': { language: 'Árabe', flag: '🇦🇪', phrases: [{ phrase: "أين المستشفى؟", translation: "Onde fica o hospital?", phonetic: "ayna al-mustashfa" }, { phrase: "هل يمكنك مساعدتي؟", translation: "Pode me ajudar?", phonetic: "hal yumkinuka musa'adati" }, { phrase: "لا أفهم", translation: "Não entendo", phonetic: "la afham" }, { phrase: "الحساب من فضلك", translation: "A conta, por favor", phonetic: "al-hisab min fadlik" }, { phrase: "بكم هذا؟", translation: "Quanto custa?", phonetic: "bikam hada" }] },
+  'Maldivas': { language: 'Divehi/Inglês', flag: '🇲🇻', phrases: [{ phrase: "Where is the hospital?", translation: "Onde fica o hospital?", phonetic: "uér is de róspitól" }, { phrase: "Can you help me?", translation: "Pode me ajudar?", phonetic: "kén iú rélp mi" }, { phrase: "Shukuriyaa", translation: "Obrigado", phonetic: "shukuriá" }, { phrase: "The bill, please", translation: "A conta, por favor", phonetic: "de bil, pliz" }, { phrase: "How much?", translation: "Quanto custa?", phonetic: "rau mâtch" }] }
+};
+
+// ========== SMART PACKING LIST ==========
+const PACKING_DATABASE = {
+  essentials: [{ item: 'Passaporte', icon: FileText, category: 'Documentos' }, { item: 'Cartões de crédito', icon: Wallet, category: 'Documentos' }, { item: 'Seguro viagem', icon: Shield, category: 'Documentos' }, { item: 'Cópias de documentos', icon: Copy, category: 'Documentos' }, { item: 'Medicamentos pessoais', icon: Stethoscope, category: 'Saúde' }, { item: 'Carregador de celular', icon: Zap, category: 'Eletrônicos' }, { item: 'Adaptador de tomada', icon: Zap, category: 'Eletrônicos' }],
+  beach: [{ item: 'Protetor solar FPS 50+', icon: Sun, category: 'Praia' }, { item: 'Óculos de sol', icon: Eye, category: 'Praia' }, { item: 'Roupa de banho', icon: Anchor, category: 'Praia' }, { item: 'Chinelos', icon: Shirt, category: 'Praia' }, { item: 'Chapéu/Boné', icon: Sun, category: 'Praia' }],
+  culture: [{ item: 'Roupas formais', icon: Shirt, category: 'Vestuário' }, { item: 'Sapato confortável', icon: MapPin, category: 'Vestuário' }, { item: 'Cardigan/Blazer leve', icon: Shirt, category: 'Vestuário' }, { item: 'Câmera fotográfica', icon: Camera, category: 'Eletrônicos' }],
+  adventure: [{ item: 'Tênis de trilha', icon: Mountain, category: 'Esportes' }, { item: 'Mochila resistente', icon: Briefcase, category: 'Esportes' }, { item: 'Garrafa de água', icon: Coffee, category: 'Esportes' }],
+  coldWeather: [{ item: 'Casaco de inverno', icon: Thermometer, category: 'Vestuário' }, { item: 'Cachecol', icon: Shirt, category: 'Vestuário' }, { item: 'Luvas', icon: Shirt, category: 'Vestuário' }, { item: 'Gorro', icon: Shirt, category: 'Vestuário' }],
+  hotWeather: [{ item: 'Roupas leves', icon: Shirt, category: 'Vestuário' }, { item: 'Protetor solar', icon: Sun, category: 'Saúde' }, { item: 'Repelente', icon: Shield, category: 'Saúde' }]
+};
+
+const DESTINATION_CLIMATE = {
+  'Paris, França': { avgTemp: 12, climate: 'temperado', rainy: true },
+  'Miami, EUA': { avgTemp: 28, climate: 'tropical', rainy: false },
+  'Tóquio, Japão': { avgTemp: 16, climate: 'temperado', rainy: true },
+  'Dubai, EAU': { avgTemp: 35, climate: 'desértico', rainy: false },
+  'Maldivas': { avgTemp: 30, climate: 'tropical', rainy: false }
+};
+
+const generatePackingList = (destination, tripPriorities) => {
+  const list = [...PACKING_DATABASE.essentials];
+  const climate = DESTINATION_CLIMATE[destination];
+  if (climate) {
+    if (climate.avgTemp < 15) list.push(...PACKING_DATABASE.coldWeather);
+    else if (climate.avgTemp > 25) list.push(...PACKING_DATABASE.hotWeather);
+    if (climate.rainy) list.push({ item: 'Guarda-chuva compacto', icon: Umbrella, category: 'Acessórios' });
+  }
+  if (tripPriorities.includes('beaches') || tripPriorities.includes('relaxation')) list.push(...PACKING_DATABASE.beach);
+  if (tripPriorities.includes('culture')) list.push(...PACKING_DATABASE.culture);
+  if (tripPriorities.includes('adventure')) list.push(...PACKING_DATABASE.adventure);
+  return list.reduce((acc, curr) => { if (!acc.find(item => item.item === curr.item)) acc.push(curr); return acc; }, []);
+};
+
+// ========== DYNAMIC LOCAL CLOCK COMPONENT ==========
+const DynamicLocalClock = ({ origin, destination }) => {
+  const [time, setTime] = useState(new Date());
+  useEffect(() => { const interval = setInterval(() => setTime(new Date()), 1000); return () => clearInterval(interval); }, []);
+  const originOffset = CITY_OFFSETS[origin] || -3;
+  const destOffset = CITY_OFFSETS[destination] || 0;
+  const getLocalTime = (offset) => { const utc = time.getTime() + (time.getTimezoneOffset() * 60000); const localTime = new Date(utc + (3600000 * offset)); return localTime.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }); };
+  const timeDiff = destOffset - originOffset;
+  return (
+    <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl text-white">
+      <div className="flex items-center gap-2"><Clock size={16} className="text-teal-400" /><div><p className="text-xs text-slate-400">Brasil</p><p className="font-mono font-bold text-lg">{getLocalTime(originOffset)}</p></div></div>
+      <div className="flex flex-col items-center"><ArrowRight size={14} className="text-slate-500" /><span className={`text-xs ${timeDiff > 0 ? 'text-amber-400' : timeDiff < 0 ? 'text-blue-400' : 'text-slate-400'}`}>{timeDiff > 0 ? `+${timeDiff}h` : timeDiff < 0 ? `${timeDiff}h` : '='}</span></div>
+      <div className="flex items-center gap-2"><Globe size={16} className="text-emerald-400" /><div><p className="text-xs text-slate-400">{destination?.split(',')[0]}</p><p className="font-mono font-bold text-lg">{getLocalTime(destOffset)}</p></div></div>
+    </div>
+  );
+};
+
+// ========== SMART PACKING LIST COMPONENT ==========
+const SmartPackingList = ({ destination, tripPriorities, startDate }) => {
+  const [checkedItems, setCheckedItems] = useState({});
+  const packingList = useMemo(() => generatePackingList(destination, tripPriorities), [destination, tripPriorities]);
+  const climate = DESTINATION_CLIMATE[destination];
+  const progress = (Object.values(checkedItems).filter(Boolean).length / packingList.length) * 100;
+  const groupedItems = packingList.reduce((acc, item) => { if (!acc[item.category]) acc[item.category] = []; acc[item.category].push(item); return acc; }, {});
+  const toggleItem = (item) => setCheckedItems(prev => ({ ...prev, [item]: !prev[item] }));
+  
+  return (
+    <div className="bg-gradient-to-br from-violet-50 via-white to-purple-50 rounded-2xl border border-violet-200 overflow-hidden shadow-lg packing-list-section">
+      <div className="bg-gradient-to-r from-violet-600 to-purple-600 px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3"><div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm"><Briefcase size={24} className="text-white" /></div><div><h3 className="font-bold text-white text-lg">Checklist Inteligente de Malas</h3><p className="text-violet-100 text-sm">Baseado em destino, clima e prioridades</p></div></div>
+        <div className="text-right"><p className="text-2xl font-bold text-white">{Math.round(progress)}%</p><p className="text-xs text-violet-200">Preparado</p></div>
+      </div>
+      <div className="p-4">
+        <div className="mb-4"><div className="h-2 bg-violet-100 rounded-full overflow-hidden"><div className="h-full bg-gradient-to-r from-violet-500 to-purple-500 transition-all duration-500" style={{ width: `${progress}%` }} /></div><p className="text-xs text-slate-500 mt-1">{Object.values(checkedItems).filter(Boolean).length} de {packingList.length} itens</p></div>
+        {climate && <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl mb-4 border border-blue-200"><Thermometer size={20} className="text-blue-600" /><div><p className="text-sm font-medium text-slate-700">Clima esperado: <span className="text-blue-600">{climate.avgTemp}°C</span></p><p className="text-xs text-slate-500 capitalize">{climate.climate} {climate.rainy ? '• Possibilidade de chuva' : ''}</p></div></div>}
+        <div className="space-y-4 max-h-[400px] overflow-y-auto">{Object.entries(groupedItems).map(([category, items]) => (<div key={category}><p className="text-xs font-bold text-slate-500 uppercase mb-2">{category}</p><div className="grid grid-cols-1 sm:grid-cols-2 gap-2">{items.map((item, idx) => { const ItemIcon = item.icon; const isChecked = checkedItems[item.item]; return (<button key={idx} onClick={() => toggleItem(item.item)} className={`flex items-center gap-3 p-3 rounded-xl border transition-all text-left ${isChecked ? 'bg-emerald-50 border-emerald-300 text-emerald-700' : 'bg-white border-slate-200 hover:border-violet-300 hover:bg-violet-50'}`}><div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${isChecked ? 'bg-emerald-500' : 'bg-slate-100'}`}>{isChecked ? <Check size={14} className="text-white" /> : <ItemIcon size={14} className="text-slate-400" />}</div><span className={`text-sm ${isChecked ? 'line-through' : ''}`}>{item.item}</span></button>); })}</div></div>))}</div>
+      </div>
+    </div>
+  );
+};
+
+// ========== ESSENTIAL LANGUAGE MODULE COMPONENT ==========
+const EssentialLanguageModule = ({ destination }) => {
+  const [playingPhrase, setPlayingPhrase] = useState(null);
+  const langData = ESSENTIAL_PHRASES[destination];
+  if (!langData) return null;
+  const simulateAudio = (idx) => { setPlayingPhrase(idx); setTimeout(() => setPlayingPhrase(null), 2000); };
+  
+  return (
+    <div className="bg-gradient-to-br from-amber-50 via-white to-orange-50 rounded-2xl border border-amber-200 overflow-hidden shadow-lg language-section">
+      <div className="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4 flex items-center gap-3"><div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm"><Languages size={24} className="text-white" /></div><div><h3 className="font-bold text-white text-lg">Frases Essenciais em {langData.language}</h3><p className="text-amber-100 text-sm">{langData.flag} 5 expressões de sobrevivência</p></div></div>
+      <div className="p-4 space-y-3">{langData.phrases.map((phrase, idx) => (<div key={idx} className="bg-white rounded-xl p-4 border border-amber-100 hover:border-amber-300 transition-all group"><div className="flex items-start justify-between gap-3"><div className="flex-1"><p className="font-bold text-slate-800 text-lg">{phrase.phrase}</p><p className="text-slate-600 text-sm mt-1">{phrase.translation}</p><p className="text-amber-600 text-xs mt-2 font-mono bg-amber-50 px-2 py-1 rounded inline-block">🔊 "{phrase.phonetic}"</p></div><button onClick={() => simulateAudio(idx)} className={`p-3 rounded-xl transition-all ${playingPhrase === idx ? 'bg-amber-500 text-white animate-pulse' : 'bg-amber-100 text-amber-600 hover:bg-amber-200'}`}><Volume2 size={20} /></button></div></div>))}</div>
+    </div>
+  );
+};
+
+// ========== BUDGET SPEEDOMETER (MELHORADO) ==========
+const BudgetSpeedometer = ({ total, spent, isOverBudget }) => {
+  const percentage = Math.min((spent / total) * 100, 150);
+  const angle = (percentage / 150) * 180 - 90;
+  return (
+    <div className="relative w-full h-32 flex items-center justify-center">
+      <svg viewBox="0 0 200 110" className="w-full max-w-[200px]">
+        <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#e2e8f0" strokeWidth="16" strokeLinecap="round" />
+        <defs><linearGradient id="budgetGradient" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#10b981" /><stop offset="50%" stopColor="#f59e0b" /><stop offset="75%" stopColor="#ef4444" /><stop offset="100%" stopColor="#dc2626" /></linearGradient></defs>
+        <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#budgetGradient)" strokeWidth="16" strokeLinecap="round" strokeDasharray={`${Math.min(percentage, 100) * 2.51} 251`} />
+        <g transform={`rotate(${angle}, 100, 100)`}><line x1="100" y1="100" x2="100" y2="35" stroke="#1e293b" strokeWidth="3" strokeLinecap="round" /><circle cx="100" cy="100" r="8" fill="#1e293b" /></g>
+      </svg>
+      <div className="absolute bottom-0 text-center"><p className={`text-2xl font-bold ${isOverBudget ? 'text-red-600' : 'text-slate-800'}`}>{percentage.toFixed(0)}%</p><p className="text-xs text-slate-500">do orçamento</p></div>
+    </div>
+  );
+};
+
+const printStyles = `@media print { @page { margin: 0.8cm; size: A4; } body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .no-print { display: none !important; } .print-avoid-break { page-break-inside: avoid; } .exchange-analysis-section { page-break-before: always; } .packing-list-section { page-break-before: always; } .language-section { page-break-inside: avoid; } }`;
 
 // ========== DESTINATIONS DATABASE ==========
 const DESTINATIONS_DATABASE = {
@@ -815,11 +1048,15 @@ export default function App() {
   if (!user || currentView === 'landing') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-emerald-50">
-        <nav className="bg-white/80 backdrop-blur-lg border-b border-slate-200 sticky top-0 z-40"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-2"><Globe size={28} className="text-teal-600" /><span className="text-xl font-bold text-slate-800">SmartTravel <span className="text-teal-600">AI</span></span><span className="text-xs px-2 py-0.5 bg-gradient-to-r from-violet-500 to-purple-500 text-white rounded-full font-semibold ml-2">2026</span></div><div className="flex items-center gap-4">{user ? <><button onClick={() => setCurrentView('planner')} className="text-slate-600 hover:text-teal-600 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-600 hover:text-teal-600 font-medium">Comunidade</button><button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button></> : <button onClick={() => setShowAuthModal(true)} className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-medium">Entrar</button>}</div></div></nav>
+        {/* 🔥 DEBUG BANNER - REMOVER APÓS CONFIRMAR QUE FUNCIONA */}
+        <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-center py-2 px-4 text-sm font-bold">
+          🚀 BUILD v2.0 CORRETO! Motor 12 Meses + DCA/Lump Sum + Checklist + Idiomas ✅
+        </div>
+        <nav className="bg-white/80 backdrop-blur-lg border-b border-slate-200 sticky top-0 z-40"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-2"><Globe size={28} className="text-teal-600" /><span className="text-xl font-bold text-slate-800">SmartTravel <span className="text-teal-600">AI</span></span><span className="text-xs px-2 py-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full font-semibold ml-2 animate-pulse">v2.0</span></div><div className="flex items-center gap-4">{user ? <><button onClick={() => setCurrentView('planner')} className="text-slate-600 hover:text-teal-600 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-600 hover:text-teal-600 font-medium">Comunidade</button><button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button></> : <button onClick={() => setShowAuthModal(true)} className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-medium">Entrar</button>}</div></div></nav>
         <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-100 to-purple-100 rounded-full text-violet-700 text-sm font-semibold mb-6"><Zap size={16} /> Motor de Câmbio Preditivo • Roteiros Full-Depth</div>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-100 to-purple-100 rounded-full text-violet-700 text-sm font-semibold mb-6"><Zap size={16} /> Motor Preditivo 12 Meses • DCA • Checklist • Idiomas <span className="ml-2 px-2 py-0.5 bg-emerald-500 text-white text-xs rounded-full animate-pulse">v2.0</span></div>
           <h1 className="text-5xl md:text-6xl font-bold text-slate-800 mb-6">Planeje viagens <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">incríveis</span> com IA</h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-8">Roteiros personalizados, projeção de câmbio, otimização de orçamento e sugestões inteligentes baseadas no seu perfil.</p>
+          <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-8">Roteiros personalizados, <strong>projeção de câmbio de 12 meses</strong> com estratégias DCA/Lump Sum, <strong>checklist inteligente de malas</strong>, frases essenciais no idioma local e relógio de fuso horário em tempo real.</p>
           <div className="flex gap-4 justify-center flex-wrap">
             <button onClick={() => { if (!user) setShowAuthModal(true); else setCurrentView('planner'); }} className="px-8 py-4 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-xl font-bold text-lg hover:shadow-xl hover:shadow-teal-500/30 transition-all flex items-center gap-2 hover:scale-105"><Sparkles size={24} /> Começar a Planejar</button>
             <button onClick={() => setCurrentView('community')} className="px-8 py-4 border-2 border-slate-300 text-slate-700 rounded-xl font-bold text-lg hover:border-teal-500 hover:text-teal-600 transition-all hover:scale-105">Ver Comunidade</button>
@@ -827,7 +1064,7 @@ export default function App() {
         </div>
         <div className="max-w-7xl mx-auto px-4 py-16">
           <div className="grid md:grid-cols-4 gap-6">
-            {[{ icon: Sparkles, title: 'IA Personalizada', desc: 'Roteiros adaptados ao seu perfil', color: 'from-teal-500 to-emerald-500' }, { icon: BarChart3, title: 'Câmbio Preditivo', desc: 'Previsão de melhor momento de compra', color: 'from-violet-500 to-purple-500' }, { icon: Wallet, title: 'Smart Budget', desc: 'Otimização automática de custos', color: 'from-amber-500 to-orange-500' }, { icon: Users, title: 'Comunidade', desc: 'Roteiros de viajantes reais', color: 'from-rose-500 to-pink-500' }].map((f, i) => (
+            {[{ icon: BarChart3, title: 'Câmbio 12 Meses', desc: 'DCA, Lump Sum e Índice de Confiança IA', color: 'from-emerald-500 to-teal-500' }, { icon: Briefcase, title: 'Checklist Inteligente', desc: 'Malas baseadas em clima e prioridades', color: 'from-violet-500 to-purple-500' }, { icon: Languages, title: 'Frases Essenciais', desc: '5 expressões no idioma local', color: 'from-amber-500 to-orange-500' }, { icon: Clock, title: 'Relógio Dinâmico', desc: 'Fuso horário em tempo real', color: 'from-rose-500 to-pink-500' }].map((f, i) => (
               <div key={i} className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-all hover:scale-105 group">
                 <div className={`w-14 h-14 bg-gradient-to-br ${f.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}><f.icon size={28} className="text-white" /></div>
                 <h3 className="text-lg font-bold text-slate-800 mb-2">{f.title}</h3>
@@ -873,7 +1110,11 @@ export default function App() {
   // ========== PLANNER PAGE ==========
   return (
     <div className="min-h-screen bg-slate-50">
-      <nav className="bg-white/80 backdrop-blur-lg border-b border-slate-200 sticky top-0 z-40 no-print"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-2 cursor-pointer" onClick={() => setCurrentView('landing')}><Globe size={28} className="text-teal-600" /><span className="text-xl font-bold text-slate-800">SmartTravel <span className="text-teal-600">AI</span></span></div><div className="flex items-center gap-4"><button onClick={() => setCurrentView('planner')} className="text-teal-600 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-600 hover:text-teal-600 font-medium">Comunidade</button>{user && <button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button>}</div></div></nav>
+      {/* 🔥 DEBUG BANNER - REMOVER APÓS CONFIRMAR QUE FUNCIONA */}
+      <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-center py-2 px-4 text-sm font-bold no-print">
+        🚀 BUILD v2.0 CORRETO! Motor 12 Meses + DCA/Lump Sum + Checklist + Idiomas ✅
+      </div>
+      <nav className="bg-white/80 backdrop-blur-lg border-b border-slate-200 sticky top-0 z-40 no-print"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-2 cursor-pointer" onClick={() => setCurrentView('landing')}><Globe size={28} className="text-teal-600" /><span className="text-xl font-bold text-slate-800">SmartTravel <span className="text-teal-600">AI</span></span><span className="text-xs px-2 py-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full font-semibold ml-2">v2.0</span></div><div className="flex items-center gap-4"><button onClick={() => setCurrentView('planner')} className="text-teal-600 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-600 hover:text-teal-600 font-medium">Comunidade</button>{user && <button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button>}</div></div></nav>
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-8 shadow-sm no-print">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -900,6 +1141,12 @@ export default function App() {
                   <button onClick={() => setItineraryTab('timeline')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'timeline' ? 'bg-teal-600 text-white shadow-lg' : 'bg-white border border-slate-200 hover:border-teal-400'}`}><Calendar size={18} /> Timeline</button>
                   <button onClick={() => setItineraryTab('guide')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'guide' ? 'bg-teal-600 text-white shadow-lg' : 'bg-white border border-slate-200 hover:border-teal-400'}`}><BookOpen size={18} /> Guia</button>
                   <button onClick={() => setItineraryTab('exchange')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'exchange' ? 'bg-teal-600 text-white shadow-lg' : 'bg-white border border-slate-200 hover:border-teal-400'}`}><Banknote size={18} /> Câmbio</button>
+                  <button onClick={() => setItineraryTab('extras')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'extras' ? 'bg-teal-600 text-white shadow-lg' : 'bg-white border border-slate-200 hover:border-teal-400'}`}><Briefcase size={18} /> Extras</button>
+                </div>
+                
+                {/* Relógio Local Dinâmico */}
+                <div className="mb-4">
+                  <DynamicLocalClock origin={origin} destination={destination} />
                 </div>
                 
                 {itineraryTab === 'timeline' && (
@@ -923,6 +1170,13 @@ export default function App() {
                 )}
                 
                 {itineraryTab === 'exchange' && <div className="exchange-section"><PredictiveExchangeEngine origin={origin} destination={destination} tripBudget={totalBudget} tripDate={startDate} /></div>}
+                
+                {itineraryTab === 'extras' && (
+                  <div className="space-y-6">
+                    <SmartPackingList destination={destination} tripPriorities={tripPriorities} startDate={startDate} />
+                    <EssentialLanguageModule destination={destination} />
+                  </div>
+                )}
               </div>
             )}
             {!destination && <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center"><Globe size={64} className="text-teal-200 mx-auto mb-4" /><h3 className="text-xl font-bold text-slate-800 mb-2">Escolha um destino</h3><p className="text-slate-500">Selecione para onde você quer ir</p></div>}
@@ -932,11 +1186,26 @@ export default function App() {
             <div className={`bg-gradient-to-br from-teal-600 to-teal-800 rounded-2xl p-6 text-white shadow-xl ${!itineraryGenerated && 'opacity-60'}`}>
               <div className="flex items-center justify-between mb-2"><h3 className="font-semibold">Orçamento</h3><Wallet size={20} /></div>
               <div className="text-3xl font-bold">R$ {totalBudget.toLocaleString()}</div>
-              {itineraryGenerated && <><div className={`mt-2 inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm ${isOverBudget ? 'bg-red-500/30' : 'bg-white/20'}`}>{isOverBudget ? <TrendingUp size={14} /> : <TrendingDown size={14} />}{isOverBudget ? `Excedido: R$ ${Math.abs(remaining).toLocaleString()}` : `Disponível: R$ ${remaining.toLocaleString()}`}</div><div className="mt-4 pt-4 border-t border-white/20 space-y-2 text-sm"><div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Plane size={14} />Voos</span><span>R$ {costs.flights.toLocaleString()} ({costs.percentages.flights || 0}%)</span></div><div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Hotel size={14} />Hotel</span><span>R$ {costs.hotels.toLocaleString()} ({costs.percentages.hotels || 0}%)</span></div><div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Camera size={14} />Passeios</span><span>R$ {costs.activities.toLocaleString()} ({costs.percentages.activities || 0}%)</span></div><div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Utensils size={14} />Alimentação</span><span>R$ {costs.food.toLocaleString()} ({costs.percentages.food || 0}%)</span></div><div className="flex justify-between font-bold pt-2 border-t border-white/20"><span>Total</span><span>R$ {costs.total.toLocaleString()}</span></div></div></>}
+              {itineraryGenerated && (
+                <>
+                  <BudgetSpeedometer total={totalBudget} spent={costs.total} isOverBudget={isOverBudget} />
+                  <div className={`mt-2 inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm ${isOverBudget ? 'bg-red-500/30' : 'bg-white/20'}`}>
+                    {isOverBudget ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
+                    {isOverBudget ? `Excedido: R$ ${Math.abs(remaining).toLocaleString()}` : `Disponível: R$ ${remaining.toLocaleString()}`}
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-white/20 space-y-2 text-sm">
+                    <div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Plane size={14} />Voos</span><span>R$ {costs.flights.toLocaleString()} ({costs.percentages.flights || 0}%)</span></div>
+                    <div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Hotel size={14} />Hotel</span><span>R$ {costs.hotels.toLocaleString()} ({costs.percentages.hotels || 0}%)</span></div>
+                    <div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Camera size={14} />Passeios</span><span>R$ {costs.activities.toLocaleString()} ({costs.percentages.activities || 0}%)</span></div>
+                    <div className="flex justify-between"><span className="opacity-80 flex items-center gap-2"><Utensils size={14} />Alimentação</span><span>R$ {costs.food.toLocaleString()} ({costs.percentages.food || 0}%)</span></div>
+                    <div className="flex justify-between font-bold pt-2 border-t border-white/20"><span>Total</span><span>R$ {costs.total.toLocaleString()}</span></div>
+                  </div>
+                </>
+              )}
             </div>
             {itineraryGenerated && insights.length > 0 && <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm"><h3 className="font-bold text-slate-800 mb-3 flex items-center gap-2"><Sparkles size={18} className="text-teal-600" /> Insights da IA</h3><div className="space-y-3">{insights.map((insight, i) => <AIInsightCard key={i} insight={insight} onAction={handleInsightAction} />)}</div></div>}
             {destination && <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200 p-4 shadow-sm"><h3 className="font-bold text-slate-800 mb-3 flex items-center gap-2"><Crown size={18} className="text-amber-500" /> Top Roteiros - {destination.split(',')[0]}</h3><div className="space-y-2">{COMMUNITY_ITINERARIES.filter(i => i.destination === destination).slice(0, 3).map(it => <CommunityCard key={it.id} itinerary={it} onUse={useCommunityItinerary} onLike={toggleLike} onViewDetails={(it) => setCommunityDetailModal({ isOpen: true, itinerary: it })} isLiked={likedItineraries.includes(it.id)} compact />)}{COMMUNITY_ITINERARIES.filter(i => i.destination === destination).length === 0 && <p className="text-sm text-slate-400 text-center py-4">Nenhum roteiro ainda</p>}</div></div>}
-            {itineraryGenerated && <button onClick={handlePrint} disabled={isOverBudget} className={`w-full py-4 font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all ${isOverBudget ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white hover:shadow-emerald-500/30 hover:scale-[1.02]'}`}>{isOverBudget ? <><AlertTriangle size={20} />Ajuste o orçamento</> : <><Download size={20} />Baixar PDF (com Câmbio)</>}</button>}
+            {itineraryGenerated && <button onClick={handlePrint} disabled={isOverBudget} className={`w-full py-4 font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all ${isOverBudget ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white hover:shadow-emerald-500/30 hover:scale-[1.02]'}`}>{isOverBudget ? <><AlertTriangle size={20} />Ajuste o orçamento</> : <><Download size={20} />Baixar PDF Completo</>}</button>}
           </div>
         </div>
       </div>
