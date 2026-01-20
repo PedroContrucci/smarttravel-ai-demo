@@ -1,12 +1,16 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import { Plane, Hotel, Utensils, Camera, MapPin, Calendar, Users, Wallet, TrendingDown, TrendingUp, Sparkles, Check, AlertTriangle, Lightbulb, Globe, Star, Clock, X, Plus, RefreshCw, Heart, User, LogOut, Bookmark, Baby, UserCheck, Mountain, Building, Palmtree, Crown, Map, Sunrise, Sun, Moon, PlaneTakeoff, PlaneLanding, MessageSquare, Car, Copy, Download, Anchor, Music, ShoppingBag, Sliders, ChevronDown, ChevronUp, Trash2, Eye, Coffee, Bed, ArrowUpCircle, ArrowDownCircle, FileText, Briefcase, Activity, DollarSign, AlertCircle, ChevronRight, BookOpen, Zap, BarChart3, ArrowRight, Shield, Banknote, Target, Timer } from 'lucide-react';
+import React, { useState, useMemo, useEffect, useCallback, useRef, createContext, useContext } from 'react';
+import { Plane, Hotel, Utensils, Camera, MapPin, Calendar, Users, Wallet, TrendingDown, TrendingUp, Sparkles, Check, AlertTriangle, Lightbulb, Globe, Star, Clock, X, Plus, RefreshCw, Heart, User, LogOut, Bookmark, Baby, UserCheck, Mountain, Building, Palmtree, Crown, Map, Sunrise, Sun, Moon, PlaneTakeoff, PlaneLanding, MessageSquare, Car, Copy, Download, Anchor, Music, ShoppingBag, Sliders, ChevronDown, ChevronUp, Trash2, Eye, Coffee, Bed, ArrowUpCircle, ArrowDownCircle, FileText, Briefcase, Activity, DollarSign, AlertCircle, ChevronRight, BookOpen, Zap, BarChart3, ArrowRight, Shield, Banknote, Target, Timer, ExternalLink, CheckCircle2, Circle, Flame } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart, ReferenceLine, PieChart, Pie, Cell } from 'recharts';
 
 // ============================================================
-// 🚀 SMARTTRAVEL AI v3.0 - LIVE & SPECIALIST EDITION
-// Motor Preditivo 12 Meses | Concierge IA | Suitcase Optimizer
+// 🚀 SMARTTRAVEL AI v4.0 - HYPER-SYNC EDITION
+// Sincronia Total | Dark Mode | Links Dinâmicos | Concierge Pro
 // ============================================================
-console.log('%c🚀 SMARTTRAVEL AI v3.0 - LIVE & SPECIALIST!', 'background: linear-gradient(90deg, #10b981, #3b82f6); color: white; font-size: 20px; padding: 10px; border-radius: 5px;');
+console.log('%c🚀 SMARTTRAVEL AI v4.0 - HYPER-SYNC!', 'background: linear-gradient(135deg, #0f172a 0%, #6366f1 50%, #10b981 100%); color: white; font-size: 20px; padding: 12px; border-radius: 8px; font-weight: bold;');
+
+// ========== v4.0: DARK MODE CONTEXT ==========
+const ThemeContext = createContext({ isDark: false, toggle: () => {} });
+const useTheme = () => useContext(ThemeContext);
 
 // Ícones SVG customizados (compatibilidade total)
 const Volume2 = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>;
@@ -24,9 +28,55 @@ const Luggage = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg"
 const Receipt = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1Z"></path><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><path d="M12 17V7"></path></svg>;
 const Play = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>;
 const Pause = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>;
+const MoonStar = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path><path d="M19 3v4"></path><path d="M21 5h-4"></path></svg>;
+const SunMedium = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="4"></circle><path d="M12 3v1"></path><path d="M12 20v1"></path><path d="M3 12h1"></path><path d="M20 12h1"></path><path d="m18.364 5.636-.707.707"></path><path d="m6.343 17.657-.707.707"></path><path d="m5.636 5.636.707.707"></path><path d="m17.657 17.657.707.707"></path></svg>;
 
 // VERSÃO DO APP
-const APP_VERSION = "3.0.0-LIVE-SPECIALIST";
+const APP_VERSION = "4.0.0-HYPER-SYNC";
+
+// ========== v4.0: BOOKING LINKS GENERATOR ==========
+const generateBookingLinks = (type, data) => {
+  const { origin, destination, startDate, endDate, hotelName, activityName } = data;
+  const destCity = destination?.split(',')[0]?.trim() || '';
+  const originCity = origin?.split('(')[0]?.trim() || '';
+  
+  switch(type) {
+    case 'flight':
+      return {
+        googleFlights: `https://www.google.com/travel/flights?q=Flights%20to%20${encodeURIComponent(destCity)}%20from%20${encodeURIComponent(originCity)}%20on%20${startDate}`,
+        skyscanner: `https://www.skyscanner.com.br/transporte/passagens-aereas/${encodeURIComponent(originCity)}/${encodeURIComponent(destCity)}/${startDate?.replace(/-/g, '')}`,
+        kayak: `https://www.kayak.com.br/flights/${encodeURIComponent(originCity)}-${encodeURIComponent(destCity)}/${startDate}`
+      };
+    case 'hotel':
+      return {
+        booking: `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(hotelName || destCity)}&checkin=${startDate}&checkout=${endDate}`,
+        hotels: `https://www.hotels.com/search.do?destination=${encodeURIComponent(destCity)}&startDate=${startDate}&endDate=${endDate}`,
+        airbnb: `https://www.airbnb.com.br/s/${encodeURIComponent(destCity)}/homes?checkin=${startDate}&checkout=${endDate}`
+      };
+    case 'activity':
+      return {
+        getYourGuide: `https://www.getyourguide.com.br/s/?q=${encodeURIComponent(activityName || destCity)}`,
+        tripadvisor: `https://www.tripadvisor.com.br/Search?q=${encodeURIComponent(activityName || destCity)}`,
+        viator: `https://www.viator.com/searchResults/all?text=${encodeURIComponent(activityName || destCity)}`
+      };
+    default:
+      return {};
+  }
+};
+
+// ========== v4.0: PRICE HISTORY SIMULATION ==========
+const simulatePriceHistory = (currentPrice) => {
+  const history = [];
+  let price = currentPrice * (1 + (Math.random() * 0.3 - 0.1));
+  for (let i = 30; i >= 0; i--) {
+    const variation = (Math.random() - 0.5) * 0.08;
+    price = price * (1 + variation);
+    history.push({ day: 30 - i, price: Math.round(price) });
+  }
+  const minPrice = Math.min(...history.map(h => h.price));
+  const isLowestPrice = currentPrice <= minPrice * 1.05;
+  return { history, isLowestPrice, minPrice, avgPrice: Math.round(history.reduce((a, b) => a + b.price, 0) / history.length) };
+};
 
 // ========== CORE ENGINE ==========
 const CITY_OFFSETS = { 'São Paulo (GRU)': -3, 'Rio de Janeiro (GIG)': -3, 'Brasília (BSB)': -3, 'Belo Horizonte (CNF)': -3, 'Salvador (SSA)': -3, 'Fortaleza (FOR)': -3, 'Recife (REC)': -3, 'Porto Alegre (POA)': -3, 'Curitiba (CWB)': -3, 'Manaus (MAO)': -4, 'Florianópolis (FLN)': -3, 'Natal (NAT)': -3, 'Paris, França': 1, 'Londres, UK': 0, 'Roma, Itália': 1, 'Barcelona, Espanha': 1, 'Lisboa, Portugal': 0, 'Amsterdam, Holanda': 1, 'Santorini, Grécia': 2, 'Nova York, EUA': -5, 'Miami, EUA': -5, 'Los Angeles, EUA': -8, 'Cancún, México': -5, 'Buenos Aires, Argentina': -3, 'Tóquio, Japão': 9, 'Dubai, EAU': 4, 'Bangkok, Tailândia': 7, 'Bali, Indonésia': 8, 'Singapura': 8, 'Sydney, Austrália': 10, 'Maldivas': 5, 'Cape Town, África do Sul': 2 };
@@ -364,7 +414,7 @@ const DESTINATION_CLIMATE = {
   'Maldivas': { avgTemp: 30, climate: 'tropical', rainy: false }
 };
 
-// ========== v3.0: VIRTUAL SUITCASE OPTIMIZER DATA ==========
+// ========== v4.0: VIRTUAL SUITCASE OPTIMIZER DATA ==========
 const ITEM_WEIGHTS = {
   // Documentos - peso mínimo
   'Passaporte': 0.05, 'Cartões de crédito': 0.02, 'Seguro viagem': 0.01, 'Cópias de documentos': 0.05,
@@ -401,7 +451,7 @@ const LUGGAGE_RECOMMENDATIONS = {
   }
 };
 
-// ========== v3.0: AI CONCIERGE DATA ==========
+// ========== v4.0: AI CONCIERGE DATA ==========
 const CONCIERGE_QUICK_ACTIONS = [
   { id: 'weather', label: '☀️ Verificar Clima', icon: Sun },
   { id: 'uber', label: '🚗 Chamar Uber', icon: Car },
@@ -491,148 +541,368 @@ const EssentialLanguageModule = ({ destination }) => {
   );
 };
 
-// ========== v3.0: VIRTUAL SUITCASE OPTIMIZER ==========
+// ========== v4.0: SUITCASE 3D VISUALIZER ==========
+const Suitcase3DVisualizer = ({ checkedItems, packingList, totalWeight, maxWeight }) => {
+  const categories = useMemo(() => {
+    const cats = {};
+    packingList.forEach(item => {
+      if (checkedItems[item.item]) {
+        if (!cats[item.category]) cats[item.category] = 0;
+        cats[item.category] += ITEM_WEIGHTS[item.item] || 0.3;
+      }
+    });
+    return cats;
+  }, [checkedItems, packingList]);
+  
+  const categoryColors = {
+    'Documentos': '#6366f1', 'Eletrônicos': '#f59e0b', 'Vestuário': '#ec4899',
+    'Praia': '#06b6d4', 'Saúde': '#10b981', 'Esportes': '#f97316', 'Acessórios': '#8b5cf6'
+  };
+  
+  const fillPercentage = Math.min((totalWeight / maxWeight) * 100, 100);
+  
+  return (
+    <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700">
+      <h4 className="font-bold text-white mb-4 flex items-center gap-2"><Luggage size={20} className="text-cyan-400" /> Visualização 3D</h4>
+      <div className="flex items-center justify-center">
+        <svg viewBox="0 0 200 250" className="w-40 h-52">
+          <ellipse cx="100" cy="240" rx="70" ry="8" fill="rgba(0,0,0,0.3)" />
+          <rect x="30" y="50" width="140" height="180" rx="12" fill="#1e293b" stroke="#475569" strokeWidth="2" />
+          <defs><clipPath id="suitcaseClip"><rect x="35" y="55" width="130" height="170" rx="8" /></clipPath></defs>
+          <g clipPath="url(#suitcaseClip)">
+            <rect x="35" y="55" width="130" height="170" fill="#0f172a" />
+            <rect x="35" y={55 + 170 * (1 - fillPercentage / 100)} width="130" height={170 * fillPercentage / 100} fill="url(#fillGradient)" className="transition-all duration-700" />
+            {Object.entries(categories).map(([cat, weight], idx) => {
+              const y = 200 - (idx + 1) * 25;
+              const width = Math.min(120, weight * 40);
+              return <rect key={cat} x={40 + (idx % 2) * 10} y={y} width={width} height="20" rx="4" fill={categoryColors[cat] || '#64748b'} opacity="0.9" />;
+            })}
+          </g>
+          <defs><linearGradient id="fillGradient" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" stopColor="#10b981" /><stop offset="50%" stopColor="#06b6d4" /><stop offset="100%" stopColor="#6366f1" /></linearGradient></defs>
+          <rect x="80" y="35" width="40" height="20" rx="4" fill="#334155" stroke="#475569" strokeWidth="2" />
+          <rect x="90" y="30" width="20" height="10" rx="3" fill="#475569" />
+          <line x1="100" y1="55" x2="100" y2="225" stroke="#64748b" strokeWidth="2" strokeDasharray="4 2" />
+          <circle cx="50" cy="235" r="8" fill="#334155" stroke="#475569" strokeWidth="2" />
+          <circle cx="150" cy="235" r="8" fill="#334155" stroke="#475569" strokeWidth="2" />
+        </svg>
+      </div>
+      <div className="mt-4 flex flex-wrap gap-2 justify-center">
+        {Object.entries(categories).map(([cat, weight]) => (
+          <div key={cat} className="flex items-center gap-1 px-2 py-1 bg-slate-700/50 rounded-full">
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: categoryColors[cat] || '#64748b' }} />
+            <span className="text-xs text-slate-300">{cat}</span>
+            <span className="text-xs text-slate-500">{weight.toFixed(1)}kg</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ========== v4.0: VIRTUAL SUITCASE OPTIMIZER PRO ==========
 const VirtualSuitcaseOptimizer = ({ destination, tripPriorities, tripDays, adults, children, checkedItems, packingList }) => {
+  const [showDimensionsModal, setShowDimensionsModal] = useState(false);
+  const [customBagSize, setCustomBagSize] = useState({ width: 55, height: 40, depth: 20 });
   const travelers = adults + children;
   const tripLength = tripDays <= 4 ? 'short' : tripDays <= 10 ? 'medium' : 'long';
   const travelerType = travelers === 1 ? 'solo' : travelers === 2 ? 'couple' : 'family';
   const recommendation = LUGGAGE_RECOMMENDATIONS[tripLength]?.[travelerType] || LUGGAGE_RECOMMENDATIONS.medium.couple;
   
+  // v4.0: Sugestão automática para crianças
+  const childrenBagSuggestion = children > 0 ? {
+    needed: true,
+    tip: `👶 Com ${children} criança(s), considere 1 mala média exclusiva para itens infantis (fraldas, brinquedos, roupas extras).`
+  } : { needed: false };
+  
   const totalWeight = useMemo(() => {
     return packingList.reduce((acc, item) => {
-      if (checkedItems[item.item]) {
-        return acc + (ITEM_WEIGHTS[item.item] || 0.3);
-      }
+      if (checkedItems[item.item]) return acc + (ITEM_WEIGHTS[item.item] || 0.3);
       return acc;
     }, 0) * travelers;
   }, [packingList, checkedItems, travelers]);
   
-  const maxWeight = recommendation.bags.reduce((acc, bag) => acc + bag.weight, 0);
+  const maxWeight = recommendation.bags.reduce((acc, bag) => acc + bag.weight, 0) + (childrenBagSuggestion.needed ? 15 : 0);
   const weightPercentage = (totalWeight / maxWeight) * 100;
   const isOverweight = weightPercentage > 100;
   
   return (
-    <div className="bg-gradient-to-br from-cyan-50 via-white to-blue-50 rounded-2xl border border-cyan-200 overflow-hidden shadow-lg suitcase-section">
+    <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-cyan-900 rounded-2xl border border-cyan-500/30 overflow-hidden shadow-2xl suitcase-section">
       <div className="bg-gradient-to-r from-cyan-600 to-blue-600 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm"><Luggage size={24} className="text-white" /></div>
-          <div><h3 className="font-bold text-white text-lg">Organizador de Malas Pro</h3><p className="text-cyan-100 text-sm">Recomendação inteligente + controle de peso</p></div>
+          <div><h3 className="font-bold text-white text-lg">Organizador de Malas 3D</h3><p className="text-cyan-100 text-sm">Visualização inteligente + controle de peso</p></div>
         </div>
         <div className="text-right">
           <p className={`text-2xl font-bold ${isOverweight ? 'text-red-300 animate-pulse' : 'text-white'}`}>{totalWeight.toFixed(1)}kg</p>
           <p className="text-xs text-cyan-200">de {maxWeight}kg máx</p>
         </div>
       </div>
+      
       <div className="p-4 space-y-4">
-        {/* Recomendação de Bagagem */}
-        <div className="bg-white rounded-xl p-4 border border-cyan-200">
-          <h4 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Briefcase size={18} className="text-cyan-600" /> Bagagem Recomendada</h4>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {recommendation.bags.map((bag, idx) => (
-              <div key={idx} className="bg-gradient-to-br from-cyan-50 to-blue-50 p-3 rounded-xl border border-cyan-100 text-center">
-                <Luggage size={32} className="text-cyan-600 mx-auto mb-2" />
-                <p className="font-bold text-slate-800 text-sm">{bag.type}</p>
-                <p className="text-xs text-slate-500">{bag.size}</p>
-                <p className="text-xs text-cyan-600 font-semibold mt-1">Até {bag.weight}kg</p>
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* 3D Visualizer */}
+          <Suitcase3DVisualizer checkedItems={checkedItems} packingList={packingList} totalWeight={totalWeight} maxWeight={maxWeight} />
+          
+          {/* Recommendations */}
+          <div className="space-y-4">
+            <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+              <h4 className="font-bold text-white mb-3 flex items-center gap-2"><Briefcase size={18} className="text-cyan-400" /> Bagagem Recomendada</h4>
+              <div className="space-y-2">
+                {recommendation.bags.map((bag, idx) => (
+                  <div key={idx} className="flex items-center gap-3 p-2 bg-slate-700/50 rounded-lg">
+                    <Luggage size={24} className="text-cyan-400" />
+                    <div className="flex-1">
+                      <p className="font-medium text-white text-sm">{bag.type}</p>
+                      <p className="text-xs text-slate-400">{bag.size} • Até {bag.weight}kg</p>
+                    </div>
+                  </div>
+                ))}
+                {childrenBagSuggestion.needed && (
+                  <div className="p-2 bg-pink-500/20 border border-pink-500/30 rounded-lg">
+                    <p className="text-sm text-pink-300">{childrenBagSuggestion.tip}</p>
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
-          <p className="text-sm text-slate-600 mt-3 bg-cyan-50 p-2 rounded-lg">💡 {recommendation.tip}</p>
-        </div>
-        
-        {/* Medidor de Peso */}
-        <div className="bg-white rounded-xl p-4 border border-cyan-200">
-          <h4 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Scale size={18} className="text-cyan-600" /> Peso Estimado Total</h4>
-          <div className="relative h-6 bg-slate-100 rounded-full overflow-hidden">
-            <div className={`absolute left-0 top-0 h-full rounded-full transition-all duration-500 ${isOverweight ? 'bg-gradient-to-r from-red-400 to-red-600' : weightPercentage > 80 ? 'bg-gradient-to-r from-amber-400 to-orange-500' : 'bg-gradient-to-r from-emerald-400 to-cyan-500'}`} style={{ width: `${Math.min(weightPercentage, 100)}%` }} />
-            <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-slate-700">{weightPercentage.toFixed(0)}% da capacidade</div>
-          </div>
-          {isOverweight && <p className="text-red-600 text-sm mt-2 flex items-center gap-1 animate-pulse"><AlertTriangle size={14} /> Excesso de {(totalWeight - maxWeight).toFixed(1)}kg! Risco de taxa extra no aeroporto.</p>}
-          {!isOverweight && weightPercentage > 80 && <p className="text-amber-600 text-sm mt-2">⚠️ Atenção: Próximo do limite. Considere remover itens não essenciais.</p>}
-          {!isOverweight && weightPercentage <= 80 && <p className="text-emerald-600 text-sm mt-2">✅ Peso dentro do ideal! Ainda tem espaço para lembrancinhas.</p>}
-        </div>
-        
-        {/* Itens mais pesados */}
-        <div className="bg-slate-50 rounded-xl p-3 border border-slate-200">
-          <p className="text-xs font-bold text-slate-500 uppercase mb-2">Itens mais pesados na mala:</p>
-          <div className="flex flex-wrap gap-2">
-            {packingList.filter(item => checkedItems[item.item] && ITEM_WEIGHTS[item.item] > 0.3).slice(0, 5).map((item, idx) => (
-              <span key={idx} className="text-xs bg-white px-2 py-1 rounded-full border border-slate-200">{item.item} ({ITEM_WEIGHTS[item.item]}kg)</span>
-            ))}
+            </div>
+            
+            <button onClick={() => setShowDimensionsModal(true)} className="w-full p-3 bg-slate-700/50 hover:bg-slate-700 rounded-xl border border-slate-600 transition-all text-left">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Scale size={18} className="text-indigo-400" />
+                  <span className="text-white text-sm font-medium">Definir Dimensões da Mala</span>
+                </div>
+                <ChevronRight size={16} className="text-slate-400" />
+              </div>
+              <p className="text-xs text-slate-400 mt-1">Personalize o tamanho ou faça upload de foto</p>
+            </button>
+            
+            <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+              <h4 className="font-bold text-white mb-3 flex items-center gap-2"><Scale size={18} className="text-emerald-400" /> Capacidade</h4>
+              <div className="relative h-4 bg-slate-700 rounded-full overflow-hidden">
+                <div className={`absolute left-0 top-0 h-full rounded-full transition-all duration-700 ${isOverweight ? 'bg-gradient-to-r from-red-500 to-red-600' : weightPercentage > 80 ? 'bg-gradient-to-r from-amber-500 to-orange-500' : 'bg-gradient-to-r from-emerald-500 to-cyan-500'}`} style={{ width: `${Math.min(weightPercentage, 100)}%` }} />
+              </div>
+              <div className="flex justify-between mt-2 text-xs">
+                <span className="text-slate-400">0kg</span>
+                <span className={`font-bold ${isOverweight ? 'text-red-400' : 'text-emerald-400'}`}>{weightPercentage.toFixed(0)}%</span>
+                <span className="text-slate-400">{maxWeight}kg</span>
+              </div>
+              {isOverweight && <p className="text-red-400 text-sm mt-2 flex items-center gap-1 animate-pulse"><AlertTriangle size={14} /> Excesso de {(totalWeight - maxWeight).toFixed(1)}kg!</p>}
+              {!isOverweight && weightPercentage <= 80 && <p className="text-emerald-400 text-sm mt-2">✅ Peso ideal! Espaço para lembrancinhas.</p>}
+            </div>
           </div>
         </div>
       </div>
+      
+      {showDimensionsModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-slate-700">
+            <h3 className="text-xl font-bold text-white mb-4">📐 Dimensões da Mala</h3>
+            <div className="space-y-4">
+              <div className="grid grid-cols-3 gap-3">
+                {['width', 'height', 'depth'].map((dim, i) => (
+                  <div key={dim}>
+                    <label className="text-xs text-slate-400 block mb-1">{['Largura', 'Altura', 'Profundidade'][i]} (cm)</label>
+                    <input type="number" value={customBagSize[dim]} onChange={e => setCustomBagSize({...customBagSize, [dim]: Number(e.target.value)})} className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-center" />
+                  </div>
+                ))}
+              </div>
+              <div className="p-3 bg-slate-700/50 rounded-lg">
+                <p className="text-sm text-slate-300">📷 Ou faça upload de uma foto da sua mala:</p>
+                <button className="mt-2 w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm transition-all">Selecionar Imagem (Em breve)</button>
+              </div>
+            </div>
+            <div className="flex gap-3 mt-6">
+              <button onClick={() => setShowDimensionsModal(false)} className="flex-1 py-2 bg-slate-700 text-white rounded-lg">Cancelar</button>
+              <button onClick={() => setShowDimensionsModal(false)} className="flex-1 py-2 bg-cyan-600 text-white rounded-lg">Aplicar</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-// ========== v3.0: AI CONCIERGE CHAT ==========
-const AIConcierge = ({ isOpen, onClose, destination, hotel, user }) => {
-  const [messages, setMessages] = useState([
-    { role: 'assistant', content: `👋 Olá${user?.name ? `, ${user.name.split(' ')[0]}` : ''}! Sou seu Concierge IA.\n\n📍 Destino: ${destination || 'Não definido'}\n🏨 Hotel: ${hotel?.name || 'Não selecionado'}\n\nComo posso ajudar você hoje? Use as ações rápidas ou me pergunte qualquer coisa!` }
-  ]);
+// ========== v4.0: AI CONCIERGE PRO (Consciência de Contexto) ==========
+const AIConcierge = ({ isOpen, onClose, destination, hotel, user, daySchedule, tripDays, currentDay, onRemoveAfternoonActivities, realExpenses, plannedCosts }) => {
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [showActionButtons, setShowActionButtons] = useState(false);
+  const [pendingAction, setPendingAction] = useState(null);
+  const messagesEndRef = useRef(null);
+  
+  // v4.0: Detectar atividade atual baseado na hora
+  const getCurrentActivity = useCallback(() => {
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const todaySchedule = daySchedule?.[currentDay] || [];
+    
+    for (const item of todaySchedule) {
+      if (item.startTime && item.endTime) {
+        const startMins = TimeSlotEngine.timeToMinutes(item.startTime);
+        const endMins = TimeSlotEngine.timeToMinutes(item.endTime);
+        if (currentMinutes >= startMins && currentMinutes <= endMins) return item;
+      }
+    }
+    return null;
+  }, [daySchedule, currentDay]);
+  
+  const getNextActivity = useCallback(() => {
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const todaySchedule = daySchedule?.[currentDay] || [];
+    
+    for (const item of todaySchedule) {
+      if (item.startTime) {
+        const startMins = TimeSlotEngine.timeToMinutes(item.startTime);
+        if (startMins > currentMinutes) return item;
+      }
+    }
+    return null;
+  }, [daySchedule, currentDay]);
+  
+  // Inicializar mensagem de boas-vindas
+  useEffect(() => {
+    const currentActivity = getCurrentActivity();
+    const nextActivity = getNextActivity();
+    
+    let contextMessage = `👋 Olá${user?.name ? `, ${user.name.split(' ')[0]}` : ''}! Sou seu Concierge IA Pro.\n\n`;
+    contextMessage += `📍 Destino: ${destination || 'Não definido'}\n`;
+    contextMessage += `🏨 Hotel: ${hotel?.name || 'Não selecionado'}\n`;
+    contextMessage += `📅 Dia ${currentDay || 1} de ${tripDays || 7}\n\n`;
+    
+    if (currentActivity) {
+      contextMessage += `🎯 **Agora:** ${currentActivity.name}\n`;
+      contextMessage += `📍 ${currentActivity.location || 'Local não especificado'}\n\n`;
+    }
+    if (nextActivity) {
+      contextMessage += `⏭️ **Próximo:** ${nextActivity.name} às ${nextActivity.startTime}\n\n`;
+    }
+    contextMessage += `💡 Pergunte "O que tenho agora?" ou "Estou cansado, cancele a tarde"!`;
+    
+    setMessages([{ role: 'assistant', content: contextMessage }]);
+  }, [destination, hotel, user, currentDay, tripDays, getCurrentActivity, getNextActivity]);
+  
+  useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
   
   const handleQuickAction = (actionId) => {
     setIsTyping(true);
-    const response = CONCIERGE_RESPONSES[actionId] ? CONCIERGE_RESPONSES[actionId](destination) : CONCIERGE_RESPONSES.default('', destination, hotel);
-    setTimeout(() => {
-      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
-      setIsTyping(false);
-    }, 800);
+    let response = CONCIERGE_RESPONSES[actionId] ? CONCIERGE_RESPONSES[actionId](destination) : '';
+    
+    if (actionId === 'currentActivity') {
+      const current = getCurrentActivity();
+      const next = getNextActivity();
+      response = current 
+        ? `🎯 **Atividade Atual:**\n\n📌 ${current.name}\n📍 ${current.location || 'Local não especificado'}\n⏰ ${current.startTime} - ${current.endTime}\n💰 R$ ${current.price?.toLocaleString() || '0'}`
+        : `😴 Nenhuma atividade no momento.\n\n${next ? `⏭️ Próximo: ${next.name} às ${next.startTime}` : 'Sem mais atividades hoje.'}`;
+    }
+    
+    setTimeout(() => { setMessages(prev => [...prev, { role: 'assistant', content: response }]); setIsTyping(false); }, 800);
   };
   
   const handleSend = () => {
     if (!input.trim()) return;
+    const userMessage = input.toLowerCase();
     setMessages(prev => [...prev, { role: 'user', content: input }]);
     setIsTyping(true);
-    const response = CONCIERGE_RESPONSES.default(input, destination, hotel);
-    setTimeout(() => {
-      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
-      setIsTyping(false);
-    }, 1000);
     setInput('');
+    
+    let response = '';
+    let hasAction = false;
+    
+    // v4.0: NLP com ações
+    if (userMessage.includes('o que tenho agora') || userMessage.includes('atividade atual')) {
+      const current = getCurrentActivity();
+      const next = getNextActivity();
+      response = current 
+        ? `🎯 **Sua atividade agora:**\n\n📌 ${current.name}\n📍 ${current.location || hotel?.location || 'Ver mapa'}\n⏰ ${current.startTime} - ${current.endTime}\n${current.price ? `💰 R$ ${current.price.toLocaleString()}` : ''}`
+        : `😴 Você não tem nenhuma atividade agora.\n\n${getNextActivity() ? `⏭️ Próximo: ${getNextActivity().name} às ${getNextActivity().startTime}` : 'Aproveite para descansar!'}`;
+    }
+    else if (userMessage.includes('cansado') || userMessage.includes('cancele a tarde') || userMessage.includes('remover tarde')) {
+      response = `😴 Entendi que você está cansado!\n\n🔄 Posso remover todas as atividades da tarde do dia ${currentDay}. Isso vai:\n• Recalcular seu orçamento\n• Liberar tempo para descanso\n\nDeseja que eu faça isso?`;
+      hasAction = true;
+      setPendingAction('removeAfternoon');
+      setShowActionButtons(true);
+    }
+    else if (userMessage.includes('traduz') || userMessage.includes('cardápio')) { response = CONCIERGE_RESPONSES.translate(); }
+    else if (userMessage.includes('uber') || userMessage.includes('táxi')) { response = CONCIERGE_RESPONSES.uber(); }
+    else if (userMessage.includes('hospital') || userMessage.includes('médico')) { response = CONCIERGE_RESPONSES.hospital(destination); }
+    else if (userMessage.includes('farmácia')) { response = CONCIERGE_RESPONSES.pharmacy(); }
+    else if (userMessage.includes('clima') || userMessage.includes('tempo')) { response = CONCIERGE_RESPONSES.weather(destination); }
+    else if (userMessage.includes('gasto') || userMessage.includes('orçamento')) {
+      const totalReal = Object.values(realExpenses || {}).reduce((a, b) => a + (b || 0), 0);
+      const totalPlanned = plannedCosts?.total || 0;
+      const variance = totalReal - totalPlanned;
+      response = `💰 **Resumo Financeiro:**\n\n📊 Planejado: R$ ${totalPlanned.toLocaleString()}\n💵 Gasto Real: R$ ${totalReal.toLocaleString()}\n${variance > 0 ? `⚠️ Excedido: R$ ${variance.toLocaleString()}` : `✅ Economia: R$ ${Math.abs(variance).toLocaleString()}`}`;
+    }
+    else {
+      response = `🤖 Entendi: "${input}"\n\n📍 ${destination || 'destino não definido'}\n📅 Dia ${currentDay || 1}\n\n💡 Tente:\n• "O que tenho agora?"\n• "Estou cansado, cancele a tarde"\n• Use as ações rápidas acima`;
+    }
+    
+    setTimeout(() => { setMessages(prev => [...prev, { role: 'assistant', content: response, hasAction }]); setIsTyping(false); }, 1000);
+  };
+  
+  const executeAction = () => {
+    if (pendingAction === 'removeAfternoon' && onRemoveAfternoonActivities) {
+      onRemoveAfternoonActivities(currentDay);
+      setMessages(prev => [...prev, { role: 'assistant', content: `✅ **Feito!**\n\nRemovi as atividades da tarde do dia ${currentDay}.\n\n🔄 O orçamento foi recalculado.\n\n😴 Aproveite para descansar!` }]);
+    }
+    setShowActionButtons(false);
+    setPendingAction(null);
+  };
+  
+  const cancelAction = () => {
+    setMessages(prev => [...prev, { role: 'assistant', content: `👍 Ok, mantive o roteiro como está!` }]);
+    setShowActionButtons(false);
+    setPendingAction(null);
   };
   
   if (!isOpen) return null;
   
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-end p-4 sm:p-6 pointer-events-none">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md h-[600px] max-h-[80vh] flex flex-col pointer-events-auto border border-slate-200 overflow-hidden">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-3 flex items-center justify-between">
+      <div className="bg-slate-900 rounded-2xl shadow-2xl w-full max-w-md h-[650px] max-h-[85vh] flex flex-col pointer-events-auto border border-indigo-500/30 overflow-hidden">
+        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center"><Bot size={24} className="text-white" /></div>
-            <div><p className="font-bold text-white">Concierge IA</p><p className="text-xs text-indigo-200">Online • Pronto para ajudar</p></div>
+            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center relative">
+              <Bot size={24} className="text-white" />
+              <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-indigo-600 animate-pulse" />
+            </div>
+            <div><p className="font-bold text-white">Concierge IA Pro</p><p className="text-xs text-indigo-200">v4.0 • Consciência Total</p></div>
           </div>
           <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-all"><X size={20} className="text-white" /></button>
         </div>
         
-        {/* Quick Actions */}
-        <div className="px-4 py-2 bg-slate-50 border-b border-slate-200 flex gap-2 overflow-x-auto">
-          {CONCIERGE_QUICK_ACTIONS.map(action => (
-            <button key={action.id} onClick={() => handleQuickAction(action.id)} className="px-3 py-1.5 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-700 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 transition-all whitespace-nowrap flex-shrink-0">{action.label}</button>
+        <div className="px-3 py-2 bg-slate-800/80 border-b border-slate-700 flex gap-2 overflow-x-auto">
+          <button onClick={() => handleQuickAction('currentActivity')} className="px-3 py-1.5 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-xs font-medium text-indigo-300 hover:bg-indigo-500/30 transition-all whitespace-nowrap">🎯 Agora</button>
+          {CONCIERGE_QUICK_ACTIONS.slice(0, 5).map(action => (
+            <button key={action.id} onClick={() => handleQuickAction(action.id)} className="px-3 py-1.5 bg-slate-700/50 border border-slate-600 rounded-full text-xs font-medium text-slate-300 hover:bg-slate-600 transition-all whitespace-nowrap">{action.label}</button>
           ))}
         </div>
         
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-900/50">
           {messages.map((msg, idx) => (
             <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-[85%] p-3 rounded-2xl ${msg.role === 'user' ? 'bg-indigo-600 text-white rounded-br-sm' : 'bg-slate-100 text-slate-800 rounded-bl-sm'}`}>
+              <div className={`max-w-[85%] p-3 rounded-2xl ${msg.role === 'user' ? 'bg-indigo-600 text-white rounded-br-sm' : 'bg-slate-800 text-slate-100 rounded-bl-sm border border-slate-700'}`}>
                 <p className="text-sm whitespace-pre-line">{msg.content}</p>
               </div>
             </div>
           ))}
-          {isTyping && <div className="flex justify-start"><div className="bg-slate-100 p-3 rounded-2xl rounded-bl-sm"><div className="flex gap-1"><span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} /><span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} /><span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} /></div></div></div>}
+          {isTyping && <div className="flex justify-start"><div className="bg-slate-800 p-3 rounded-2xl rounded-bl-sm border border-slate-700"><div className="flex gap-1"><span className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" /><span className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} /><span className="w-2 h-2 bg-pink-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} /></div></div></div>}
+          
+          {showActionButtons && (
+            <div className="flex gap-2 justify-center mt-2">
+              <button onClick={executeAction} className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-medium flex items-center gap-2 transition-all"><Check size={16} /> Executar Reajuste</button>
+              <button onClick={cancelAction} className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-xl font-medium transition-all">Manter Roteiro</button>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
         </div>
         
-        {/* Input */}
-        <div className="p-4 border-t border-slate-200 bg-white">
+        <div className="p-4 border-t border-slate-700 bg-slate-800">
           <div className="flex gap-2">
-            <input type="text" value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleSend()} placeholder="Digite sua pergunta..." className="flex-1 px-4 py-2 bg-slate-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-            <button onClick={handleSend} className="p-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-all"><Send size={20} /></button>
+            <input type="text" value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleSend()} placeholder="Pergunte qualquer coisa..." className="flex-1 px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-400" />
+            <button onClick={handleSend} className="p-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:opacity-90 transition-all"><Send size={20} /></button>
           </div>
         </div>
       </div>
@@ -640,7 +910,7 @@ const AIConcierge = ({ isOpen, onClose, destination, hotel, user }) => {
   );
 };
 
-// ========== v3.0: TRIP EXECUTION DASHBOARD (Realizado vs Planejado) ==========
+// ========== v4.0: TRIP EXECUTION DASHBOARD (Realizado vs Planejado) ==========
 const TripExecutionDashboard = ({ plannedCosts, isActive, onToggleActive, realExpenses, onUpdateExpense }) => {
   const categories = [
     { id: 'flights', name: 'Voos', icon: Plane, planned: plannedCosts.flights },
@@ -747,7 +1017,7 @@ const TripExecutionDashboard = ({ plannedCosts, isActive, onToggleActive, realEx
   );
 };
 
-// ========== v3.0: LIVE BOOKING PLACEHOLDER ==========
+// ========== v4.0: LIVE BOOKING PLACEHOLDER ==========
 const LiveBookingPlaceholder = ({ type, item }) => {
   const [checking, setChecking] = useState(false);
   
@@ -1128,31 +1398,155 @@ const CommunityDetailModal = ({ itinerary, isOpen, onClose, onUse }) => {
   );
 };
 
-const TimelineActivityCard = ({ item, onEdit, onRemove, showActions = true, isFirst = false, isLast = false }) => {
+// ========== v4.0: TIMELINE ACTIVITY CARD COM CHECKBOX E SINCRONIA ==========
+const TimelineActivityCard = ({ item, onEdit, onRemove, showActions = true, isFirst = false, isLast = false, tripActive = false, isCompleted = false, onToggleComplete, onSetRealPrice, realPrice, origin, destination, startDate }) => {
+  const [showPricePopover, setShowPricePopover] = useState(false);
+  const [tempPrice, setTempPrice] = useState(realPrice || item.price || 0);
+  const [showBookingLinks, setShowBookingLinks] = useState(false);
+  
   const periodStyle = getPeriodStyle(item.period);
   const ItemIcon = getCategoryIcon(item);
   const isSpecialItem = ['flight', 'hotel', 'transfer', 'rest', 'checkout', 'daily-hotel'].includes(item.type);
+  const isPayableItem = item.price !== undefined && item.price > 0;
+  
+  // v4.0: Gerar links de booking dinâmicos
+  const bookingLinks = useMemo(() => {
+    if (item.type === 'flight') return generateBookingLinks('flight', { origin, destination, startDate });
+    if (item.type === 'hotel') return generateBookingLinks('hotel', { destination, startDate, hotelName: item.name });
+    return generateBookingLinks('activity', { destination, activityName: item.name });
+  }, [item, origin, destination, startDate]);
+  
+  // v4.0: Simulação de preço histórico
+  const priceHistory = useMemo(() => {
+    if (!item.price) return null;
+    return simulatePriceHistory(item.price);
+  }, [item.price]);
+  
+  const handleCompleteClick = () => {
+    if (tripActive && isPayableItem) {
+      setShowPricePopover(true);
+    } else if (tripActive) {
+      onToggleComplete && onToggleComplete();
+    }
+  };
+  
+  const handleSavePrice = () => {
+    onSetRealPrice && onSetRealPrice(tempPrice);
+    onToggleComplete && onToggleComplete();
+    setShowPricePopover(false);
+  };
+  
   return (
     <div className="relative pl-10 pb-5 print-avoid-break group">
       <div className={`absolute left-[14px] top-0 ${isLast ? 'h-6' : 'h-full'} w-0.5 ${isFirst ? 'bg-gradient-to-b from-teal-400 to-teal-200' : 'bg-teal-200'}`} />
-      <div className={`absolute left-[7px] top-1 w-4 h-4 rounded-full border-2 border-white shadow-md ${periodStyle.dot} z-10 group-hover:scale-125 transition-transform`} />
-      <div className={`ml-2 p-4 rounded-xl border transition-all ${isSpecialItem ? 'bg-gradient-to-r from-slate-50 to-slate-100 border-slate-200' : `${periodStyle.bg} ${periodStyle.border}`} hover:shadow-lg group-hover:border-teal-400`}>
+      
+      {/* v4.0: Checkbox de conclusão no lugar do ponto */}
+      {tripActive && isPayableItem ? (
+        <button onClick={handleCompleteClick} className={`absolute left-[5px] top-1 w-6 h-6 rounded-full border-2 flex items-center justify-center z-10 transition-all ${isCompleted ? 'bg-emerald-500 border-emerald-500' : 'bg-white border-slate-300 hover:border-emerald-400'}`}>
+          {isCompleted && <Check size={14} className="text-white" />}
+        </button>
+      ) : (
+        <div className={`absolute left-[7px] top-1 w-4 h-4 rounded-full border-2 border-white shadow-md ${periodStyle.dot} z-10 group-hover:scale-125 transition-transform`} />
+      )}
+      
+      <div className={`ml-2 p-4 rounded-xl border transition-all ${isCompleted ? 'bg-emerald-50 border-emerald-300' : isSpecialItem ? 'bg-gradient-to-r from-slate-50 to-slate-100 border-slate-200' : `${periodStyle.bg} ${periodStyle.border}`} hover:shadow-lg group-hover:border-teal-400`}>
         <div className="flex items-center gap-4">
-          <div className={`p-3 rounded-xl ${isSpecialItem ? 'bg-slate-200' : `bg-gradient-to-br ${periodStyle.gradient}`} shadow-md`}>
-            <ItemIcon size={20} className={isSpecialItem ? 'text-slate-600' : 'text-white'} />
+          <div className={`p-3 rounded-xl ${isCompleted ? 'bg-emerald-500' : isSpecialItem ? 'bg-slate-200' : `bg-gradient-to-br ${periodStyle.gradient}`} shadow-md`}>
+            <ItemIcon size={20} className={isCompleted ? 'text-white' : isSpecialItem ? 'text-slate-600' : 'text-white'} />
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 flex-wrap"><h4 className={`font-semibold ${isSpecialItem ? 'text-slate-700' : 'text-slate-800'}`}>{item.name}</h4>{item.rating && <span className="flex items-center gap-0.5 text-xs text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-full"><Star size={10} className="fill-amber-500" /> {item.rating}</span>}</div>
-            <div className="flex items-center gap-3 mt-1 text-xs text-slate-500 flex-wrap">{item.location && <span className="flex items-center gap-1"><MapPin size={11} /> {item.location}</span>}{item.duration && !isSpecialItem && <span className="flex items-center gap-1"><Clock size={11} /> {item.duration}h</span>}{item.startTime && <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${periodStyle.bg} ${periodStyle.text}`}>{item.startTime}{item.endTime ? ` - ${item.endTime}` : ''}</span>}</div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h4 className={`font-semibold ${isCompleted ? 'text-emerald-700 line-through' : isSpecialItem ? 'text-slate-700' : 'text-slate-800'}`}>{item.name}</h4>
+              {item.rating && <span className="flex items-center gap-0.5 text-xs text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-full"><Star size={10} className="fill-amber-500" /> {item.rating}</span>}
+              {isCompleted && <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">✓ Concluído</span>}
+              {/* v4.0: Badge de menor preço */}
+              {priceHistory?.isLowestPrice && !isCompleted && <span className="text-xs bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full flex items-center gap-1"><Flame size={10} /> Menor preço 30d</span>}
+            </div>
+            <div className="flex items-center gap-3 mt-1 text-xs text-slate-500 flex-wrap">
+              {item.location && <span className="flex items-center gap-1"><MapPin size={11} /> {item.location}</span>}
+              {item.duration && !isSpecialItem && <span className="flex items-center gap-1"><Clock size={11} /> {item.duration}h</span>}
+              {item.startTime && <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${periodStyle.bg} ${periodStyle.text}`}>{item.startTime}{item.endTime ? ` - ${item.endTime}` : ''}</span>}
+            </div>
+            
+            {/* v4.0: Links de Booking Dinâmicos */}
+            {!isCompleted && isPayableItem && (
+              <div className="mt-2">
+                <button onClick={() => setShowBookingLinks(!showBookingLinks)} className="text-xs text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+                  <ExternalLink size={12} /> {showBookingLinks ? 'Ocultar links' : 'Ver opções de reserva'}
+                </button>
+                {showBookingLinks && (
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {item.type === 'flight' && (
+                      <>
+                        <a href={bookingLinks.googleFlights} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-all">Google Flights</a>
+                        <a href={bookingLinks.skyscanner} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-cyan-100 text-cyan-700 rounded-full hover:bg-cyan-200 transition-all">Skyscanner</a>
+                        <a href={bookingLinks.kayak} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded-full hover:bg-orange-200 transition-all">Kayak</a>
+                      </>
+                    )}
+                    {item.type === 'hotel' && (
+                      <>
+                        <a href={bookingLinks.booking} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-all">Booking.com</a>
+                        <a href={bookingLinks.hotels} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-red-100 text-red-700 rounded-full hover:bg-red-200 transition-all">Hotels.com</a>
+                        <a href={bookingLinks.airbnb} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-pink-100 text-pink-700 rounded-full hover:bg-pink-200 transition-all">Airbnb</a>
+                      </>
+                    )}
+                    {!['flight', 'hotel'].includes(item.type) && (
+                      <>
+                        <a href={bookingLinks.getYourGuide} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-red-100 text-red-700 rounded-full hover:bg-red-200 transition-all">GetYourGuide</a>
+                        <a href={bookingLinks.tripadvisor} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full hover:bg-green-200 transition-all">TripAdvisor</a>
+                        <a href={bookingLinks.viator} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200 transition-all">Viator</a>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
-          <div className="text-right flex-shrink-0">{item.price !== undefined && <p className="font-bold text-teal-600">R$ {item.price.toLocaleString()}</p>}{!isSpecialItem && showActions && <div className="flex gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity no-print"><button onClick={() => onEdit && onEdit(item)} className="p-1.5 bg-slate-100 hover:bg-teal-100 rounded-lg text-slate-500 hover:text-teal-600 transition-all" title="Trocar"><RefreshCw size={14} /></button><button onClick={() => onRemove && onRemove()} className="p-1.5 bg-slate-100 hover:bg-red-100 rounded-lg text-slate-500 hover:text-red-500 transition-all" title="Remover"><Trash2 size={14} /></button></div>}</div>
+          <div className="text-right flex-shrink-0">
+            {item.price !== undefined && (
+              <div>
+                {isCompleted && realPrice !== undefined ? (
+                  <div>
+                    <p className="font-bold text-emerald-600">R$ {realPrice.toLocaleString()}</p>
+                    <p className="text-xs text-slate-400 line-through">R$ {item.price.toLocaleString()}</p>
+                  </div>
+                ) : (
+                  <p className="font-bold text-teal-600">R$ {item.price.toLocaleString()}</p>
+                )}
+              </div>
+            )}
+            {!isSpecialItem && showActions && !tripActive && (
+              <div className="flex gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity no-print">
+                <button onClick={() => onEdit && onEdit(item)} className="p-1.5 bg-slate-100 hover:bg-teal-100 rounded-lg text-slate-500 hover:text-teal-600 transition-all" title="Trocar"><RefreshCw size={14} /></button>
+                <button onClick={() => onRemove && onRemove()} className="p-1.5 bg-slate-100 hover:bg-red-100 rounded-lg text-slate-500 hover:text-red-500 transition-all" title="Remover"><Trash2 size={14} /></button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
+      
+      {/* v4.0: Pop-over para inserir preço real */}
+      {showPricePopover && (
+        <div className="absolute left-12 top-full mt-2 z-50 bg-white rounded-xl shadow-2xl border border-slate-200 p-4 w-64">
+          <div className="flex items-center gap-2 mb-3">
+            <DollarSign size={18} className="text-emerald-500" />
+            <h4 className="font-bold text-slate-800">Quanto você pagou?</h4>
+          </div>
+          <p className="text-xs text-slate-500 mb-2">Planejado: R$ {item.price?.toLocaleString()}</p>
+          <input type="number" value={tempPrice} onChange={e => setTempPrice(Number(e.target.value))} className="w-full px-3 py-2 border border-slate-300 rounded-lg text-lg font-bold text-center focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="R$ 0" autoFocus />
+          <div className="flex gap-2 mt-3">
+            <button onClick={() => setShowPricePopover(false)} className="flex-1 py-2 text-sm bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-all">Cancelar</button>
+            <button onClick={handleSavePrice} className="flex-1 py-2 text-sm bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-all">Confirmar</button>
+          </div>
+          {tempPrice < item.price && <p className="text-xs text-emerald-600 mt-2 text-center">💰 Economia de R$ {(item.price - tempPrice).toLocaleString()}!</p>}
+          {tempPrice > item.price && <p className="text-xs text-amber-600 mt-2 text-center">⚠️ R$ {(tempPrice - item.price).toLocaleString()} acima do planejado</p>}
+        </div>
+      )}
     </div>
   );
 };
 
-const TimelineDaySection = ({ day, dayNumber, totalDays, dateInfo, items, flight, hotel, origin, destination, totalPayingTravelers, arrivalInfo, returnTime, onEditItem, onAddItem, onRemoveItem, upgradeInsight, isArrivalDay, isRestDay }) => {
+const TimelineDaySection = ({ day, dayNumber, totalDays, dateInfo, items, flight, hotel, origin, destination, totalPayingTravelers, arrivalInfo, returnTime, onEditItem, onAddItem, onRemoveItem, upgradeInsight, isArrivalDay, isRestDay, tripActive, completedItems, itemRealPrices, onItemComplete, startDate }) => {
   const isLastDay = dayNumber === totalDays;
   const sortedItems = [...items].sort((a, b) => TimeSlotEngine.timeToMinutes(a.startTime || '00:00') - TimeSlotEngine.timeToMinutes(b.startTime || '00:00'));
   const allDayItems = [];
@@ -1192,19 +1586,38 @@ const TimelineDaySection = ({ day, dayNumber, totalDays, dateInfo, items, flight
 
   return (
     <div className="mb-8 print-avoid-break">
-      <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-md py-3 mb-4 border-b border-slate-100">
+      <div className={`sticky top-0 z-10 py-3 mb-4 border-b ${tripActive ? 'bg-slate-900/95 backdrop-blur-md border-slate-700' : 'bg-white/95 backdrop-blur-md border-slate-100'}`}>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg"><span className="text-white font-bold text-lg">{dayNumber}</span></div>
-            <div><p className="font-bold text-slate-800">{dateInfo.weekday}</p><p className="text-sm text-slate-500">{dateInfo.day}/{dateInfo.month}/{dateInfo.year}</p></div>
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-lg ${tripActive ? 'bg-gradient-to-br from-emerald-500 to-cyan-500' : 'bg-gradient-to-br from-teal-500 to-emerald-500'}`}><span className="text-white font-bold text-lg">{dayNumber}</span></div>
+            <div><p className={`font-bold ${tripActive ? 'text-white' : 'text-slate-800'}`}>{dateInfo.weekday}</p><p className={`text-sm ${tripActive ? 'text-slate-400' : 'text-slate-500'}`}>{dateInfo.day}/{dateInfo.month}/{dateInfo.year}</p></div>
           </div>
           {isRestDay && <span className="ml-auto px-3 py-1.5 bg-amber-100 text-amber-700 text-xs font-bold rounded-full flex items-center gap-1"><Bed size={12} /> Dia de Recuperação — Apenas Jantar</span>}
           {isLastDay && <span className="ml-auto px-3 py-1.5 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">Último Dia</span>}
+          {tripActive && <span className="ml-auto px-3 py-1.5 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-full border border-emerald-500/30 flex items-center gap-1"><Play size={10} /> VIAGEM ATIVA</span>}
         </div>
       </div>
       <div className="relative">
         {upgradeInsight && <div className="mb-4"><AIInsightCard insight={upgradeInsight} onAction={() => {}} /></div>}
-        {allDayItems.map((entry, idx) => <TimelineActivityCard key={entry.key} item={entry.item} onEdit={entry.onEdit} onRemove={entry.onRemove} showActions={entry.showActions} isFirst={idx === 0} isLast={idx === allDayItems.length - 1} />)}
+        {allDayItems.map((entry, idx) => (
+          <TimelineActivityCard 
+            key={entry.key} 
+            item={entry.item} 
+            onEdit={entry.onEdit} 
+            onRemove={entry.onRemove} 
+            showActions={entry.showActions} 
+            isFirst={idx === 0} 
+            isLast={idx === allDayItems.length - 1}
+            tripActive={tripActive}
+            isCompleted={completedItems?.[`${day}-${entry.key}`] || false}
+            realPrice={itemRealPrices?.[`${day}-${entry.key}`]}
+            onToggleComplete={() => onItemComplete && onItemComplete(day, entry.key, entry.item.price)}
+            onSetRealPrice={(price) => onItemComplete && onItemComplete(day, entry.key, price)}
+            origin={origin}
+            destination={destination}
+            startDate={startDate}
+          />
+        ))}
         {!isRestDay && <div className="relative pl-10 pb-4"><div className="absolute left-[14px] top-0 h-8 w-0.5 bg-gradient-to-b from-teal-200 to-transparent" /><button onClick={() => onAddItem && onAddItem(day)} className="ml-2 w-full py-3 border-2 border-dashed border-slate-300 rounded-xl text-slate-400 hover:border-teal-400 hover:text-teal-600 hover:bg-teal-50 transition-all flex items-center justify-center gap-2 no-print hover:shadow-md"><Plus size={18} /> Adicionar Atividade</button></div>}
       </div>
     </div>
@@ -1305,16 +1718,49 @@ export default function App() {
   const [communityDetailModal, setCommunityDetailModal] = useState({ isOpen: false, itinerary: null });
   const [itineraryTab, setItineraryTab] = useState('timeline');
   
-  // ========== v3.0: NOVOS ESTADOS ==========
+  // ========== v4.0: NOVOS ESTADOS ==========
   const [showConcierge, setShowConcierge] = useState(false);
   const [tripActive, setTripActive] = useState(false);
   const [realExpenses, setRealExpenses] = useState({});
   const [packingCheckedItems, setPackingCheckedItems] = useState({});
   const packingList = useMemo(() => generatePackingList(destination, tripPriorities), [destination, tripPriorities]);
   
+  // ========== v4.0: HYPER-SYNC ESTADOS ==========
+  const [isDark, setIsDark] = useState(false);
+  const [completedItems, setCompletedItems] = useState({});
+  const [itemRealPrices, setItemRealPrices] = useState({});
+  const [currentDay, setCurrentDay] = useState(1);
+  
   const updateRealExpense = useCallback((category, value) => {
     setRealExpenses(prev => ({ ...prev, [category]: value }));
   }, []);
+  
+  // v4.0: Sincronizar gastos reais quando item é completado
+  const handleItemComplete = useCallback((dayNum, itemKey, realPrice) => {
+    const key = `${dayNum}-${itemKey}`;
+    setCompletedItems(prev => ({ ...prev, [key]: true }));
+    if (realPrice !== undefined) {
+      setItemRealPrices(prev => ({ ...prev, [key]: realPrice }));
+      // Atualizar realExpenses baseado no tipo do item
+      const item = daySchedule[dayNum]?.find((_, idx) => `item-${idx}` === itemKey || itemKey.includes(idx));
+      if (item) {
+        const category = item.type === 'flight' ? 'flights' : item.type === 'hotel' ? 'hotels' : item.category === 'restaurant' ? 'food' : 'activities';
+        setRealExpenses(prev => ({ ...prev, [category]: (prev[category] || 0) + realPrice }));
+      }
+    }
+  }, [daySchedule]);
+  
+  // v4.0: Remover atividades da tarde (para o Concierge)
+  const handleRemoveAfternoonActivities = useCallback((dayNum) => {
+    const newSchedule = { ...daySchedule };
+    if (newSchedule[dayNum]) {
+      newSchedule[dayNum] = newSchedule[dayNum].filter(item => {
+        const itemMinutes = TimeSlotEngine.timeToMinutes(item.startTime || '00:00');
+        return itemMinutes < 720 || itemMinutes >= 1080; // Manter manhã (<12h) e noite (>=18h)
+      });
+    }
+    setDaySchedule(newSchedule);
+  }, [daySchedule]);
 
   const currentData = destination ? DESTINATIONS_DATABASE[destination] : null;
   const payingChildren = useMemo(() => childrenAges.filter(age => age > 2).length, [childrenAges]);
@@ -1406,41 +1852,78 @@ export default function App() {
   // ========== LANDING PAGE ==========
   if (!user || currentView === 'landing') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-emerald-50">
-        {/* v3.0 Banner */}
-        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-center py-2 px-4 text-sm font-bold">
-          🚀 SMARTTRAVEL AI v3.0 - LIVE & SPECIALIST EDITION! Concierge IA + Gestão de Gastos + Suitcase Optimizer ✨
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900">
+        {/* v4.0 Banner */}
+        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-emerald-500 text-white text-center py-2.5 px-4 text-sm font-bold relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse" />
+          <span className="relative">🚀 SMARTTRAVEL AI v4.0 - HYPER-SYNC EDITION! Sincronia Total Timeline↔Finanças • Links Dinâmicos • Concierge IA Pro • Malas 3D ⚡</span>
         </div>
-        <nav className="bg-white/80 backdrop-blur-lg border-b border-slate-200 sticky top-0 z-40"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-2"><Globe size={28} className="text-teal-600" /><span className="text-xl font-bold text-slate-800">SmartTravel <span className="text-teal-600">AI</span></span><span className="text-xs px-2 py-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-semibold ml-2 animate-pulse">v3.0</span></div><div className="flex items-center gap-4">{user ? <><button onClick={() => setCurrentView('planner')} className="text-slate-600 hover:text-teal-600 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-600 hover:text-teal-600 font-medium">Comunidade</button><button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button></> : <button onClick={() => setShowAuthModal(true)} className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-medium">Entrar</button>}</div></div></nav>
+        <nav className="bg-slate-900/80 backdrop-blur-lg border-b border-slate-700 sticky top-0 z-40">
+          <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Globe size={28} className="text-emerald-400" />
+              <span className="text-xl font-bold text-white">SmartTravel <span className="text-emerald-400">AI</span></span>
+              <span className="text-xs px-2.5 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 text-white rounded-full font-bold ml-2 shadow-lg shadow-purple-500/30">v4.0</span>
+            </div>
+            <div className="flex items-center gap-4">
+              {user ? (
+                <>
+                  <button onClick={() => setCurrentView('planner')} className="text-slate-400 hover:text-emerald-400 font-medium transition-colors">Planejar</button>
+                  <button onClick={() => setCurrentView('community')} className="text-slate-400 hover:text-emerald-400 font-medium transition-colors">Comunidade</button>
+                  <button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button>
+                </>
+              ) : (
+                <button onClick={() => setShowAuthModal(true)} className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-lg hover:shadow-lg hover:shadow-emerald-500/30 font-medium transition-all">Entrar</button>
+              )}
+            </div>
+          </div>
+        </nav>
         <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full text-indigo-700 text-sm font-semibold mb-6"><Zap size={16} /> Concierge IA • Gestão Realizada vs Planejada • Suitcase Optimizer <span className="ml-2 px-2 py-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs rounded-full animate-pulse">v3.0</span></div>
-          <h1 className="text-5xl md:text-6xl font-bold text-slate-800 mb-6">Planeje viagens <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">incríveis</span> com IA</h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-8">Roteiros personalizados com <strong>Concierge IA em tempo real</strong>, gestão de gastos Planejado vs Realizado, <strong>otimizador de malas com cálculo de peso</strong>, projeção de câmbio 12 meses e muito mais!</p>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500/20 to-emerald-500/20 border border-indigo-500/30 rounded-full text-emerald-300 text-sm font-semibold mb-6 backdrop-blur-sm">
+            <Zap size={16} className="text-emerald-400" /> Sincronia Total • Links Dinâmicos • Dark Mode 
+            <span className="ml-2 px-2 py-0.5 bg-gradient-to-r from-indigo-500 to-emerald-500 text-white text-xs rounded-full font-bold">HYPER-SYNC</span>
+          </div>
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Planeje viagens <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">extraordinárias</span> com IA</h1>
+          <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-8">Roteiros com <strong className="text-emerald-400">sincronia total</strong> entre Timeline e Finanças, <strong className="text-indigo-400">links dinâmicos</strong> para reservas, <strong className="text-purple-400">Concierge IA Pro</strong> com consciência de contexto e <strong className="text-cyan-400">visualização 3D de malas</strong>!</p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <button onClick={() => { if (!user) setShowAuthModal(true); else setCurrentView('planner'); }} className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold text-lg hover:shadow-xl hover:shadow-indigo-500/30 transition-all flex items-center gap-2 hover:scale-105"><Sparkles size={24} /> Começar a Planejar</button>
-            <button onClick={() => setCurrentView('community')} className="px-8 py-4 border-2 border-slate-300 text-slate-700 rounded-xl font-bold text-lg hover:border-indigo-500 hover:text-indigo-600 transition-all hover:scale-105">Ver Comunidade</button>
+            <button onClick={() => { if (!user) setShowAuthModal(true); else setCurrentView('planner'); }} className="px-8 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-emerald-500 text-white rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-purple-500/40 transition-all flex items-center gap-2 hover:scale-105"><Sparkles size={24} /> Começar a Planejar</button>
+            <button onClick={() => setCurrentView('community')} className="px-8 py-4 border-2 border-slate-600 text-slate-300 rounded-xl font-bold text-lg hover:border-emerald-500 hover:text-emerald-400 transition-all hover:scale-105">Ver Comunidade</button>
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 py-16">
-          <h2 className="text-2xl font-bold text-slate-800 text-center mb-8">✨ Novidades da v3.0</h2>
+          <h2 className="text-2xl font-bold text-white text-center mb-8">⚡ Novidades da v4.0 HYPER-SYNC</h2>
           <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
-              { icon: Bot, title: 'Concierge IA', desc: 'Assistente 24h no destino', color: 'from-indigo-500 to-purple-500' },
-              { icon: Receipt, title: 'Gestão Financeira', desc: 'Planejado vs Realizado', color: 'from-emerald-500 to-teal-500' },
-              { icon: Luggage, title: 'Suitcase Optimizer', desc: 'Controle de peso da mala', color: 'from-cyan-500 to-blue-500' },
-              { icon: BarChart3, title: 'Câmbio 12 Meses', desc: 'DCA e Lump Sum', color: 'from-violet-500 to-purple-500' },
-              { icon: Languages, title: 'Frases Essenciais', desc: '5 expressões por destino', color: 'from-amber-500 to-orange-500' },
-              { icon: Clock, title: 'Relógio Dinâmico', desc: 'Fuso em tempo real', color: 'from-rose-500 to-pink-500' }
+              { icon: Zap, title: 'Sincronia Total', desc: 'Timeline ↔ Finanças', color: 'from-emerald-500 to-cyan-500' },
+              { icon: ExternalLink, title: 'Links Dinâmicos', desc: 'Booking, Skyscanner, GetYourGuide', color: 'from-indigo-500 to-purple-500' },
+              { icon: Bot, title: 'Concierge Pro', desc: 'Consciência de contexto', color: 'from-purple-500 to-pink-500' },
+              { icon: Luggage, title: 'Malas 3D', desc: 'Visualização inteligente', color: 'from-cyan-500 to-blue-500' },
+              { icon: Flame, title: 'Best Prices', desc: 'Badge "Menor preço 30d"', color: 'from-orange-500 to-red-500' },
+              { icon: MoonStar, title: 'Dark Mode', desc: 'Modo viagem noturno', color: 'from-slate-500 to-slate-700' }
             ].map((f, i) => (
-              <div key={i} className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-xl transition-all hover:scale-105 group text-center">
+              <div key={i} className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-4 border border-slate-700 hover:border-emerald-500/50 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 transition-all hover:scale-105 group text-center">
                 <div className={`w-12 h-12 bg-gradient-to-br ${f.color} rounded-xl flex items-center justify-center mb-3 mx-auto group-hover:scale-110 transition-transform shadow-lg`}><f.icon size={24} className="text-white" /></div>
-                <h3 className="text-sm font-bold text-slate-800 mb-1">{f.title}</h3>
-                <p className="text-slate-500 text-xs">{f.desc}</p>
+                <h3 className="text-sm font-bold text-white mb-1">{f.title}</h3>
+                <p className="text-slate-400 text-xs">{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 py-16"><h2 className="text-3xl font-bold text-slate-800 text-center mb-12">Destinos Populares</h2><div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">{Object.entries(DESTINATIONS_DATABASE).map(([name, dest]) => <div key={name} onClick={() => { setDestination(name); setCurrentView('planner'); if (!user) setShowAuthModal(true); }} className="relative h-48 rounded-2xl overflow-hidden cursor-pointer group"><div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style={{ backgroundImage: `url(${dest.coverUrl})` }} /><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" /><div className="absolute bottom-4 left-4 right-4"><p className="text-white font-bold text-lg">{name.split(',')[0]}</p><p className="text-white/80 text-sm">{dest.continent}</p></div></div>)}</div></div>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          <h2 className="text-3xl font-bold text-white text-center mb-12">Destinos Populares</h2>
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {Object.entries(DESTINATIONS_DATABASE).map(([name, dest]) => (
+              <div key={name} onClick={() => { setDestination(name); setCurrentView('planner'); if (!user) setShowAuthModal(true); }} className="relative h-48 rounded-2xl overflow-hidden cursor-pointer group border border-slate-700 hover:border-emerald-500/50 transition-all">
+                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style={{ backgroundImage: `url(${dest.coverUrl})` }} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-white font-bold text-lg">{name.split(',')[0]}</p>
+                  <p className="text-slate-300 text-sm">{dest.continent}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
         <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} onLogin={(u) => { setUser(u); setCurrentView('planner'); }} />
       </div>
     );
@@ -1477,11 +1960,11 @@ export default function App() {
   // ========== PLANNER PAGE ==========
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* 🔥 DEBUG BANNER - REMOVER APÓS CONFIRMAR QUE FUNCIONA */}
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-center py-2 px-4 text-sm font-bold no-print">
-        🚀 BUILD v2.0 CORRETO! Motor 12 Meses + DCA/Lump Sum + Checklist + Idiomas ✅
+      {/* v4.0 HYPER-SYNC Banner */}
+      <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-emerald-500 text-white text-center py-2 px-4 text-sm font-bold no-print">
+        🚀 v4.0 HYPER-SYNC | Sincronia Timeline↔Finanças • Links de Reserva • Concierge Pro • Malas 3D ⚡
       </div>
-      <nav className="bg-white/80 backdrop-blur-lg border-b border-slate-200 sticky top-0 z-40 no-print"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-2 cursor-pointer" onClick={() => setCurrentView('landing')}><Globe size={28} className="text-teal-600" /><span className="text-xl font-bold text-slate-800">SmartTravel <span className="text-teal-600">AI</span></span><span className="text-xs px-2 py-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full font-semibold ml-2">v2.0</span></div><div className="flex items-center gap-4"><button onClick={() => setCurrentView('planner')} className="text-teal-600 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-600 hover:text-teal-600 font-medium">Comunidade</button>{user && <button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button>}</div></div></nav>
+      <nav className="bg-white/80 backdrop-blur-lg border-b border-slate-200 sticky top-0 z-40 no-print"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-2 cursor-pointer" onClick={() => setCurrentView('landing')}><Globe size={28} className="text-teal-600" /><span className="text-xl font-bold text-slate-800">SmartTravel <span className="text-teal-600">AI</span></span><span className="text-xs px-2.5 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 text-white rounded-full font-bold ml-2 shadow-lg shadow-purple-500/20">v4.0</span></div><div className="flex items-center gap-4"><button onClick={() => setCurrentView('planner')} className="text-teal-600 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-600 hover:text-teal-600 font-medium">Comunidade</button>{user && <button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button>}</div></div></nav>
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-8 shadow-sm no-print">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -1524,7 +2007,7 @@ export default function App() {
                       {Array.from({ length: tripDays }, (_, i) => i + 1).map(dayNum => {
                         const dateInfo = formatDateFull(actualStartDate, dayNum - 1);
                         const isRestDay = dayNum === 1 && arrivalInfo?.requiresRest;
-                        return <TimelineDaySection key={dayNum} day={dayNum} dayNumber={dayNum} totalDays={tripDays} dateInfo={dateInfo} items={daySchedule[dayNum] || []} flight={selectedFlight} hotel={selectedHotel} origin={origin} destination={destination} totalPayingTravelers={totalPayingTravelers} arrivalInfo={arrivalInfo} returnTime={returnDepartureTime} onEditItem={handleEditItem} onAddItem={handleAddItem} onRemoveItem={handleRemoveItem} upgradeInsight={dayNum === 1 ? upgradeInsight : null} isArrivalDay={dayNum === 1} isRestDay={isRestDay} />;
+                        return <TimelineDaySection key={dayNum} day={dayNum} dayNumber={dayNum} totalDays={tripDays} dateInfo={dateInfo} items={daySchedule[dayNum] || []} flight={selectedFlight} hotel={selectedHotel} origin={origin} destination={destination} totalPayingTravelers={totalPayingTravelers} arrivalInfo={arrivalInfo} returnTime={returnDepartureTime} onEditItem={handleEditItem} onAddItem={handleAddItem} onRemoveItem={handleRemoveItem} upgradeInsight={dayNum === 1 ? upgradeInsight : null} isArrivalDay={dayNum === 1} isRestDay={isRestDay} tripActive={tripActive} completedItems={completedItems} itemRealPrices={itemRealPrices} onItemComplete={handleItemComplete} startDate={startDate} />;
                       })}
                     </div>
                   </>
@@ -1589,15 +2072,28 @@ export default function App() {
       <ActivityModal isOpen={activityModal.isOpen} onClose={() => setActivityModal({ isOpen: false, day: null, idx: null, current: null, mode: 'add' })} activities={currentData?.activities || []} restaurants={currentData?.restaurants || []} current={activityModal.current} mode={activityModal.mode} dayNum={activityModal.day} onSelect={handleSelectActivity} onRemove={() => activityModal.day && activityModal.idx !== null && handleRemoveItem(activityModal.day, activityModal.idx)} />
       <CommunityDetailModal itinerary={communityDetailModal.itinerary} isOpen={communityDetailModal.isOpen} onClose={() => setCommunityDetailModal({ isOpen: false, itinerary: null })} onUse={useCommunityItinerary} />
       
-      {/* v3.0: AI Concierge Chat */}
-      <AIConcierge isOpen={showConcierge} onClose={() => setShowConcierge(false)} destination={destination} hotel={selectedHotel} user={user} />
+      {/* v4.0: AI Concierge Chat Pro */}
+      <AIConcierge 
+        isOpen={showConcierge} 
+        onClose={() => setShowConcierge(false)} 
+        destination={destination} 
+        hotel={selectedHotel} 
+        user={user}
+        daySchedule={daySchedule}
+        tripDays={tripDays}
+        currentDay={currentDay}
+        tripActive={tripActive}
+        onRemoveAfternoonActivities={handleRemoveAfternoonActivities}
+        realExpenses={realExpenses}
+        plannedCosts={costs}
+      />
       
-      {/* v3.0: Botão Flutuante Concierge */}
+      {/* v4.0: Botão Flutuante Concierge */}
       {itineraryGenerated && !showConcierge && (
-        <button onClick={() => setShowConcierge(true)} className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full shadow-2xl flex items-center justify-center text-white hover:scale-110 transition-all z-40 group no-print">
+        <button onClick={() => setShowConcierge(true)} className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-indigo-600 via-purple-600 to-emerald-500 rounded-full shadow-2xl shadow-purple-500/30 flex items-center justify-center text-white hover:scale-110 transition-all z-40 group no-print">
           <Bot size={28} />
-          <span className="absolute -top-2 -right-2 w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center text-xs font-bold animate-pulse">IA</span>
-          <span className="absolute right-full mr-3 px-3 py-1.5 bg-slate-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap">Concierge IA</span>
+          <span className="absolute -top-2 -right-2 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center text-xs font-bold animate-pulse border-2 border-white">Pro</span>
+          <span className="absolute right-full mr-3 px-3 py-1.5 bg-slate-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap border border-slate-700">Concierge IA Pro</span>
         </button>
       )}
     </div>
