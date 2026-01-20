@@ -1,24 +1,32 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Plane, Hotel, Utensils, Camera, MapPin, Calendar, Users, Wallet, TrendingDown, TrendingUp, Sparkles, Check, AlertTriangle, Lightbulb, Globe, Star, Clock, X, Plus, RefreshCw, Heart, User, LogOut, Bookmark, Baby, UserCheck, Mountain, Building, Palmtree, Crown, Map, Sunrise, Sun, Moon, PlaneTakeoff, PlaneLanding, MessageSquare, Car, Copy, Download, Anchor, Music, ShoppingBag, Sliders, ChevronDown, ChevronUp, Trash2, Eye, Coffee, Bed, ArrowUpCircle, ArrowDownCircle, FileText, Briefcase, Activity, DollarSign, AlertCircle, ChevronRight, BookOpen, Zap, BarChart3, ArrowRight, Shield, Banknote, Target, Timer } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart, ReferenceLine } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart, ReferenceLine, PieChart, Pie, Cell } from 'recharts';
 
 // ============================================================
-// 🚀 SMARTTRAVEL AI v2.0 - BUILD VERIFICADO
+// 🚀 SMARTTRAVEL AI v3.0 - LIVE & SPECIALIST EDITION
+// Motor Preditivo 12 Meses | Concierge IA | Suitcase Optimizer
 // ============================================================
-console.log('%c🚀 SMARTTRAVEL AI v2.0 CARREGADO!', 'background: #10b981; color: white; font-size: 20px; padding: 10px;');
+console.log('%c🚀 SMARTTRAVEL AI v3.0 - LIVE & SPECIALIST!', 'background: linear-gradient(90deg, #10b981, #3b82f6); color: white; font-size: 20px; padding: 10px; border-radius: 5px;');
 
-// Ícones alternativos (para compatibilidade)
+// Ícones SVG customizados (compatibilidade total)
 const Volume2 = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>;
 const Thermometer = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>;
 const Umbrella = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"></path></svg>;
 const Shirt = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg>;
 const Languages = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>;
 const Stethoscope = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"></path><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"></path><circle cx="20" cy="10" r="2"></circle></svg>;
-const Image = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>;
-const List = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>;
+const ImageIcon = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>;
+const ListIcon = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>;
+const Send = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>;
+const Bot = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>;
+const Scale = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg>;
+const Luggage = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M6 20h0a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h0"></path><path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14"></path><path d="M10 20h4"></path><circle cx="16" cy="20" r="2"></circle><circle cx="8" cy="20" r="2"></circle></svg>;
+const Receipt = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1Z"></path><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><path d="M12 17V7"></path></svg>;
+const Play = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>;
+const Pause = ({ size, className }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>;
 
 // VERSÃO DO APP
-const APP_VERSION = "2.0.0-UPGRADED";
+const APP_VERSION = "3.0.0-LIVE-SPECIALIST";
 
 // ========== CORE ENGINE ==========
 const CITY_OFFSETS = { 'São Paulo (GRU)': -3, 'Rio de Janeiro (GIG)': -3, 'Brasília (BSB)': -3, 'Belo Horizonte (CNF)': -3, 'Salvador (SSA)': -3, 'Fortaleza (FOR)': -3, 'Recife (REC)': -3, 'Porto Alegre (POA)': -3, 'Curitiba (CWB)': -3, 'Manaus (MAO)': -4, 'Florianópolis (FLN)': -3, 'Natal (NAT)': -3, 'Paris, França': 1, 'Londres, UK': 0, 'Roma, Itália': 1, 'Barcelona, Espanha': 1, 'Lisboa, Portugal': 0, 'Amsterdam, Holanda': 1, 'Santorini, Grécia': 2, 'Nova York, EUA': -5, 'Miami, EUA': -5, 'Los Angeles, EUA': -8, 'Cancún, México': -5, 'Buenos Aires, Argentina': -3, 'Tóquio, Japão': 9, 'Dubai, EAU': 4, 'Bangkok, Tailândia': 7, 'Bali, Indonésia': 8, 'Singapura': 8, 'Sydney, Austrália': 10, 'Maldivas': 5, 'Cape Town, África do Sul': 2 };
@@ -356,6 +364,63 @@ const DESTINATION_CLIMATE = {
   'Maldivas': { avgTemp: 30, climate: 'tropical', rainy: false }
 };
 
+// ========== v3.0: VIRTUAL SUITCASE OPTIMIZER DATA ==========
+const ITEM_WEIGHTS = {
+  // Documentos - peso mínimo
+  'Passaporte': 0.05, 'Cartões de crédito': 0.02, 'Seguro viagem': 0.01, 'Cópias de documentos': 0.05,
+  // Eletrônicos
+  'Carregador de celular': 0.15, 'Adaptador de tomada': 0.1, 'Câmera fotográfica': 0.8,
+  // Vestuário
+  'Casaco de inverno': 1.5, 'Cachecol': 0.2, 'Luvas': 0.1, 'Gorro': 0.1, 'Roupas leves': 0.2,
+  'Roupas formais': 0.5, 'Sapato confortável': 0.6, 'Cardigan/Blazer leve': 0.4, 'Chinelos': 0.3,
+  // Praia
+  'Protetor solar FPS 50+': 0.25, 'Óculos de sol': 0.05, 'Roupa de banho': 0.2, 'Chapéu/Boné': 0.1,
+  // Saúde
+  'Medicamentos pessoais': 0.2, 'Protetor solar': 0.25, 'Repelente': 0.15,
+  // Esportes/Aventura
+  'Tênis de trilha': 0.8, 'Mochila resistente': 0.5, 'Garrafa de água': 0.15,
+  // Outros
+  'Guarda-chuva compacto': 0.35
+};
+
+const LUGGAGE_RECOMMENDATIONS = {
+  short: { // 1-4 dias
+    solo: { bags: [{ type: 'Mala de Mão', weight: 10, size: '55x40x20cm' }], tip: 'Viagem curta: mala de mão é suficiente!' },
+    couple: { bags: [{ type: 'Mala de Mão', weight: 10, size: '55x40x20cm' }, { type: 'Mala de Mão', weight: 10, size: '55x40x20cm' }], tip: 'Cada um com sua mala de mão.' },
+    family: { bags: [{ type: 'Mala Média 23kg', weight: 23, size: '68x45x28cm' }, { type: 'Mala de Mão', weight: 10, size: '55x40x20cm' }], tip: 'Uma mala despachada + malas de mão.' }
+  },
+  medium: { // 5-10 dias
+    solo: { bags: [{ type: 'Mala Média 23kg', weight: 23, size: '68x45x28cm' }], tip: 'Mala média para mais flexibilidade.' },
+    couple: { bags: [{ type: 'Mala Média 23kg', weight: 23, size: '68x45x28cm' }, { type: 'Mala Média 23kg', weight: 23, size: '68x45x28cm' }], tip: 'Cada um com mala média despachada.' },
+    family: { bags: [{ type: 'Mala Grande 32kg', weight: 32, size: '78x52x32cm' }, { type: 'Mala Média 23kg', weight: 23, size: '68x45x28cm' }, { type: 'Mala de Mão', weight: 10, size: '55x40x20cm' }], tip: 'Mala grande + média + malas de mão.' }
+  },
+  long: { // 11+ dias
+    solo: { bags: [{ type: 'Mala Grande 32kg', weight: 32, size: '78x52x32cm' }], tip: 'Mala grande para viagem longa.' },
+    couple: { bags: [{ type: 'Mala Grande 32kg', weight: 32, size: '78x52x32cm' }, { type: 'Mala Média 23kg', weight: 23, size: '68x45x28cm' }], tip: 'Uma grande + uma média para dividir.' },
+    family: { bags: [{ type: 'Mala Grande 32kg', weight: 32, size: '78x52x32cm' }, { type: 'Mala Grande 32kg', weight: 32, size: '78x52x32cm' }, { type: 'Mala de Mão', weight: 10, size: '55x40x20cm' }], tip: 'Duas malas grandes + malas de mão para a família.' }
+  }
+};
+
+// ========== v3.0: AI CONCIERGE DATA ==========
+const CONCIERGE_QUICK_ACTIONS = [
+  { id: 'weather', label: '☀️ Verificar Clima', icon: Sun },
+  { id: 'uber', label: '🚗 Chamar Uber', icon: Car },
+  { id: 'hospital', label: '🏥 Hospital Próximo', icon: Stethoscope },
+  { id: 'pharmacy', label: '💊 Farmácia Próxima', icon: Shield },
+  { id: 'translate', label: '🌐 Traduzir Cardápio', icon: Languages },
+  { id: 'emergency', label: '🆘 Emergência', icon: AlertCircle }
+];
+
+const CONCIERGE_RESPONSES = {
+  weather: (dest) => `☀️ **Clima em ${dest?.split(',')[0] || 'seu destino'}:**\n\n🌡️ Temperatura: ${DESTINATION_CLIMATE[dest]?.avgTemp || 25}°C\n💧 Umidade: 65%\n🌤️ Condição: ${DESTINATION_CLIMATE[dest]?.climate || 'Agradável'}\n\n*Atualizado agora*`,
+  uber: () => `🚗 **Uber Simulado:**\n\n✅ Motorista a caminho!\n📍 ETA: 4 minutos\n🚙 Toyota Corolla Prata\n👤 Carlos ★ 4.9\n\n*Integração simulada*`,
+  hospital: (dest) => `🏥 **Hospital mais próximo:**\n\n📍 Hospital Central ${dest?.split(',')[0] || 'Local'}\n📞 +XX XXX-XXXX\n⏱️ 24h - Emergência\n🚗 ~8 min do seu hotel\n\n*Abrir no Google Maps*`,
+  pharmacy: () => `💊 **Farmácia mais próxima:**\n\n📍 Pharmacy Express\n⏰ Aberta até 22h\n🚶 5 min a pé do hotel\n\n*Integração simulada*`,
+  translate: () => `🌐 **Tradução de Cardápio:**\n\nEnvie uma foto do cardápio que eu traduzo para você!\n\n*Funcionalidade em desenvolvimento*`,
+  emergency: () => `🆘 **Números de Emergência:**\n\n🚔 Polícia: 190 (BR) / 911 (EUA/EU)\n🚑 Ambulância: 192 (BR) / 112 (EU)\n🔥 Bombeiros: 193 (BR)\n📞 Embaixada: Consulte o app\n\n⚠️ Em caso de emergência real, ligue imediatamente!`,
+  default: (msg, dest, hotel) => `🤖 **Concierge IA:**\n\nEntendi sua pergunta: "${msg}"\n\n📍 Você está em: ${dest || 'destino não definido'}\n🏨 Hotel: ${hotel?.name || 'não selecionado'}\n\nComo posso ajudar? Use as ações rápidas ou descreva o que precisa!`
+};
+
 const generatePackingList = (destination, tripPriorities) => {
   const list = [...PACKING_DATABASE.essentials];
   const climate = DESTINATION_CLIMATE[destination];
@@ -422,6 +487,289 @@ const EssentialLanguageModule = ({ destination }) => {
     <div className="bg-gradient-to-br from-amber-50 via-white to-orange-50 rounded-2xl border border-amber-200 overflow-hidden shadow-lg language-section">
       <div className="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4 flex items-center gap-3"><div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm"><Languages size={24} className="text-white" /></div><div><h3 className="font-bold text-white text-lg">Frases Essenciais em {langData.language}</h3><p className="text-amber-100 text-sm">{langData.flag} 5 expressões de sobrevivência</p></div></div>
       <div className="p-4 space-y-3">{langData.phrases.map((phrase, idx) => (<div key={idx} className="bg-white rounded-xl p-4 border border-amber-100 hover:border-amber-300 transition-all group"><div className="flex items-start justify-between gap-3"><div className="flex-1"><p className="font-bold text-slate-800 text-lg">{phrase.phrase}</p><p className="text-slate-600 text-sm mt-1">{phrase.translation}</p><p className="text-amber-600 text-xs mt-2 font-mono bg-amber-50 px-2 py-1 rounded inline-block">🔊 "{phrase.phonetic}"</p></div><button onClick={() => simulateAudio(idx)} className={`p-3 rounded-xl transition-all ${playingPhrase === idx ? 'bg-amber-500 text-white animate-pulse' : 'bg-amber-100 text-amber-600 hover:bg-amber-200'}`}><Volume2 size={20} /></button></div></div>))}</div>
+    </div>
+  );
+};
+
+// ========== v3.0: VIRTUAL SUITCASE OPTIMIZER ==========
+const VirtualSuitcaseOptimizer = ({ destination, tripPriorities, tripDays, adults, children, checkedItems, packingList }) => {
+  const travelers = adults + children;
+  const tripLength = tripDays <= 4 ? 'short' : tripDays <= 10 ? 'medium' : 'long';
+  const travelerType = travelers === 1 ? 'solo' : travelers === 2 ? 'couple' : 'family';
+  const recommendation = LUGGAGE_RECOMMENDATIONS[tripLength]?.[travelerType] || LUGGAGE_RECOMMENDATIONS.medium.couple;
+  
+  const totalWeight = useMemo(() => {
+    return packingList.reduce((acc, item) => {
+      if (checkedItems[item.item]) {
+        return acc + (ITEM_WEIGHTS[item.item] || 0.3);
+      }
+      return acc;
+    }, 0) * travelers;
+  }, [packingList, checkedItems, travelers]);
+  
+  const maxWeight = recommendation.bags.reduce((acc, bag) => acc + bag.weight, 0);
+  const weightPercentage = (totalWeight / maxWeight) * 100;
+  const isOverweight = weightPercentage > 100;
+  
+  return (
+    <div className="bg-gradient-to-br from-cyan-50 via-white to-blue-50 rounded-2xl border border-cyan-200 overflow-hidden shadow-lg suitcase-section">
+      <div className="bg-gradient-to-r from-cyan-600 to-blue-600 px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm"><Luggage size={24} className="text-white" /></div>
+          <div><h3 className="font-bold text-white text-lg">Organizador de Malas Pro</h3><p className="text-cyan-100 text-sm">Recomendação inteligente + controle de peso</p></div>
+        </div>
+        <div className="text-right">
+          <p className={`text-2xl font-bold ${isOverweight ? 'text-red-300 animate-pulse' : 'text-white'}`}>{totalWeight.toFixed(1)}kg</p>
+          <p className="text-xs text-cyan-200">de {maxWeight}kg máx</p>
+        </div>
+      </div>
+      <div className="p-4 space-y-4">
+        {/* Recomendação de Bagagem */}
+        <div className="bg-white rounded-xl p-4 border border-cyan-200">
+          <h4 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Briefcase size={18} className="text-cyan-600" /> Bagagem Recomendada</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {recommendation.bags.map((bag, idx) => (
+              <div key={idx} className="bg-gradient-to-br from-cyan-50 to-blue-50 p-3 rounded-xl border border-cyan-100 text-center">
+                <Luggage size={32} className="text-cyan-600 mx-auto mb-2" />
+                <p className="font-bold text-slate-800 text-sm">{bag.type}</p>
+                <p className="text-xs text-slate-500">{bag.size}</p>
+                <p className="text-xs text-cyan-600 font-semibold mt-1">Até {bag.weight}kg</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600 mt-3 bg-cyan-50 p-2 rounded-lg">💡 {recommendation.tip}</p>
+        </div>
+        
+        {/* Medidor de Peso */}
+        <div className="bg-white rounded-xl p-4 border border-cyan-200">
+          <h4 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Scale size={18} className="text-cyan-600" /> Peso Estimado Total</h4>
+          <div className="relative h-6 bg-slate-100 rounded-full overflow-hidden">
+            <div className={`absolute left-0 top-0 h-full rounded-full transition-all duration-500 ${isOverweight ? 'bg-gradient-to-r from-red-400 to-red-600' : weightPercentage > 80 ? 'bg-gradient-to-r from-amber-400 to-orange-500' : 'bg-gradient-to-r from-emerald-400 to-cyan-500'}`} style={{ width: `${Math.min(weightPercentage, 100)}%` }} />
+            <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-slate-700">{weightPercentage.toFixed(0)}% da capacidade</div>
+          </div>
+          {isOverweight && <p className="text-red-600 text-sm mt-2 flex items-center gap-1 animate-pulse"><AlertTriangle size={14} /> Excesso de {(totalWeight - maxWeight).toFixed(1)}kg! Risco de taxa extra no aeroporto.</p>}
+          {!isOverweight && weightPercentage > 80 && <p className="text-amber-600 text-sm mt-2">⚠️ Atenção: Próximo do limite. Considere remover itens não essenciais.</p>}
+          {!isOverweight && weightPercentage <= 80 && <p className="text-emerald-600 text-sm mt-2">✅ Peso dentro do ideal! Ainda tem espaço para lembrancinhas.</p>}
+        </div>
+        
+        {/* Itens mais pesados */}
+        <div className="bg-slate-50 rounded-xl p-3 border border-slate-200">
+          <p className="text-xs font-bold text-slate-500 uppercase mb-2">Itens mais pesados na mala:</p>
+          <div className="flex flex-wrap gap-2">
+            {packingList.filter(item => checkedItems[item.item] && ITEM_WEIGHTS[item.item] > 0.3).slice(0, 5).map((item, idx) => (
+              <span key={idx} className="text-xs bg-white px-2 py-1 rounded-full border border-slate-200">{item.item} ({ITEM_WEIGHTS[item.item]}kg)</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ========== v3.0: AI CONCIERGE CHAT ==========
+const AIConcierge = ({ isOpen, onClose, destination, hotel, user }) => {
+  const [messages, setMessages] = useState([
+    { role: 'assistant', content: `👋 Olá${user?.name ? `, ${user.name.split(' ')[0]}` : ''}! Sou seu Concierge IA.\n\n📍 Destino: ${destination || 'Não definido'}\n🏨 Hotel: ${hotel?.name || 'Não selecionado'}\n\nComo posso ajudar você hoje? Use as ações rápidas ou me pergunte qualquer coisa!` }
+  ]);
+  const [input, setInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  
+  const handleQuickAction = (actionId) => {
+    setIsTyping(true);
+    const response = CONCIERGE_RESPONSES[actionId] ? CONCIERGE_RESPONSES[actionId](destination) : CONCIERGE_RESPONSES.default('', destination, hotel);
+    setTimeout(() => {
+      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+      setIsTyping(false);
+    }, 800);
+  };
+  
+  const handleSend = () => {
+    if (!input.trim()) return;
+    setMessages(prev => [...prev, { role: 'user', content: input }]);
+    setIsTyping(true);
+    const response = CONCIERGE_RESPONSES.default(input, destination, hotel);
+    setTimeout(() => {
+      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+      setIsTyping(false);
+    }, 1000);
+    setInput('');
+  };
+  
+  if (!isOpen) return null;
+  
+  return (
+    <div className="fixed inset-0 z-50 flex items-end justify-end p-4 sm:p-6 pointer-events-none">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md h-[600px] max-h-[80vh] flex flex-col pointer-events-auto border border-slate-200 overflow-hidden">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center"><Bot size={24} className="text-white" /></div>
+            <div><p className="font-bold text-white">Concierge IA</p><p className="text-xs text-indigo-200">Online • Pronto para ajudar</p></div>
+          </div>
+          <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-all"><X size={20} className="text-white" /></button>
+        </div>
+        
+        {/* Quick Actions */}
+        <div className="px-4 py-2 bg-slate-50 border-b border-slate-200 flex gap-2 overflow-x-auto">
+          {CONCIERGE_QUICK_ACTIONS.map(action => (
+            <button key={action.id} onClick={() => handleQuickAction(action.id)} className="px-3 py-1.5 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-700 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 transition-all whitespace-nowrap flex-shrink-0">{action.label}</button>
+          ))}
+        </div>
+        
+        {/* Messages */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          {messages.map((msg, idx) => (
+            <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div className={`max-w-[85%] p-3 rounded-2xl ${msg.role === 'user' ? 'bg-indigo-600 text-white rounded-br-sm' : 'bg-slate-100 text-slate-800 rounded-bl-sm'}`}>
+                <p className="text-sm whitespace-pre-line">{msg.content}</p>
+              </div>
+            </div>
+          ))}
+          {isTyping && <div className="flex justify-start"><div className="bg-slate-100 p-3 rounded-2xl rounded-bl-sm"><div className="flex gap-1"><span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} /><span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} /><span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} /></div></div></div>}
+        </div>
+        
+        {/* Input */}
+        <div className="p-4 border-t border-slate-200 bg-white">
+          <div className="flex gap-2">
+            <input type="text" value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleSend()} placeholder="Digite sua pergunta..." className="flex-1 px-4 py-2 bg-slate-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            <button onClick={handleSend} className="p-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-all"><Send size={20} /></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ========== v3.0: TRIP EXECUTION DASHBOARD (Realizado vs Planejado) ==========
+const TripExecutionDashboard = ({ plannedCosts, isActive, onToggleActive, realExpenses, onUpdateExpense }) => {
+  const categories = [
+    { id: 'flights', name: 'Voos', icon: Plane, planned: plannedCosts.flights },
+    { id: 'hotels', name: 'Hospedagem', icon: Hotel, planned: plannedCosts.hotels },
+    { id: 'activities', name: 'Passeios', icon: Camera, planned: plannedCosts.activities },
+    { id: 'food', name: 'Alimentação', icon: Utensils, planned: plannedCosts.food },
+    { id: 'transport', name: 'Transporte Local', icon: Car, planned: Math.round(plannedCosts.total * 0.05) },
+    { id: 'shopping', name: 'Compras', icon: ShoppingBag, planned: Math.round(plannedCosts.total * 0.1) },
+  ];
+  
+  const totalPlanned = categories.reduce((acc, cat) => acc + cat.planned, 0);
+  const totalReal = Object.values(realExpenses).reduce((acc, val) => acc + (val || 0), 0);
+  const variance = totalReal - totalPlanned;
+  const variancePercent = totalPlanned > 0 ? (variance / totalPlanned) * 100 : 0;
+  
+  const getDeviationAlert = (catId, planned, real) => {
+    if (!real || real === 0) return null;
+    const deviation = ((real - planned) / planned) * 100;
+    if (deviation > 20) return { type: 'danger', message: `⚠️ ${deviation.toFixed(0)}% acima do planejado!` };
+    if (deviation > 10) return { type: 'warning', message: `⚡ ${deviation.toFixed(0)}% acima` };
+    if (deviation < -10) return { type: 'success', message: `✅ Economia de ${Math.abs(deviation).toFixed(0)}%` };
+    return null;
+  };
+  
+  return (
+    <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 rounded-2xl overflow-hidden shadow-xl trip-execution-section">
+      <div className="px-6 py-4 flex items-center justify-between border-b border-slate-700">
+        <div className="flex items-center gap-3">
+          <div className={`p-2 rounded-xl ${isActive ? 'bg-emerald-500/20' : 'bg-slate-700'}`}>
+            <Receipt size={24} className={isActive ? 'text-emerald-400' : 'text-slate-400'} />
+          </div>
+          <div>
+            <h3 className="font-bold text-white text-lg">Gestão Financeira da Viagem</h3>
+            <p className="text-slate-400 text-sm">{isActive ? '🟢 Modo Viagem Ativa' : '⚪ Modo Planejamento'}</p>
+          </div>
+        </div>
+        <button onClick={onToggleActive} className={`px-4 py-2 rounded-xl font-medium transition-all ${isActive ? 'bg-emerald-500 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'}`}>
+          {isActive ? <><Pause size={16} className="inline mr-1" /> Pausar</> : <><Play size={16} className="inline mr-1" /> Iniciar Viagem</>}
+        </button>
+      </div>
+      
+      <div className="p-4 space-y-4">
+        {/* Resumo Geral */}
+        <div className="grid grid-cols-3 gap-4">
+          <div className="bg-slate-700/50 rounded-xl p-4 text-center">
+            <p className="text-slate-400 text-xs uppercase">Planejado</p>
+            <p className="text-2xl font-bold text-white">R$ {totalPlanned.toLocaleString()}</p>
+          </div>
+          <div className="bg-slate-700/50 rounded-xl p-4 text-center">
+            <p className="text-slate-400 text-xs uppercase">Realizado</p>
+            <p className={`text-2xl font-bold ${totalReal > totalPlanned ? 'text-red-400' : 'text-emerald-400'}`}>R$ {totalReal.toLocaleString()}</p>
+          </div>
+          <div className={`rounded-xl p-4 text-center ${variance > 0 ? 'bg-red-500/20' : 'bg-emerald-500/20'}`}>
+            <p className="text-slate-400 text-xs uppercase">Variação</p>
+            <p className={`text-2xl font-bold ${variance > 0 ? 'text-red-400' : 'text-emerald-400'}`}>{variance > 0 ? '+' : ''}{variancePercent.toFixed(1)}%</p>
+          </div>
+        </div>
+        
+        {/* Categorias */}
+        <div className="space-y-2">
+          {categories.map(cat => {
+            const CatIcon = cat.icon;
+            const real = realExpenses[cat.id] || 0;
+            const alert = getDeviationAlert(cat.id, cat.planned, real);
+            const progress = cat.planned > 0 ? (real / cat.planned) * 100 : 0;
+            
+            return (
+              <div key={cat.id} className="bg-slate-700/30 rounded-xl p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <CatIcon size={16} className="text-slate-400" />
+                    <span className="text-sm text-slate-300">{cat.name}</span>
+                    {alert && <span className={`text-xs px-2 py-0.5 rounded-full ${alert.type === 'danger' ? 'bg-red-500/30 text-red-300 animate-pulse' : alert.type === 'warning' ? 'bg-amber-500/30 text-amber-300' : 'bg-emerald-500/30 text-emerald-300'}`}>{alert.message}</span>}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {isActive && (
+                      <input type="number" value={real || ''} onChange={e => onUpdateExpense(cat.id, Number(e.target.value))} placeholder="R$ gasto" className="w-24 px-2 py-1 bg-slate-600 text-white text-sm rounded-lg text-right focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                    )}
+                    <span className="text-xs text-slate-500">/ R$ {cat.planned.toLocaleString()}</span>
+                  </div>
+                </div>
+                <div className="h-1.5 bg-slate-600 rounded-full overflow-hidden">
+                  <div className={`h-full rounded-full transition-all duration-500 ${progress > 100 ? 'bg-red-500' : progress > 80 ? 'bg-amber-500' : 'bg-emerald-500'}`} style={{ width: `${Math.min(progress, 100)}%` }} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        
+        {/* Alerta de Desvio Global */}
+        {isActive && variance > totalPlanned * 0.2 && (
+          <div className="bg-red-500/20 border border-red-500/50 rounded-xl p-4 animate-pulse">
+            <div className="flex items-start gap-3">
+              <AlertTriangle size={24} className="text-red-400 flex-shrink-0" />
+              <div>
+                <p className="font-bold text-red-300">⚠️ Desvio Crítico Detectado!</p>
+                <p className="text-sm text-red-200 mt-1">Seus gastos estão {variancePercent.toFixed(0)}% acima do planejado. Sugestão da IA: Reduza passeios pagos nos próximos dias e opte por atrações gratuitas.</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// ========== v3.0: LIVE BOOKING PLACEHOLDER ==========
+const LiveBookingPlaceholder = ({ type, item }) => {
+  const [checking, setChecking] = useState(false);
+  
+  const handleCheck = () => {
+    setChecking(true);
+    setTimeout(() => setChecking(false), 2000);
+  };
+  
+  return (
+    <div className="mt-2 p-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Globe size={14} className="text-blue-600" />
+          <span className="text-xs text-blue-700 font-medium">
+            {type === 'hotel' ? 'Verificar no Booking.com' : 'Verificar no Amadeus GDS'}
+          </span>
+        </div>
+        <button onClick={handleCheck} disabled={checking} className={`px-3 py-1 text-xs rounded-full font-medium transition-all ${checking ? 'bg-blue-200 text-blue-600' : 'bg-blue-600 text-white hover:bg-blue-700'}`}>
+          {checking ? <><RefreshCw size={12} className="inline animate-spin mr-1" /> Verificando...</> : 'Checar Disponibilidade'}
+        </button>
+      </div>
+      {checking && <p className="text-xs text-blue-500 mt-2 animate-pulse">🔄 Conectando com {type === 'hotel' ? 'Booking.com' : 'Amadeus'}... (simulação)</p>}
     </div>
   );
 };
@@ -956,6 +1304,17 @@ export default function App() {
   const [activityModal, setActivityModal] = useState({ isOpen: false, day: null, idx: null, current: null, mode: 'add' });
   const [communityDetailModal, setCommunityDetailModal] = useState({ isOpen: false, itinerary: null });
   const [itineraryTab, setItineraryTab] = useState('timeline');
+  
+  // ========== v3.0: NOVOS ESTADOS ==========
+  const [showConcierge, setShowConcierge] = useState(false);
+  const [tripActive, setTripActive] = useState(false);
+  const [realExpenses, setRealExpenses] = useState({});
+  const [packingCheckedItems, setPackingCheckedItems] = useState({});
+  const packingList = useMemo(() => generatePackingList(destination, tripPriorities), [destination, tripPriorities]);
+  
+  const updateRealExpense = useCallback((category, value) => {
+    setRealExpenses(prev => ({ ...prev, [category]: value }));
+  }, []);
 
   const currentData = destination ? DESTINATIONS_DATABASE[destination] : null;
   const payingChildren = useMemo(() => childrenAges.filter(age => age > 2).length, [childrenAges]);
@@ -1048,27 +1407,35 @@ export default function App() {
   if (!user || currentView === 'landing') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-emerald-50">
-        {/* 🔥 DEBUG BANNER - REMOVER APÓS CONFIRMAR QUE FUNCIONA */}
-        <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-center py-2 px-4 text-sm font-bold">
-          🚀 BUILD v2.0 CORRETO! Motor 12 Meses + DCA/Lump Sum + Checklist + Idiomas ✅
+        {/* v3.0 Banner */}
+        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-center py-2 px-4 text-sm font-bold">
+          🚀 SMARTTRAVEL AI v3.0 - LIVE & SPECIALIST EDITION! Concierge IA + Gestão de Gastos + Suitcase Optimizer ✨
         </div>
-        <nav className="bg-white/80 backdrop-blur-lg border-b border-slate-200 sticky top-0 z-40"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-2"><Globe size={28} className="text-teal-600" /><span className="text-xl font-bold text-slate-800">SmartTravel <span className="text-teal-600">AI</span></span><span className="text-xs px-2 py-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full font-semibold ml-2 animate-pulse">v2.0</span></div><div className="flex items-center gap-4">{user ? <><button onClick={() => setCurrentView('planner')} className="text-slate-600 hover:text-teal-600 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-600 hover:text-teal-600 font-medium">Comunidade</button><button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button></> : <button onClick={() => setShowAuthModal(true)} className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-medium">Entrar</button>}</div></div></nav>
+        <nav className="bg-white/80 backdrop-blur-lg border-b border-slate-200 sticky top-0 z-40"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-2"><Globe size={28} className="text-teal-600" /><span className="text-xl font-bold text-slate-800">SmartTravel <span className="text-teal-600">AI</span></span><span className="text-xs px-2 py-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-semibold ml-2 animate-pulse">v3.0</span></div><div className="flex items-center gap-4">{user ? <><button onClick={() => setCurrentView('planner')} className="text-slate-600 hover:text-teal-600 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-600 hover:text-teal-600 font-medium">Comunidade</button><button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button></> : <button onClick={() => setShowAuthModal(true)} className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-medium">Entrar</button>}</div></div></nav>
         <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-100 to-purple-100 rounded-full text-violet-700 text-sm font-semibold mb-6"><Zap size={16} /> Motor Preditivo 12 Meses • DCA • Checklist • Idiomas <span className="ml-2 px-2 py-0.5 bg-emerald-500 text-white text-xs rounded-full animate-pulse">v2.0</span></div>
-          <h1 className="text-5xl md:text-6xl font-bold text-slate-800 mb-6">Planeje viagens <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">incríveis</span> com IA</h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-8">Roteiros personalizados, <strong>projeção de câmbio de 12 meses</strong> com estratégias DCA/Lump Sum, <strong>checklist inteligente de malas</strong>, frases essenciais no idioma local e relógio de fuso horário em tempo real.</p>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full text-indigo-700 text-sm font-semibold mb-6"><Zap size={16} /> Concierge IA • Gestão Realizada vs Planejada • Suitcase Optimizer <span className="ml-2 px-2 py-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs rounded-full animate-pulse">v3.0</span></div>
+          <h1 className="text-5xl md:text-6xl font-bold text-slate-800 mb-6">Planeje viagens <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">incríveis</span> com IA</h1>
+          <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-8">Roteiros personalizados com <strong>Concierge IA em tempo real</strong>, gestão de gastos Planejado vs Realizado, <strong>otimizador de malas com cálculo de peso</strong>, projeção de câmbio 12 meses e muito mais!</p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <button onClick={() => { if (!user) setShowAuthModal(true); else setCurrentView('planner'); }} className="px-8 py-4 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-xl font-bold text-lg hover:shadow-xl hover:shadow-teal-500/30 transition-all flex items-center gap-2 hover:scale-105"><Sparkles size={24} /> Começar a Planejar</button>
-            <button onClick={() => setCurrentView('community')} className="px-8 py-4 border-2 border-slate-300 text-slate-700 rounded-xl font-bold text-lg hover:border-teal-500 hover:text-teal-600 transition-all hover:scale-105">Ver Comunidade</button>
+            <button onClick={() => { if (!user) setShowAuthModal(true); else setCurrentView('planner'); }} className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold text-lg hover:shadow-xl hover:shadow-indigo-500/30 transition-all flex items-center gap-2 hover:scale-105"><Sparkles size={24} /> Começar a Planejar</button>
+            <button onClick={() => setCurrentView('community')} className="px-8 py-4 border-2 border-slate-300 text-slate-700 rounded-xl font-bold text-lg hover:border-indigo-500 hover:text-indigo-600 transition-all hover:scale-105">Ver Comunidade</button>
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 py-16">
-          <div className="grid md:grid-cols-4 gap-6">
-            {[{ icon: BarChart3, title: 'Câmbio 12 Meses', desc: 'DCA, Lump Sum e Índice de Confiança IA', color: 'from-emerald-500 to-teal-500' }, { icon: Briefcase, title: 'Checklist Inteligente', desc: 'Malas baseadas em clima e prioridades', color: 'from-violet-500 to-purple-500' }, { icon: Languages, title: 'Frases Essenciais', desc: '5 expressões no idioma local', color: 'from-amber-500 to-orange-500' }, { icon: Clock, title: 'Relógio Dinâmico', desc: 'Fuso horário em tempo real', color: 'from-rose-500 to-pink-500' }].map((f, i) => (
-              <div key={i} className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-all hover:scale-105 group">
-                <div className={`w-14 h-14 bg-gradient-to-br ${f.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}><f.icon size={28} className="text-white" /></div>
-                <h3 className="text-lg font-bold text-slate-800 mb-2">{f.title}</h3>
-                <p className="text-slate-600 text-sm">{f.desc}</p>
+          <h2 className="text-2xl font-bold text-slate-800 text-center mb-8">✨ Novidades da v3.0</h2>
+          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {[
+              { icon: Bot, title: 'Concierge IA', desc: 'Assistente 24h no destino', color: 'from-indigo-500 to-purple-500' },
+              { icon: Receipt, title: 'Gestão Financeira', desc: 'Planejado vs Realizado', color: 'from-emerald-500 to-teal-500' },
+              { icon: Luggage, title: 'Suitcase Optimizer', desc: 'Controle de peso da mala', color: 'from-cyan-500 to-blue-500' },
+              { icon: BarChart3, title: 'Câmbio 12 Meses', desc: 'DCA e Lump Sum', color: 'from-violet-500 to-purple-500' },
+              { icon: Languages, title: 'Frases Essenciais', desc: '5 expressões por destino', color: 'from-amber-500 to-orange-500' },
+              { icon: Clock, title: 'Relógio Dinâmico', desc: 'Fuso em tempo real', color: 'from-rose-500 to-pink-500' }
+            ].map((f, i) => (
+              <div key={i} className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-xl transition-all hover:scale-105 group text-center">
+                <div className={`w-12 h-12 bg-gradient-to-br ${f.color} rounded-xl flex items-center justify-center mb-3 mx-auto group-hover:scale-110 transition-transform shadow-lg`}><f.icon size={24} className="text-white" /></div>
+                <h3 className="text-sm font-bold text-slate-800 mb-1">{f.title}</h3>
+                <p className="text-slate-500 text-xs">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -1137,11 +1504,12 @@ export default function App() {
           <div className="lg:col-span-2 main-content">
             {itineraryGenerated && (
               <div className="space-y-6">
-                <div className="flex gap-2 mb-4 no-print">
+                <div className="flex gap-2 mb-4 no-print flex-wrap">
                   <button onClick={() => setItineraryTab('timeline')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'timeline' ? 'bg-teal-600 text-white shadow-lg' : 'bg-white border border-slate-200 hover:border-teal-400'}`}><Calendar size={18} /> Timeline</button>
                   <button onClick={() => setItineraryTab('guide')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'guide' ? 'bg-teal-600 text-white shadow-lg' : 'bg-white border border-slate-200 hover:border-teal-400'}`}><BookOpen size={18} /> Guia</button>
                   <button onClick={() => setItineraryTab('exchange')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'exchange' ? 'bg-teal-600 text-white shadow-lg' : 'bg-white border border-slate-200 hover:border-teal-400'}`}><Banknote size={18} /> Câmbio</button>
-                  <button onClick={() => setItineraryTab('extras')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'extras' ? 'bg-teal-600 text-white shadow-lg' : 'bg-white border border-slate-200 hover:border-teal-400'}`}><Briefcase size={18} /> Extras</button>
+                  <button onClick={() => setItineraryTab('extras')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'extras' ? 'bg-teal-600 text-white shadow-lg' : 'bg-white border border-slate-200 hover:border-teal-400'}`}><Luggage size={18} /> Malas</button>
+                  <button onClick={() => setItineraryTab('gestao')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'gestao' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-white border border-slate-200 hover:border-indigo-400'}`}><Receipt size={18} /> Gestão</button>
                 </div>
                 
                 {/* Relógio Local Dinâmico */}
@@ -1173,8 +1541,15 @@ export default function App() {
                 
                 {itineraryTab === 'extras' && (
                   <div className="space-y-6">
+                    <VirtualSuitcaseOptimizer destination={destination} tripPriorities={tripPriorities} tripDays={tripDays} adults={adults} children={children} checkedItems={packingCheckedItems} packingList={packingList} />
                     <SmartPackingList destination={destination} tripPriorities={tripPriorities} startDate={startDate} />
                     <EssentialLanguageModule destination={destination} />
+                  </div>
+                )}
+                
+                {itineraryTab === 'gestao' && (
+                  <div className="space-y-6">
+                    <TripExecutionDashboard plannedCosts={costs} isActive={tripActive} onToggleActive={() => setTripActive(!tripActive)} realExpenses={realExpenses} onUpdateExpense={updateRealExpense} />
                   </div>
                 )}
               </div>
@@ -1213,6 +1588,18 @@ export default function App() {
       <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} onLogin={setUser} />
       <ActivityModal isOpen={activityModal.isOpen} onClose={() => setActivityModal({ isOpen: false, day: null, idx: null, current: null, mode: 'add' })} activities={currentData?.activities || []} restaurants={currentData?.restaurants || []} current={activityModal.current} mode={activityModal.mode} dayNum={activityModal.day} onSelect={handleSelectActivity} onRemove={() => activityModal.day && activityModal.idx !== null && handleRemoveItem(activityModal.day, activityModal.idx)} />
       <CommunityDetailModal itinerary={communityDetailModal.itinerary} isOpen={communityDetailModal.isOpen} onClose={() => setCommunityDetailModal({ isOpen: false, itinerary: null })} onUse={useCommunityItinerary} />
+      
+      {/* v3.0: AI Concierge Chat */}
+      <AIConcierge isOpen={showConcierge} onClose={() => setShowConcierge(false)} destination={destination} hotel={selectedHotel} user={user} />
+      
+      {/* v3.0: Botão Flutuante Concierge */}
+      {itineraryGenerated && !showConcierge && (
+        <button onClick={() => setShowConcierge(true)} className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full shadow-2xl flex items-center justify-center text-white hover:scale-110 transition-all z-40 group no-print">
+          <Bot size={28} />
+          <span className="absolute -top-2 -right-2 w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center text-xs font-bold animate-pulse">IA</span>
+          <span className="absolute right-full mr-3 px-3 py-1.5 bg-slate-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap">Concierge IA</span>
+        </button>
+      )}
     </div>
   );
 }
