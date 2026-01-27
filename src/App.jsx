@@ -150,7 +150,7 @@ const formatDateFull = (dateStr, addDays = 0) => {
 };
 
 const getPeriodStyle = (period) => {
-  const styles = { manhã: { bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-300', dot: 'bg-amber-500', gradient: 'from-amber-400 to-orange-500' }, tarde: { bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-300', dot: 'bg-orange-500', gradient: 'from-orange-400 to-red-500' }, noite: { bg: 'bg-indigo-50', text: 'text-indigo-700', border: 'border-indigo-300', dot: 'bg-indigo-500', gradient: 'from-indigo-400 to-indigo-600' } };
+  const styles = { manhã: { bg: 'bg-amber-900/30', text: 'text-amber-400', border: 'border-amber-500/50', dot: 'bg-amber-500', gradient: 'from-amber-500 to-orange-500' }, tarde: { bg: 'bg-orange-900/30', text: 'text-orange-400', border: 'border-orange-500/50', dot: 'bg-orange-500', gradient: 'from-orange-500 to-red-500' }, noite: { bg: 'bg-indigo-900/30', text: 'text-indigo-400', border: 'border-indigo-500/50', dot: 'bg-indigo-500', gradient: 'from-indigo-500 to-indigo-600' } };
   return styles[period] || styles.manhã;
 };
 
@@ -298,7 +298,7 @@ const PredictiveExchangeEngine = ({ origin, destination, tripBudget, tripDate })
   const BuySignalIcon = advancedSignal.icon;
 
   return (
-    <div className="bg-gradient-to-br from-emerald-50 via-white to-indigo-50 rounded-2xl border border-emerald-200 overflow-hidden shadow-lg exchange-analysis-section">
+    <div className="bg-gradient-to-br from-slate-900/60 via-slate-900/40 to-slate-900/60 rounded-2xl border border-emerald-700 overflow-hidden shadow-lg exchange-analysis-section">
       <div className="bg-gradient-to-r from-emerald-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-slate-900/20 rounded-xl backdrop-blur-sm"><Banknote size={24} className="text-white" /></div>
@@ -320,32 +320,32 @@ const PredictiveExchangeEngine = ({ origin, destination, tripBudget, tripDate })
       </div>
       <div className="p-6 space-y-6">
         <div className="grid grid-cols-3 gap-4">
-          <div className="bg-slate-900 rounded-xl p-4 border border-slate-700 shadow-sm hover:shadow-md transition-all">
+          <div className="bg-slate-900 rounded-xl p-4 border border-slate-600 shadow-xl hover:shadow-md transition-all">
             <div className="flex items-center justify-center gap-2 mb-3"><span className="text-2xl">{CURRENCY_DATABASE.BRL.flag}</span><ArrowRight size={16} className="text-indigo-500" /><span className="text-2xl">{CURRENCY_DATABASE[destCurrency]?.flag}</span></div>
             <p className="text-center text-2xl font-bold text-white">{CURRENCY_DATABASE[destCurrency]?.symbol} {directRate.toFixed(destCurrency === 'JPY' ? 2 : 3)}</p>
-            <p className="text-center text-xs text-slate-500 mt-1">1 BRL = X {destCurrency}</p>
-            <div className={`mt-2 text-center text-xs px-2 py-1 rounded-full ${EXCHANGE_RATES[directPair]?.trend === 'up' ? 'bg-red-100 text-red-600' : EXCHANGE_RATES[directPair]?.trend === 'down' ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-300'}`}>
+            <p className="text-center text-xs text-slate-300 mt-1">1 BRL = X {destCurrency}</p>
+            <div className={`mt-2 text-center text-xs px-2 py-1 rounded-full ${EXCHANGE_RATES[directPair]?.trend === 'up' ? 'bg-red-900/30 text-red-600' : EXCHANGE_RATES[directPair]?.trend === 'down' ? 'bg-emerald-900/30 text-emerald-400' : 'bg-slate-800 text-slate-300'}`}>
               {EXCHANGE_RATES[directPair]?.trend === 'up' ? '↑ Real desvalorizando' : EXCHANGE_RATES[directPair]?.trend === 'down' ? '↓ Real valorizando' : '→ Estável'}
             </div>
           </div>
-          <div className="bg-slate-900 rounded-xl p-4 border border-slate-700 shadow-sm hover:shadow-md transition-all">
+          <div className="bg-slate-900 rounded-xl p-4 border border-slate-600 shadow-xl hover:shadow-md transition-all">
             <div className="flex items-center justify-center gap-2 mb-3"><span className="text-2xl">{CURRENCY_DATABASE.BRL.flag}</span><ArrowRight size={16} className="text-blue-500" /><span className="text-2xl">{CURRENCY_DATABASE[globalCurrency]?.flag}</span></div>
             <p className="text-center text-2xl font-bold text-white">{CURRENCY_DATABASE[globalCurrency]?.symbol} {globalRate.toFixed(3)}</p>
-            <p className="text-center text-xs text-slate-500 mt-1">Referência Global</p>
-            <div className="mt-2 text-center text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-600">Moeda Global</div>
+            <p className="text-center text-xs text-slate-300 mt-1">Referência Global</p>
+            <div className="mt-2 text-center text-xs px-2 py-1 rounded-full bg-blue-900/30 text-blue-400">Moeda Global</div>
           </div>
-          <div className="bg-slate-900 rounded-xl p-4 border border-slate-700 shadow-sm hover:shadow-md transition-all">
+          <div className="bg-slate-900 rounded-xl p-4 border border-slate-600 shadow-xl hover:shadow-md transition-all">
             <div className="flex items-center justify-center gap-2 mb-3"><span className="text-2xl">💰</span></div>
             <p className="text-center text-2xl font-bold text-indigo-600">~{CURRENCY_DATABASE[destCurrency]?.symbol} {destAmount.toLocaleString('pt-BR', { maximumFractionDigits: 0 })}</p>
-            <p className="text-center text-xs text-slate-500 mt-1">Estimativa Viagem</p>
+            <p className="text-center text-xs text-slate-300 mt-1">Estimativa Viagem</p>
             <div className="mt-2 text-center text-xs px-2 py-1 rounded-full bg-teal-100 text-indigo-600">60% do orçamento</div>
           </div>
         </div>
         
         {/* Estratégia Recomendada - NOVA SEÇÃO */}
-        <div className={`p-5 rounded-xl border-2 ${advancedSignal.signal === 'buy' ? 'bg-emerald-50 border-emerald-300' : advancedSignal.signal === 'wait' ? 'bg-amber-50 border-amber-300' : 'bg-blue-50 border-blue-300'}`}>
+        <div className={`p-5 rounded-xl border-2 ${advancedSignal.signal === 'buy' ? 'bg-emerald-900/20 border-emerald-300' : advancedSignal.signal === 'wait' ? 'bg-amber-900/20 border-amber-300' : 'bg-blue-900/20 border-blue-300'}`}>
           <div className="flex items-start gap-4">
-            <div className={`p-4 rounded-xl flex-shrink-0 ${advancedSignal.signal === 'buy' ? 'bg-emerald-500' : advancedSignal.signal === 'wait' ? 'bg-amber-500' : 'bg-blue-500'}`}>
+            <div className={`p-4 rounded-xl flex-shrink-0 ${advancedSignal.signal === 'buy' ? 'bg-emerald-600' : advancedSignal.signal === 'wait' ? 'bg-amber-600' : 'bg-blue-600'}`}>
               <BuySignalIcon size={28} className="text-white" />
             </div>
             <div className="flex-1">
@@ -353,23 +353,23 @@ const PredictiveExchangeEngine = ({ origin, destination, tripBudget, tripDate })
                 <span className={`px-3 py-1 rounded-full text-xs font-bold ${advancedSignal.signal === 'buy' ? 'bg-emerald-200 text-emerald-800' : advancedSignal.signal === 'wait' ? 'bg-amber-200 text-amber-800' : 'bg-blue-200 text-blue-800'}`}>
                   {advancedSignal.strategy === 'DCA' ? '📊 DCA' : advancedSignal.strategy === 'LUMP_SUM' ? '🎯 LUMP SUM' : '⚡ COMPRA IMEDIATA'}
                 </span>
-                <p className={`font-bold text-lg ${advancedSignal.signal === 'buy' ? 'text-emerald-700' : advancedSignal.signal === 'wait' ? 'text-amber-700' : 'text-blue-700'}`}>
+                <p className={`font-bold text-lg ${advancedSignal.signal === 'buy' ? 'text-emerald-400' : advancedSignal.signal === 'wait' ? 'text-amber-400' : 'text-blue-400'}`}>
                   {advancedSignal.message}
                 </p>
               </div>
               <div className="bg-slate-900/60 rounded-lg p-4 mt-3">
                 <h4 className="font-bold text-white mb-2">📋 Estratégia Recomendada: {advancedSignal.recommendation.type}</h4>
-                <p className="text-slate-300 text-sm mb-2">{advancedSignal.recommendation.description}</p>
-                <p className="text-xs text-slate-500 italic">{advancedSignal.recommendation.rationale}</p>
+                <p className="text-slate-200 text-sm mb-2">{advancedSignal.recommendation.description}</p>
+                <p className="text-xs text-slate-300 italic">{advancedSignal.recommendation.rationale}</p>
                 <div className="mt-3 flex items-center gap-4">
                   <div className="flex items-center gap-2">
                     <TrendingDown size={16} className="text-emerald-500" />
-                    <span className="text-sm text-slate-300">Economia potencial: <strong className="text-emerald-600">{advancedSignal.recommendation.potentialSavings}%</strong></span>
+                    <span className="text-sm text-slate-200">Economia potencial: <strong className="text-emerald-400">{advancedSignal.recommendation.potentialSavings}%</strong></span>
                   </div>
                   {advancedSignal.strategy === 'LUMP_SUM' && advancedSignal.bestMonth && (
                     <div className="flex items-center gap-2">
                       <Calendar size={16} className="text-amber-500" />
-                      <span className="text-sm text-slate-300">Melhor mês: <strong className="text-amber-600">{advancedSignal.bestMonth.month}</strong></span>
+                      <span className="text-sm text-slate-200">Melhor mês: <strong className="text-amber-400">{advancedSignal.bestMonth.month}</strong></span>
                     </div>
                   )}
                 </div>
@@ -381,7 +381,7 @@ const PredictiveExchangeEngine = ({ origin, destination, tripBudget, tripDate })
         <div className="bg-slate-900 rounded-xl p-4 border border-slate-700">
           <div className="flex items-center justify-between mb-4">
             <h4 className="font-semibold text-slate-200 flex items-center gap-2"><BarChart3 size={18} className="text-indigo-600" />Tendência BRL/{destCurrency}</h4>
-            <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded-full">📈 6 meses histórico + 12 meses projeção</span>
+            <span className="text-xs text-slate-300 bg-slate-800 px-2 py-1 rounded-full">📈 6 meses histórico + 12 meses projeção</span>
           </div>
           <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={forexHistory}>
@@ -395,17 +395,17 @@ const PredictiveExchangeEngine = ({ origin, destination, tripBudget, tripDate })
             </AreaChart>
           </ResponsiveContainer>
           <div className="flex items-center justify-center gap-6 mt-3">
-            <span className="flex items-center gap-2 text-xs text-slate-300"><span className="w-3 h-3 rounded-full bg-indigo-500"></span> Histórico</span>
-            <span className="flex items-center gap-2 text-xs text-slate-300"><span className="w-3 h-3 rounded-full bg-amber-500"></span> Projeção IA (12 meses)</span>
+            <span className="flex items-center gap-2 text-xs text-slate-300"><span className="w-3 h-3 rounded-full bg-indigo-900/200"></span> Histórico</span>
+            <span className="flex items-center gap-2 text-xs text-slate-300"><span className="w-3 h-3 rounded-full bg-amber-600"></span> Projeção IA (12 meses)</span>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl p-4 border border-slate-700">
-          <p className="text-xs font-semibold text-slate-500 uppercase mb-2 flex items-center gap-1"><Lightbulb size={12} /> Dicas de Câmbio</p>
+        <div className="bg-slate-800/70 rounded-xl p-4 border border-slate-700">
+          <p className="text-xs font-semibold text-slate-400 uppercase mb-2 flex items-center gap-1"><Lightbulb size={12} className="text-amber-500" /> Dicas de Câmbio</p>
           <ul className="space-y-2">
-            <li className="text-sm text-slate-300 flex items-center gap-2"><ChevronRight size={12} className="text-emerald-500 flex-shrink-0" />Use cartões com IOF reduzido (1.1% vs 6.38%)</li>
-            <li className="text-sm text-slate-300 flex items-center gap-2"><ChevronRight size={12} className="text-emerald-500 flex-shrink-0" />Evite trocar em aeroportos (-15% em média)</li>
-            <li className="text-sm text-slate-300 flex items-center gap-2"><ChevronRight size={12} className="text-emerald-500 flex-shrink-0" />Considere conta global (Wise, Nomad)</li>
-            {advancedSignal.strategy === 'DCA' && <li className="text-sm text-slate-300 flex items-center gap-2"><ChevronRight size={12} className="text-blue-500 flex-shrink-0" /><strong>DCA:</strong> Divida compras mensalmente até a viagem</li>}
+            <li className="text-sm text-slate-200 flex items-center gap-2"><ChevronRight size={12} className="text-emerald-500 flex-shrink-0" />Use cartões com IOF reduzido (1.1% vs 6.38%)</li>
+            <li className="text-sm text-slate-200 flex items-center gap-2"><ChevronRight size={12} className="text-emerald-500 flex-shrink-0" />Evite trocar em aeroportos (-15% em média)</li>
+            <li className="text-sm text-slate-200 flex items-center gap-2"><ChevronRight size={12} className="text-emerald-500 flex-shrink-0" />Considere conta global (Wise, Nomad)</li>
+            {advancedSignal.strategy === 'DCA' && <li className="text-sm text-slate-200 flex items-center gap-2"><ChevronRight size={12} className="text-blue-400 flex-shrink-0" /><strong className="text-blue-400">DCA:</strong> Divida compras mensalmente até a viagem</li>}
           </ul>
         </div>
       </div>
@@ -530,9 +530,9 @@ const DynamicLocalClock = ({ origin, destination }) => {
   const timeDiff = destOffset - originOffset;
   return (
     <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl text-white">
-      <div className="flex items-center gap-2"><Clock size={16} className="text-indigo-400" /><div><p className="text-xs text-slate-400">Brasil</p><p className="font-mono font-bold text-lg">{getLocalTime(originOffset)}</p></div></div>
-      <div className="flex flex-col items-center"><ArrowRight size={14} className="text-slate-500" /><span className={`text-xs ${timeDiff > 0 ? 'text-amber-400' : timeDiff < 0 ? 'text-blue-400' : 'text-slate-400'}`}>{timeDiff > 0 ? `+${timeDiff}h` : timeDiff < 0 ? `${timeDiff}h` : '='}</span></div>
-      <div className="flex items-center gap-2"><Globe size={16} className="text-emerald-400" /><div><p className="text-xs text-slate-400">{destination?.split(',')[0]}</p><p className="font-mono font-bold text-lg">{getLocalTime(destOffset)}</p></div></div>
+      <div className="flex items-center gap-2"><Clock size={16} className="text-indigo-400" /><div><p className="text-xs text-slate-200">Brasil</p><p className="font-mono font-bold text-lg">{getLocalTime(originOffset)}</p></div></div>
+      <div className="flex flex-col items-center"><ArrowRight size={14} className="text-slate-300" /><span className={`text-xs ${timeDiff > 0 ? 'text-amber-400' : timeDiff < 0 ? 'text-blue-400' : 'text-slate-300'}`}>{timeDiff > 0 ? `+${timeDiff}h` : timeDiff < 0 ? `${timeDiff}h` : '='}</span></div>
+      <div className="flex items-center gap-2"><Globe size={16} className="text-emerald-400" /><div><p className="text-xs text-slate-200">{destination?.split(',')[0]}</p><p className="font-mono font-bold text-lg">{getLocalTime(destOffset)}</p></div></div>
     </div>
   );
 };
@@ -547,15 +547,15 @@ const SmartPackingList = ({ destination, tripPriorities, startDate }) => {
   const toggleItem = (item) => setCheckedItems(prev => ({ ...prev, [item]: !prev[item] }));
   
   return (
-    <div className="bg-gradient-to-br from-violet-50 via-white to-purple-50 rounded-2xl border border-violet-200 overflow-hidden shadow-lg packing-list-section">
+    <div className="bg-gradient-to-br from-violet-950/60 via-slate-900/40 to-purple-950/60 rounded-2xl border border-violet-700 overflow-hidden shadow-lg packing-list-section">
       <div className="bg-gradient-to-r from-violet-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3"><div className="p-2 bg-slate-900/20 rounded-xl backdrop-blur-sm"><Briefcase size={24} className="text-white" /></div><div><h3 className="font-bold text-white text-lg">Checklist Inteligente de Malas</h3><p className="text-violet-100 text-sm">Baseado em destino, clima e prioridades</p></div></div>
         <div className="text-right"><p className="text-2xl font-bold text-white">{Math.round(progress)}%</p><p className="text-xs text-violet-200">Preparado</p></div>
       </div>
       <div className="p-4">
-        <div className="mb-4"><div className="h-2 bg-violet-100 rounded-full overflow-hidden"><div className="h-full bg-gradient-to-r from-violet-500 to-purple-500 transition-all duration-500" style={{ width: `${progress}%` }} /></div><p className="text-xs text-slate-500 mt-1">{Object.values(checkedItems).filter(Boolean).length} de {packingList.length} itens</p></div>
-        {climate && <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl mb-4 border border-blue-200"><Thermometer size={20} className="text-blue-600" /><div><p className="text-sm font-medium text-slate-200">Clima esperado: <span className="text-blue-600">{climate.avgTemp}°C</span></p><p className="text-xs text-slate-500 capitalize">{climate.climate} {climate.rainy ? '• Possibilidade de chuva' : ''}</p></div></div>}
-        <div className="space-y-4 max-h-[400px] overflow-y-auto">{Object.entries(groupedItems).map(([category, items]) => (<div key={category}><p className="text-xs font-bold text-slate-500 uppercase mb-2">{category}</p><div className="grid grid-cols-1 sm:grid-cols-2 gap-2">{items.map((item, idx) => { const ItemIcon = item.icon; const isChecked = checkedItems[item.item]; return (<button key={idx} onClick={() => toggleItem(item.item)} className={`flex items-center gap-3 p-3 rounded-xl border transition-all text-left ${isChecked ? 'bg-emerald-50 border-emerald-300 text-emerald-700' : 'bg-slate-900 border-slate-700 hover:border-violet-300 hover:bg-violet-50'}`}><div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${isChecked ? 'bg-emerald-500' : 'bg-slate-100'}`}>{isChecked ? <Check size={14} className="text-white" /> : <ItemIcon size={14} className="text-slate-400" />}</div><span className={`text-sm ${isChecked ? 'line-through' : ''}`}>{item.item}</span></button>); })}</div></div>))}</div>
+        <div className="mb-4"><div className="h-2 bg-violet-900/30 rounded-full overflow-hidden"><div className="h-full bg-gradient-to-r from-violet-500 to-purple-500 transition-all duration-500" style={{ width: `${progress}%` }} /></div><p className="text-xs text-slate-300 mt-1">{Object.values(checkedItems).filter(Boolean).length} de {packingList.length} itens</p></div>
+        {climate && <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-blue-950/40 to-cyan-950/40 rounded-xl mb-4 border border-blue-700"><Thermometer size={20} className="text-blue-400" /><div><p className="text-sm font-medium text-slate-200">Clima esperado: <span className="text-blue-400">{climate.avgTemp}°C</span></p><p className="text-xs text-slate-300 capitalize">{climate.climate} {climate.rainy ? '• Possibilidade de chuva' : ''}</p></div></div>}
+        <div className="space-y-4 max-h-[400px] overflow-y-auto">{Object.entries(groupedItems).map(([category, items]) => (<div key={category}><p className="text-xs font-bold text-slate-300 uppercase mb-2">{category}</p><div className="grid grid-cols-1 sm:grid-cols-2 gap-2">{items.map((item, idx) => { const ItemIcon = item.icon; const isChecked = checkedItems[item.item]; return (<button key={idx} onClick={() => toggleItem(item.item)} className={`flex items-center gap-3 p-3 rounded-xl border transition-all text-left ${isChecked ? 'bg-emerald-900/20 border-emerald-300 text-emerald-400' : 'bg-slate-900 border-slate-700 hover:border-violet-300 hover:bg-violet-900/20'}`}><div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${isChecked ? 'bg-emerald-600' : 'bg-slate-800'}`}>{isChecked ? <Check size={14} className="text-white" /> : <ItemIcon size={14} className="text-slate-300" />}</div><span className={`text-sm ${isChecked ? 'line-through' : ''}`}>{item.item}</span></button>); })}</div></div>))}</div>
       </div>
     </div>
   );
@@ -569,9 +569,9 @@ const EssentialLanguageModule = ({ destination }) => {
   const simulateAudio = (idx) => { setPlayingPhrase(idx); setTimeout(() => setPlayingPhrase(null), 2000); };
   
   return (
-    <div className="bg-gradient-to-br from-amber-50 via-white to-orange-50 rounded-2xl border border-amber-200 overflow-hidden shadow-lg language-section">
+    <div className="bg-gradient-to-br from-amber-950/60 via-slate-900/40 to-orange-950/60 rounded-2xl border border-amber-700 overflow-hidden shadow-lg language-section">
       <div className="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4 flex items-center gap-3"><div className="p-2 bg-slate-900/20 rounded-xl backdrop-blur-sm"><Languages size={24} className="text-white" /></div><div><h3 className="font-bold text-white text-lg">Frases Essenciais em {langData.language}</h3><p className="text-amber-100 text-sm">{langData.flag} 5 expressões de sobrevivência</p></div></div>
-      <div className="p-4 space-y-3">{langData.phrases.map((phrase, idx) => (<div key={idx} className="bg-slate-900 rounded-xl p-4 border border-amber-100 hover:border-amber-300 transition-all group"><div className="flex items-start justify-between gap-3"><div className="flex-1"><p className="font-bold text-white text-lg">{phrase.phrase}</p><p className="text-slate-300 text-sm mt-1">{phrase.translation}</p><p className="text-amber-600 text-xs mt-2 font-mono bg-amber-50 px-2 py-1 rounded inline-block">🔊 "{phrase.phonetic}"</p></div><button onClick={() => simulateAudio(idx)} className={`p-3 rounded-xl transition-all ${playingPhrase === idx ? 'bg-amber-500 text-white animate-pulse' : 'bg-amber-100 text-amber-600 hover:bg-amber-200'}`}><Volume2 size={20} /></button></div></div>))}</div>
+      <div className="p-4 space-y-3">{langData.phrases.map((phrase, idx) => (<div key={idx} className="bg-slate-900 rounded-xl p-4 border border-amber-800 hover:border-amber-300 transition-all group"><div className="flex items-start justify-between gap-3"><div className="flex-1"><p className="font-bold text-white text-lg">{phrase.phrase}</p><p className="text-slate-200 text-sm mt-1">{phrase.translation}</p><p className="text-amber-400 text-xs mt-2 font-mono bg-amber-900/20 px-2 py-1 rounded inline-block">🔊 "{phrase.phonetic}"</p></div><button onClick={() => simulateAudio(idx)} className={`p-3 rounded-xl transition-all ${playingPhrase === idx ? 'bg-amber-600 text-white animate-pulse' : 'bg-amber-900/30 text-amber-400 hover:bg-amber-800/40'}`}><Volume2 size={20} /></button></div></div>))}</div>
     </div>
   );
 };
@@ -625,8 +625,8 @@ const Suitcase3DVisualizer = ({ checkedItems, packingList, totalWeight, maxWeigh
         {Object.entries(categories).map(([cat, weight]) => (
           <div key={cat} className="flex items-center gap-1 px-2 py-1 bg-slate-700/50 rounded-full">
             <div className="w-2 h-2 rounded-full" style={{ backgroundColor: categoryColors[cat] || '#64748b' }} />
-            <span className="text-xs text-slate-300">{cat}</span>
-            <span className="text-xs text-slate-500">{weight.toFixed(1)}kg</span>
+            <span className="text-xs text-slate-200">{cat}</span>
+            <span className="text-xs text-slate-200">{weight.toFixed(1)}kg</span>
           </div>
         ))}
       </div>
@@ -688,7 +688,7 @@ const VirtualSuitcaseOptimizer = ({ destination, tripPriorities, tripDays, adult
                     <Luggage size={24} className="text-cyan-400" />
                     <div className="flex-1">
                       <p className="font-medium text-white text-sm">{bag.type}</p>
-                      <p className="text-xs text-slate-400">{bag.size} • Até {bag.weight}kg</p>
+                      <p className="text-xs text-slate-200">{bag.size} • Até {bag.weight}kg</p>
                     </div>
                   </div>
                 ))}
@@ -706,9 +706,9 @@ const VirtualSuitcaseOptimizer = ({ destination, tripPriorities, tripDays, adult
                   <Scale size={18} className="text-indigo-400" />
                   <span className="text-white text-sm font-medium">Definir Dimensões da Mala</span>
                 </div>
-                <ChevronRight size={16} className="text-slate-400" />
+                <ChevronRight size={16} className="text-slate-300" />
               </div>
-              <p className="text-xs text-slate-400 mt-1">Personalize o tamanho ou faça upload de foto</p>
+              <p className="text-xs text-slate-300 mt-1">Personalize o tamanho ou faça upload de foto</p>
             </button>
             
             <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
@@ -717,9 +717,9 @@ const VirtualSuitcaseOptimizer = ({ destination, tripPriorities, tripDays, adult
                 <div className={`absolute left-0 top-0 h-full rounded-full transition-all duration-700 ${isOverweight ? 'bg-gradient-to-r from-red-500 to-red-600' : weightPercentage > 80 ? 'bg-gradient-to-r from-amber-500 to-orange-500' : 'bg-gradient-to-r from-emerald-500 to-cyan-500'}`} style={{ width: `${Math.min(weightPercentage, 100)}%` }} />
               </div>
               <div className="flex justify-between mt-2 text-xs">
-                <span className="text-slate-400">0kg</span>
+                <span className="text-slate-200">0kg</span>
                 <span className={`font-bold ${isOverweight ? 'text-red-400' : 'text-emerald-400'}`}>{weightPercentage.toFixed(0)}%</span>
-                <span className="text-slate-400">{maxWeight}kg</span>
+                <span className="text-slate-200">{maxWeight}kg</span>
               </div>
               {isOverweight && <p className="text-red-400 text-sm mt-2 flex items-center gap-1 animate-pulse"><AlertTriangle size={14} /> Excesso de {(totalWeight - maxWeight).toFixed(1)}kg!</p>}
               {!isOverweight && weightPercentage <= 80 && <p className="text-emerald-400 text-sm mt-2">✅ Peso ideal! Espaço para lembrancinhas.</p>}
@@ -736,13 +736,13 @@ const VirtualSuitcaseOptimizer = ({ destination, tripPriorities, tripDays, adult
               <div className="grid grid-cols-3 gap-3">
                 {['width', 'height', 'depth'].map((dim, i) => (
                   <div key={dim}>
-                    <label className="text-xs text-slate-400 block mb-1">{['Largura', 'Altura', 'Profundidade'][i]} (cm)</label>
+                    <label className="text-xs text-slate-300 block mb-1">{['Largura', 'Altura', 'Profundidade'][i]} (cm)</label>
                     <input type="number" value={customBagSize[dim]} onChange={e => setCustomBagSize({...customBagSize, [dim]: Number(e.target.value)})} className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-center" />
                   </div>
                 ))}
               </div>
               <div className="p-3 bg-slate-700/50 rounded-lg">
-                <p className="text-sm text-slate-300">📷 Ou faça upload de uma foto da sua mala:</p>
+                <p className="text-sm text-slate-200">📷 Ou faça upload de uma foto da sua mala:</p>
                 <button className="mt-2 w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm transition-all">Selecionar Imagem (Em breve)</button>
               </div>
             </div>
@@ -909,16 +909,16 @@ const AIConcierge = ({ isOpen, onClose, destination, hotel, user, daySchedule, t
         </div>
         
         <div className="px-3 py-2 bg-slate-900/80 border-b border-slate-800 flex gap-2 overflow-x-auto">
-          <button onClick={() => handleQuickAction('currentActivity')} className="px-3 py-1.5 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-xs font-medium text-indigo-300 hover:bg-indigo-500/30 transition-all whitespace-nowrap">🎯 Agora</button>
+          <button onClick={() => handleQuickAction('currentActivity')} className="px-3 py-1.5 bg-indigo-900/200/20 border border-indigo-500/30 rounded-full text-xs font-medium text-indigo-300 hover:bg-indigo-900/200/30 transition-all whitespace-nowrap">🎯 Agora</button>
           {CONCIERGE_QUICK_ACTIONS.slice(0, 5).map(action => (
-            <button key={action.id} onClick={() => handleQuickAction(action.id)} className="px-3 py-1.5 bg-slate-800/50 border border-slate-700 rounded-full text-xs font-medium text-slate-300 hover:bg-slate-700 transition-all whitespace-nowrap">{action.label}</button>
+            <button key={action.id} onClick={() => handleQuickAction(action.id)} className="px-3 py-1.5 bg-slate-800 text-white border border-slate-700 rounded-full text-xs font-medium text-slate-300 hover:bg-slate-700 transition-all whitespace-nowrap">{action.label}</button>
           ))}
         </div>
         
         <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-950/50">
           {messages.map((msg, idx) => (
             <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-[85%] p-3 rounded-2xl ${msg.role === 'user' ? 'bg-indigo-600 text-white rounded-br-sm' : 'bg-slate-800/80 backdrop-blur-sm text-slate-100 rounded-bl-sm border border-slate-700/50'}`}>
+              <div className={`max-w-[85%] p-3 rounded-2xl ${msg.role === 'user' ? 'bg-indigo-600 text-white rounded-br-sm' : 'bg-slate-800/80 backdrop-blur-sm text-slate-300 rounded-bl-sm border border-slate-600'}`}>
                 <p className="text-sm whitespace-pre-line">{msg.content}</p>
               </div>
             </div>
@@ -936,7 +936,7 @@ const AIConcierge = ({ isOpen, onClose, destination, hotel, user, daySchedule, t
         
         <div className="p-4 border-t border-slate-700 bg-slate-800">
           <div className="flex gap-2">
-            <input type="text" value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleSend()} placeholder="Pergunte qualquer coisa..." className="flex-1 px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-400" />
+            <input type="text" value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleSend()} placeholder="Pergunte qualquer coisa..." className="flex-1 px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-500" />
             <button onClick={handleSend} className="p-2.5 bg-gradient-to-r from-indigo-600 to-indigo-600 text-white rounded-xl hover:opacity-90 transition-all"><Send size={20} /></button>
           </div>
         </div>
@@ -974,15 +974,15 @@ const TripExecutionDashboard = ({ plannedCosts, isActive, onToggleActive, realEx
     <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 rounded-2xl overflow-hidden shadow-xl trip-execution-section">
       <div className="px-6 py-4 flex items-center justify-between border-b border-slate-700">
         <div className="flex items-center gap-3">
-          <div className={`p-2 rounded-xl ${isActive ? 'bg-emerald-500/20' : 'bg-slate-700'}`}>
-            <Receipt size={24} className={isActive ? 'text-emerald-400' : 'text-slate-400'} />
+          <div className={`p-2 rounded-xl ${isActive ? 'bg-emerald-600/20' : 'bg-slate-700'}`}>
+            <Receipt size={24} className={isActive ? 'text-emerald-400' : 'text-slate-300'} />
           </div>
           <div>
             <h3 className="font-bold text-white text-lg">Gestão Financeira da Viagem</h3>
-            <p className="text-slate-400 text-sm">{isActive ? '🟢 Modo Viagem Ativa' : '⚪ Modo Planejamento'}</p>
+            <p className="text-slate-200 text-sm">{isActive ? '🟢 Modo Viagem Ativa' : '⚪ Modo Planejamento'}</p>
           </div>
         </div>
-        <button onClick={onToggleActive} className={`px-4 py-2 rounded-xl font-medium transition-all ${isActive ? 'bg-emerald-500 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'}`}>
+        <button onClick={onToggleActive} className={`px-4 py-2 rounded-xl font-medium transition-all ${isActive ? 'bg-emerald-600 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'}`}>
           {isActive ? <><Pause size={16} className="inline mr-1" /> Pausar</> : <><Play size={16} className="inline mr-1" /> Iniciar Viagem</>}
         </button>
       </div>
@@ -991,15 +991,15 @@ const TripExecutionDashboard = ({ plannedCosts, isActive, onToggleActive, realEx
         {/* Resumo Geral */}
         <div className="grid grid-cols-3 gap-4">
           <div className="bg-slate-700/50 rounded-xl p-4 text-center">
-            <p className="text-slate-400 text-xs uppercase">Planejado</p>
+            <p className="text-slate-200 text-xs uppercase">Planejado</p>
             <p className="text-2xl font-bold text-white">R$ {totalPlanned.toLocaleString()}</p>
           </div>
           <div className="bg-slate-700/50 rounded-xl p-4 text-center">
-            <p className="text-slate-400 text-xs uppercase">Realizado</p>
+            <p className="text-slate-200 text-xs uppercase">Realizado</p>
             <p className={`text-2xl font-bold ${totalReal > totalPlanned ? 'text-red-400' : 'text-emerald-400'}`}>R$ {totalReal.toLocaleString()}</p>
           </div>
-          <div className={`rounded-xl p-4 text-center ${variance > 0 ? 'bg-red-500/20' : 'bg-emerald-500/20'}`}>
-            <p className="text-slate-400 text-xs uppercase">Variação</p>
+          <div className={`rounded-xl p-4 text-center ${variance > 0 ? 'bg-red-900/200/20' : 'bg-emerald-600/20'}`}>
+            <p className="text-slate-200 text-xs uppercase">Variação</p>
             <p className={`text-2xl font-bold ${variance > 0 ? 'text-red-400' : 'text-emerald-400'}`}>{variance > 0 ? '+' : ''}{variancePercent.toFixed(1)}%</p>
           </div>
         </div>
@@ -1016,19 +1016,19 @@ const TripExecutionDashboard = ({ plannedCosts, isActive, onToggleActive, realEx
               <div key={cat.id} className="bg-slate-700/30 rounded-xl p-3">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <CatIcon size={16} className="text-slate-400" />
-                    <span className="text-sm text-slate-300">{cat.name}</span>
-                    {alert && <span className={`text-xs px-2 py-0.5 rounded-full ${alert.type === 'danger' ? 'bg-red-500/30 text-red-300 animate-pulse' : alert.type === 'warning' ? 'bg-amber-500/30 text-amber-300' : 'bg-emerald-500/30 text-emerald-300'}`}>{alert.message}</span>}
+                    <CatIcon size={16} className="text-slate-300" />
+                    <span className="text-sm text-slate-200">{cat.name}</span>
+                    {alert && <span className={`text-xs px-2 py-0.5 rounded-full ${alert.type === 'danger' ? 'bg-red-900/200/30 text-red-300 animate-pulse' : alert.type === 'warning' ? 'bg-amber-600/30 text-amber-300' : 'bg-emerald-600/30 text-emerald-300'}`}>{alert.message}</span>}
                   </div>
                   <div className="flex items-center gap-2">
                     {isActive && (
                       <input type="number" value={real || ''} onChange={e => onUpdateExpense(cat.id, Number(e.target.value))} placeholder="R$ gasto" className="w-24 px-2 py-1 bg-slate-600 text-white text-sm rounded-lg text-right focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                     )}
-                    <span className="text-xs text-slate-500">/ R$ {cat.planned.toLocaleString()}</span>
+                    <span className="text-xs text-slate-200">/ R$ {cat.planned.toLocaleString()}</span>
                   </div>
                 </div>
                 <div className="h-1.5 bg-slate-600 rounded-full overflow-hidden">
-                  <div className={`h-full rounded-full transition-all duration-500 ${progress > 100 ? 'bg-red-500' : progress > 80 ? 'bg-amber-500' : 'bg-emerald-500'}`} style={{ width: `${Math.min(progress, 100)}%` }} />
+                  <div className={`h-full rounded-full transition-all duration-500 ${progress > 100 ? 'bg-red-900/200' : progress > 80 ? 'bg-amber-600' : 'bg-emerald-600'}`} style={{ width: `${Math.min(progress, 100)}%` }} />
                 </div>
               </div>
             );
@@ -1037,7 +1037,7 @@ const TripExecutionDashboard = ({ plannedCosts, isActive, onToggleActive, realEx
         
         {/* Alerta de Desvio Global */}
         {isActive && variance > totalPlanned * 0.2 && (
-          <div className="bg-red-500/20 border border-red-500/50 rounded-xl p-4 animate-pulse">
+          <div className="bg-red-900/200/20 border border-red-500/50 rounded-xl p-4 animate-pulse">
             <div className="flex items-start gap-3">
               <AlertTriangle size={24} className="text-red-400 flex-shrink-0" />
               <div>
@@ -1062,15 +1062,15 @@ const LiveBookingPlaceholder = ({ type, item }) => {
   };
   
   return (
-    <div className="mt-2 p-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
+    <div className="mt-2 p-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-700">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Globe size={14} className="text-blue-600" />
-          <span className="text-xs text-blue-700 font-medium">
+          <Globe size={14} className="text-blue-400" />
+          <span className="text-xs text-blue-400 font-medium">
             {type === 'hotel' ? 'Verificar no Booking.com' : 'Verificar no Amadeus GDS'}
           </span>
         </div>
-        <button onClick={handleCheck} disabled={checking} className={`px-3 py-1 text-xs rounded-full font-medium transition-all ${checking ? 'bg-blue-200 text-blue-600' : 'bg-blue-600 text-white hover:bg-blue-700'}`}>
+        <button onClick={handleCheck} disabled={checking} className={`px-3 py-1 text-xs rounded-full font-medium transition-all ${checking ? 'bg-blue-200 text-blue-400' : 'bg-blue-600 text-white hover:bg-blue-700'}`}>
           {checking ? <><RefreshCw size={12} className="inline animate-spin mr-1" /> Verificando...</> : 'Checar Disponibilidade'}
         </button>
       </div>
@@ -1091,7 +1091,7 @@ const BudgetSpeedometer = ({ total, spent, isOverBudget }) => {
         <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#budgetGradient)" strokeWidth="16" strokeLinecap="round" strokeDasharray={`${Math.min(percentage, 100) * 2.51} 251`} />
         <g transform={`rotate(${angle}, 100, 100)`}><line x1="100" y1="100" x2="100" y2="35" stroke="#1e293b" strokeWidth="3" strokeLinecap="round" /><circle cx="100" cy="100" r="8" fill="#1e293b" /></g>
       </svg>
-      <div className="absolute bottom-0 text-center"><p className={`text-2xl font-bold ${isOverBudget ? 'text-red-600' : 'text-white'}`}>{percentage.toFixed(0)}%</p><p className="text-xs text-slate-500">do orçamento</p></div>
+      <div className="absolute bottom-0 text-center"><p className={`text-2xl font-bold ${isOverBudget ? 'text-red-600' : 'text-white'}`}>{percentage.toFixed(0)}%</p><p className="text-xs text-slate-200">do orçamento</p></div>
     </div>
   );
 };
@@ -1218,15 +1218,16 @@ const AuthModal = ({ isOpen, onClose, onLogin }) => {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-slate-900 rounded-2xl max-w-md w-full overflow-hidden shadow-2xl">
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div className="bg-slate-900 rounded-2xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-700">
         <div className="p-8 bg-gradient-to-br from-indigo-600 to-emerald-600 text-white text-center">
-          <Globe size={56} className="mx-auto mb-4" /><h2 className="text-2xl font-bold">KINU</h2><p className="text-teal-100 text-sm mt-1">Viaje de forma inteligente</p>
+          <KinuLogo size={48} className="mx-auto mb-4" /><h2 className="text-2xl font-bold">Bem-vindo ao KINU</h2><p className="text-indigo-100 text-sm mt-1">Sua jornada, nossa inteligência coletiva.</p>
         </div>
         <div className="p-6">
-          <div className="flex gap-2 mb-6">{['login', 'signup'].map(m => <button key={m} onClick={() => setMode(m)} className={`flex-1 py-3 rounded-xl font-medium transition-all ${mode === m ? 'bg-indigo-600 text-white' : 'bg-slate-100'}`}>{m === 'login' ? 'Entrar' : 'Criar Conta'}</button>)}</div>
-          <div className="space-y-4">{mode === 'signup' && <input type="text" placeholder="Nome completo" value={form.name} onChange={e => setForm({...form, name: e.target.value})} className="w-full px-4 py-3 bg-slate-950 border rounded-xl" />}<input type="email" placeholder="E-mail" value={form.email} onChange={e => setForm({...form, email: e.target.value})} className="w-full px-4 py-3 bg-slate-950 border rounded-xl" /><input type="password" placeholder="Senha" value={form.password} onChange={e => setForm({...form, password: e.target.value})} className="w-full px-4 py-3 bg-slate-950 border rounded-xl" /></div>
-          <button onClick={() => { const user = { name: form.name || 'Viajante', email: form.email, avatar: '🌍', trips: 0, joinDate: '2025' }; onLogin(user); onClose(); }} className="w-full mt-6 py-4 bg-gradient-to-r from-indigo-600 to-emerald-600 text-white font-bold rounded-xl">{mode === 'login' ? 'Entrar' : 'Criar Conta'}</button>
+          <div className="flex gap-2 mb-6">{['login', 'signup'].map(m => <button key={m} onClick={() => setMode(m)} className={`flex-1 py-3 rounded-xl font-medium transition-all ${mode === m ? 'bg-indigo-600 text-white' : 'bg-slate-800 text-slate-200 hover:bg-slate-700'}`}>{m === 'login' ? 'Entrar' : 'Criar Conta'}</button>)}</div>
+          <div className="space-y-4">{mode === 'signup' && <input type="text" placeholder="Nome completo" value={form.name} onChange={e => setForm({...form, name: e.target.value})} className="w-full px-4 py-3 bg-slate-800 text-white placeholder-slate-500 border border-slate-600 rounded-xl focus:border-indigo-500 outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none" />}<input type="email" placeholder="E-mail" value={form.email} onChange={e => setForm({...form, email: e.target.value})} className="w-full px-4 py-3 bg-slate-800 text-white placeholder-slate-500 border border-slate-600 rounded-xl focus:border-indigo-500 outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none" /><input type="password" placeholder="Senha" value={form.password} onChange={e => setForm({...form, password: e.target.value})} className="w-full px-4 py-3 bg-slate-800 text-white placeholder-slate-500 border border-slate-600 rounded-xl focus:border-indigo-500 outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none" /></div>
+          <button onClick={() => { const user = { name: form.name || 'Viajante', email: form.email, avatar: '🌍', trips: 0, joinDate: '2025' }; onLogin(user); onClose(); }} className="w-full mt-6 py-4 bg-gradient-to-r from-indigo-600 to-emerald-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transition-all">{mode === 'login' ? 'Entrar no Clã' : 'Juntar-se ao Clã'}</button>
+          <p className="text-center text-xs text-slate-400 mt-4">Ao continuar, você aceita compartilhar conhecimento com o clã</p>
         </div>
       </div>
     </div>
@@ -1235,16 +1236,16 @@ const AuthModal = ({ isOpen, onClose, onLogin }) => {
 
 const DestinationGuide = ({ destination }) => {
   const guide = DESTINATION_GUIDES[destination];
-  if (!guide) return <p className="text-slate-500 text-center py-8">Guia não disponível para este destino</p>;
+  if (!guide) return <p className="text-slate-300 text-center py-8">Guia não disponível para este destino</p>;
   return (
     <div className="space-y-6">
       <div className="grid md:grid-cols-3 gap-4">
-        <div className={`p-5 rounded-xl ${guide.visa.required ? 'bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200' : 'bg-gradient-to-br from-emerald-50 to-green-50 border border-emerald-200'}`}><div className="flex items-center gap-3 mb-3"><div className={`p-2 rounded-lg ${guide.visa.required ? 'bg-amber-500' : 'bg-emerald-500'}`}><FileText size={20} className="text-white" /></div><h4 className="font-bold text-white">Visto</h4></div><p className={`text-sm font-semibold ${guide.visa.required ? 'text-amber-600' : 'text-emerald-600'}`}>{guide.visa.required ? '⚠️ Obrigatório' : '✅ Não necessário'}</p><p className="text-xs text-slate-300 mt-2">{guide.visa.info}</p></div>
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-xl border border-blue-200"><div className="flex items-center gap-3 mb-3"><div className="p-2 rounded-lg bg-blue-500"><Stethoscope size={20} className="text-white" /></div><h4 className="font-bold text-white">Saúde</h4></div><p className="text-xs text-slate-300">{guide.health.insurance}</p><div className="mt-2 flex flex-wrap gap-1">{guide.health.vaccines.map((v, i) => <span key={i} className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">{v}</span>)}</div></div>
-        <div className="bg-gradient-to-br from-emerald-50 to-indigo-50 p-5 rounded-xl border border-emerald-200"><div className="flex items-center gap-3 mb-3"><div className="p-2 rounded-lg bg-emerald-500"><DollarSign size={20} className="text-white" /></div><h4 className="font-bold text-white">Moeda</h4></div><p className="text-2xl font-bold text-emerald-700">{guide.currency.symbol} {guide.currency.code}</p><p className="text-xs text-slate-300 mt-1">1 BRL ≈ {guide.currency.rate} {guide.currency.code}</p></div>
+        <div className={`p-5 rounded-xl ${guide.visa.required ? 'bg-amber-900/30 border border-amber-600/50' : 'bg-emerald-900/30 border border-emerald-600/50'}`}><div className="flex items-center gap-3 mb-3"><div className={`p-2 rounded-lg ${guide.visa.required ? 'bg-amber-600' : 'bg-emerald-600'}`}><FileText size={20} className="text-white" /></div><h4 className="font-bold text-white">Visto</h4></div><p className={`text-sm font-semibold ${guide.visa.required ? 'text-amber-400' : 'text-emerald-400'}`}>{guide.visa.required ? '⚠️ Obrigatório' : '✅ Não necessário'}</p><p className="text-sm text-slate-200 mt-2">{guide.visa.info}</p></div>
+        <div className="bg-blue-900/30 p-5 rounded-xl border border-blue-600/50"><div className="flex items-center gap-3 mb-3"><div className="p-2 rounded-lg bg-blue-600"><Stethoscope size={20} className="text-white" /></div><h4 className="font-bold text-white">Saúde</h4></div><p className="text-sm text-slate-200">{guide.health.insurance}</p><div className="mt-2 flex flex-wrap gap-1">{guide.health.vaccines.map((v, i) => <span key={i} className="text-xs bg-blue-800/50 text-blue-300 px-2 py-1 rounded-full">{v}</span>)}</div></div>
+        <div className="bg-emerald-900/30 p-5 rounded-xl border border-emerald-600/50"><div className="flex items-center gap-3 mb-3"><div className="p-2 rounded-lg bg-emerald-600"><DollarSign size={20} className="text-white" /></div><h4 className="font-bold text-white">Moeda</h4></div><p className="text-2xl font-bold text-emerald-400">{guide.currency.symbol} {guide.currency.code}</p><p className="text-sm text-slate-300 mt-1">1 BRL ≈ {guide.currency.rate} {guide.currency.code}</p></div>
       </div>
-      <div className="bg-slate-900/70 rounded-xl p-4"><p className="text-xs font-semibold text-slate-500 uppercase mb-2">📋 Documentos necessários</p><div className="flex flex-wrap gap-2">{guide.visa.docs.map((d, i) => <span key={i} className="text-xs bg-slate-100 text-slate-200 px-3 py-1.5 rounded-full border border-slate-700">{d}</span>)}</div></div>
-      <div className="bg-slate-900/70 rounded-xl p-4"><p className="text-xs font-semibold text-slate-500 uppercase mb-2">💡 Dicas de câmbio</p><ul className="space-y-1">{guide.currency.tips.map((tip, i) => <li key={i} className="text-sm text-slate-300 flex items-center gap-2"><ChevronRight size={12} className="text-emerald-500" />{tip}</li>)}</ul></div>
+      <div className="bg-slate-800/70 rounded-xl p-4 border border-slate-700"><p className="text-xs font-semibold text-slate-400 uppercase mb-2">📋 Documentos necessários</p><div className="flex flex-wrap gap-2">{guide.visa.docs.map((d, i) => <span key={i} className="text-sm bg-slate-700 text-slate-200 px-3 py-1.5 rounded-full border border-slate-600">{d}</span>)}</div></div>
+      <div className="bg-slate-800/70 rounded-xl p-4 border border-slate-700"><p className="text-xs font-semibold text-slate-400 uppercase mb-2">💡 Dicas de câmbio</p><ul className="space-y-1">{guide.currency.tips.map((tip, i) => <li key={i} className="text-sm text-slate-200 flex items-center gap-2"><ChevronRight size={12} className="text-emerald-500" />{tip}</li>)}</ul></div>
     </div>
   );
 };
@@ -1286,10 +1287,10 @@ const PremiumItineraryRenderer = ({ dailySchedule, destination }) => {
         const isExpanded = expandedDay === dayData.day;
         return (
           <div key={idx} className={`bg-slate-900 rounded-2xl border overflow-hidden transition-all duration-500 ${isExpanded ? 'shadow-xl border-indigo-300' : 'shadow-sm border-slate-700 hover:border-slate-300'}`}>
-            <button onClick={() => setExpandedDay(isExpanded ? null : dayData.day)} className={`w-full text-left px-5 py-4 flex items-center justify-between transition-all ${isExpanded ? 'bg-gradient-to-r from-indigo-600 to-emerald-600 text-white' : 'bg-slate-950 hover:bg-slate-100'}`}>
+            <button onClick={() => setExpandedDay(isExpanded ? null : dayData.day)} className={`w-full text-left px-5 py-4 flex items-center justify-between transition-all ${isExpanded ? 'bg-gradient-to-r from-indigo-600 to-emerald-600 text-white' : 'bg-slate-950 hover:bg-slate-800'}`}>
               <div className="flex items-center gap-4">
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold ${isExpanded ? 'bg-slate-900/20' : 'bg-teal-100 text-teal-700'}`}>{dayData.day}</div>
-                <div><h4 className={`font-bold ${isExpanded ? 'text-white' : 'text-white'}`}>Dia {dayData.day} — {dayData.theme}</h4><p className={`text-xs ${isExpanded ? 'text-teal-100' : 'text-slate-500'}`}>{dayData.items.length} atividades</p></div>
+                <div><h4 className={`font-bold ${isExpanded ? 'text-white' : 'text-white'}`}>Dia {dayData.day} — {dayData.theme}</h4><p className={`text-xs ${isExpanded ? 'text-teal-100' : 'text-slate-300'}`}>{dayData.items.length} atividades</p></div>
               </div>
               <ChevronDown size={20} className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
             </button>
@@ -1301,15 +1302,15 @@ const PremiumItineraryRenderer = ({ dailySchedule, destination }) => {
                     <div key={itemIdx} className="flex items-center gap-4 p-4 bg-gradient-to-r from-slate-50 to-white rounded-xl border border-slate-800 hover:border-slate-700 hover:shadow-md transition-all group">
                       <div className="text-center w-20 flex-shrink-0">
                         <div className="font-mono text-sm font-bold text-indigo-600">{item.time}</div>
-                        {item.endTime && <><div className="text-xs text-slate-400">—</div><div className="font-mono text-xs text-slate-500">{item.endTime}</div></>}
+                        {item.endTime && <><div className="text-xs text-slate-200">—</div><div className="font-mono text-xs text-slate-300">{item.endTime}</div></>}
                       </div>
                       <div className={`p-3 rounded-xl bg-gradient-to-br ${getTypeColor(item.type)} shadow-lg group-hover:scale-110 transition-transform`}><ItemIcon size={20} className="text-white" /></div>
-                      <div className="flex-1 min-w-0"><p className="font-semibold text-white group-hover:text-indigo-700 transition-colors">{item.name}</p><p className="text-xs text-slate-500 capitalize mt-0.5">{item.type === 'restaurant' ? '🍽️ Refeição' : item.type === 'activity' ? '🎯 Atividade' : item.type === 'transfer' ? '🚗 Transporte' : item.type}</p></div>
-                      {item.cost > 0 && <div className="text-right flex-shrink-0"><span className="px-3 py-1.5 bg-emerald-100 text-emerald-700 text-sm font-bold rounded-lg">R$ {item.cost.toLocaleString()}</span></div>}
+                      <div className="flex-1 min-w-0"><p className="font-semibold text-white group-hover:text-indigo-700 transition-colors">{item.name}</p><p className="text-xs text-slate-300 capitalize mt-0.5">{item.type === 'restaurant' ? '🍽️ Refeição' : item.type === 'activity' ? '🎯 Atividade' : item.type === 'transfer' ? '🚗 Transporte' : item.type}</p></div>
+                      {item.cost > 0 && <div className="text-right flex-shrink-0"><span className="px-3 py-1.5 bg-emerald-900/30 text-emerald-400 text-sm font-bold rounded-lg">R$ {item.cost.toLocaleString()}</span></div>}
                     </div>
                   );
                 })}
-                <div className="pt-3 mt-3 border-t border-slate-800 flex items-center justify-between"><span className="text-xs text-slate-500">Total do dia:</span><span className="font-bold text-indigo-600">R$ {dayData.items.reduce((sum, item) => sum + (item.cost || 0), 0).toLocaleString()}</span></div>
+                <div className="pt-3 mt-3 border-t border-slate-800 flex items-center justify-between"><span className="text-xs text-slate-200">Total do dia:</span><span className="font-bold text-indigo-600">R$ {dayData.items.reduce((sum, item) => sum + (item.cost || 0), 0).toLocaleString()}</span></div>
               </div>
             </div>
           </div>
@@ -1321,17 +1322,17 @@ const PremiumItineraryRenderer = ({ dailySchedule, destination }) => {
 
 // ========== MODALS AND REMAINING COMPONENTS ==========
 const AIInsightCard = ({ insight, onAction }) => {
-  const colors = { upgrade: 'border-emerald-300 bg-emerald-50', downgrade: 'border-amber-300 bg-amber-50', danger: 'border-red-300 bg-red-50', tip: 'border-blue-300 bg-blue-50', info: 'border-slate-300 bg-slate-950' };
+  const colors = { upgrade: 'border-emerald-300 bg-emerald-900/20', downgrade: 'border-amber-300 bg-amber-900/20', danger: 'border-red-300 bg-red-900/20', tip: 'border-blue-300 bg-blue-900/20', info: 'border-slate-300 bg-slate-950' };
   return (
     <div className={`p-4 rounded-xl border-2 ${colors[insight.type] || colors.tip} transition-all hover:shadow-md`}>
       <div className="flex items-start gap-3">
-        <div className={`p-2 rounded-lg ${insight.type === 'upgrade' ? 'bg-emerald-500' : insight.type === 'downgrade' ? 'bg-amber-500' : insight.type === 'danger' ? 'bg-red-500' : 'bg-blue-500'}`}>
+        <div className={`p-2 rounded-lg ${insight.type === 'upgrade' ? 'bg-emerald-600' : insight.type === 'downgrade' ? 'bg-amber-600' : insight.type === 'danger' ? 'bg-red-900/200' : 'bg-blue-600'}`}>
           <insight.icon size={18} className="text-white" />
         </div>
         <div className="flex-1">
           <p className="font-semibold text-white text-sm">{insight.title}</p>
           <p className="text-xs text-slate-300 mt-1">{insight.message}</p>
-          {(insight.savings || insight.cost) && <p className={`text-xs font-bold mt-1 ${insight.savings ? 'text-emerald-600' : 'text-amber-600'}`}>{insight.savings ? `Economia: R$ ${insight.savings.toLocaleString()}` : `+R$ ${insight.cost.toLocaleString()}`}</p>}
+          {(insight.savings || insight.cost) && <p className={`text-xs font-bold mt-1 ${insight.savings ? 'text-emerald-400' : 'text-amber-400'}`}>{insight.savings ? `Economia: R$ ${insight.savings.toLocaleString()}` : `+R$ ${insight.cost.toLocaleString()}`}</p>}
         </div>
         {insight.action && <button onClick={() => onAction(insight)} className={`px-3 py-1.5 text-xs font-bold rounded-lg ${insight.type === 'upgrade' ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-amber-600 text-white hover:bg-amber-700'} transition-all`}>{insight.action}</button>}
       </div>
@@ -1349,25 +1350,25 @@ const ActivityModal = ({ isOpen, onClose, activities, restaurants, current, mode
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div className="bg-slate-900 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-hidden shadow-2xl">
         <div className="p-6 border-b border-slate-700 flex items-center justify-between">
-          <div><h2 className="text-xl font-bold text-white">{mode === 'swap' ? 'Trocar Atividade' : 'Adicionar ao Dia ' + dayNum}</h2><p className="text-sm text-slate-500 mt-1">Escolha uma opção abaixo</p></div>
-          <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-xl transition-all"><X size={24} className="text-slate-500" /></button>
+          <div><h2 className="text-xl font-bold text-white">{mode === 'swap' ? 'Trocar Atividade' : 'Adicionar ao Dia ' + dayNum}</h2><p className="text-sm text-slate-300 mt-1">Escolha uma opção abaixo</p></div>
+          <button onClick={onClose} className="p-2 hover:bg-slate-800 rounded-xl transition-all"><X size={24} className="text-slate-300" /></button>
         </div>
         <div className="p-4 border-b border-slate-800">
-          <div className="flex gap-2 mb-4">{['activities', 'restaurants'].map(t => <button key={t} onClick={() => setTab(t)} className={`flex-1 py-2.5 rounded-xl font-medium transition-all ${tab === t ? 'bg-indigo-600 text-white' : 'bg-slate-100 hover:bg-slate-200'}`}>{t === 'activities' ? '🎯 Atividades' : '🍽️ Restaurantes'}</button>)}</div>
-          <input type="text" placeholder="Buscar..." value={search} onChange={e => setSearch(e.target.value)} className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl" />
+          <div className="flex gap-2 mb-4">{['activities', 'restaurants'].map(t => <button key={t} onClick={() => setTab(t)} className={`flex-1 py-2.5 rounded-xl font-medium transition-all ${tab === t ? 'bg-indigo-600 text-white' : 'bg-slate-800 hover:bg-slate-700'}`}>{t === 'activities' ? '🎯 Atividades' : '🍽️ Restaurantes'}</button>)}</div>
+          <input type="text" placeholder="Buscar..." value={search} onChange={e => setSearch(e.target.value)} className="w-full px-4 py-3 bg-slate-800 text-white border border-slate-600 rounded-xl focus:border-indigo-500 outline-none" />
         </div>
         <div className="p-4 overflow-y-auto max-h-[50vh]">
           <div className="grid gap-3">
             {filtered.map(item => (
-              <div key={item.id} onClick={() => { onSelect({ ...item, category: tab === 'restaurants' ? 'restaurant' : 'activity', location: item.location || item.cuisine, startTime: item.startTime || '10:00', endTime: TimeSlotEngine.calculateEndTime(item.startTime || '10:00', item.duration), period: item.period || 'manhã' }); onClose(); }} className="p-4 border border-slate-700 rounded-xl hover:border-indigo-400 hover:shadow-md cursor-pointer transition-all group">
+              <div key={item.id} onClick={() => { onSelect({ ...item, category: tab === 'restaurants' ? 'restaurant' : 'activity', location: item.location || item.cuisine, startTime: item.startTime || '10:00', endTime: TimeSlotEngine.calculateEndTime(item.startTime || '10:00', item.duration), period: item.period || 'manhã' }); onClose(); }} className="p-4 border border-slate-600 rounded-xl focus:border-indigo-500 outline-none hover:border-indigo-400 hover:shadow-md cursor-pointer transition-all group">
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
                     <h4 className="font-semibold text-white group-hover:text-indigo-600">{item.name}</h4>
-                    <p className="text-xs text-slate-500 mt-1">{item.location || item.cuisine} • {item.duration}h • ⭐ {item.rating}</p>
+                    <p className="text-xs text-slate-300 mt-1">{item.location || item.cuisine} • {item.duration}h • ⭐ {item.rating}</p>
                   </div>
                   <div className="text-right">
                     <p className="font-bold text-indigo-600">R$ {item.price}</p>
-                    <p className="text-xs text-slate-400">por pessoa</p>
+                    <p className="text-xs text-slate-200">por pessoa</p>
                   </div>
                 </div>
               </div>
@@ -1376,7 +1377,7 @@ const ActivityModal = ({ isOpen, onClose, activities, restaurants, current, mode
         </div>
         {mode === 'swap' && current && (
           <div className="p-4 border-t border-slate-700 bg-slate-950">
-            <button onClick={() => { onRemove(); onClose(); }} className="w-full py-3 border-2 border-red-300 text-red-600 rounded-xl font-medium hover:bg-red-50 flex items-center justify-center gap-2"><Trash2 size={18} /> Remover "{current.name}"</button>
+            <button onClick={() => { onRemove(); onClose(); }} className="w-full py-3 border-2 border-red-300 text-red-600 rounded-xl font-medium hover:bg-red-900/20 flex items-center justify-center gap-2"><Trash2 size={18} /> Remover "{current.name}"</button>
           </div>
         )}
       </div>
@@ -1402,22 +1403,22 @@ const CommunityDetailModal = ({ itinerary, isOpen, onClose, onUse }) => {
             <p className="text-white/80 mt-1 flex items-center gap-2"><MapPin size={14} /> {itinerary.destination} • {itinerary.duration} dias</p>
           </div>
         </div>
-        <div className="flex border-b border-slate-700">{['overview', 'itinerary', 'gallery', 'exchange'].map(tab => <button key={tab} onClick={() => setActiveTab(tab)} className={`flex-1 py-4 font-medium transition-all ${activeTab === tab ? 'text-indigo-600 border-b-2 border-indigo-600 bg-teal-50/50' : 'text-slate-500 hover:text-slate-200 hover:bg-slate-950'}`}>{tab === 'overview' ? '📋 Visão Geral' : tab === 'itinerary' ? '📅 Roteiro' : tab === 'gallery' ? '📸 Galeria' : '💱 Câmbio'}</button>)}</div>
+        <div className="flex border-b border-slate-700">{['overview', 'itinerary', 'gallery', 'exchange'].map(tab => <button key={tab} onClick={() => setActiveTab(tab)} className={`flex-1 py-4 font-medium transition-all ${activeTab === tab ? 'text-indigo-600 border-b-2 border-indigo-600 bg-indigo-900/20/50' : 'text-slate-300 hover:text-slate-200 hover:bg-slate-950'}`}>{tab === 'overview' ? '📋 Visão Geral' : tab === 'itinerary' ? '📅 Roteiro' : tab === 'gallery' ? '📸 Galeria' : '💱 Câmbio'}</button>)}</div>
         <div className="p-6 overflow-y-auto max-h-[50vh]">
           {activeTab === 'overview' && (
             <div className="space-y-6">
-              <div className="flex items-center gap-4 p-4 bg-slate-950 rounded-xl">
+              <div className="flex items-center gap-4 p-4 bg-slate-800 rounded-xl border border-slate-600">
                 <span className="text-4xl">{itinerary.author.avatar}</span>
-                <div className="flex-1"><p className="font-semibold text-white">{itinerary.author.name} {itinerary.author.verified && <UserCheck size={14} className="inline text-indigo-500" />}</p><p className="text-sm text-slate-500">{itinerary.travelers} viajantes</p></div>
-                <div className="text-right"><div className="flex items-center gap-1"><Star size={20} className="text-amber-500 fill-amber-500" /><span className="text-2xl font-bold text-white">{itinerary.rating}</span></div><p className="text-xs text-slate-500">{itinerary.reviews} avaliações</p></div>
+                <div className="flex-1"><p className="font-semibold text-white">{itinerary.author.name} {itinerary.author.verified && <UserCheck size={14} className="inline text-indigo-500" />}</p><p className="text-sm text-slate-200">{itinerary.travelers} viajantes</p></div>
+                <div className="text-right"><div className="flex items-center gap-1"><Star size={20} className="text-amber-500 fill-amber-500" /><span className="text-2xl font-bold text-white">{itinerary.rating}</span></div><p className="text-xs text-slate-200">{itinerary.reviews} avaliações</p></div>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                <div className="p-4 bg-emerald-50 rounded-xl text-center"><p className="text-2xl font-bold text-emerald-700">R$ {(itinerary.budget/1000).toFixed(0)}k</p><p className="text-xs text-emerald-600">Orçamento Total</p></div>
-                <div className="p-4 bg-blue-50 rounded-xl text-center"><p className="text-2xl font-bold text-blue-700">{itinerary.duration}</p><p className="text-xs text-blue-600">Dias</p></div>
+                <div className="p-4 bg-emerald-900/20 rounded-xl text-center"><p className="text-2xl font-bold text-emerald-400">R$ {(itinerary.budget/1000).toFixed(0)}k</p><p className="text-xs text-emerald-400">Orçamento Total</p></div>
+                <div className="p-4 bg-blue-900/20 rounded-xl text-center"><p className="text-2xl font-bold text-blue-400">{itinerary.duration}</p><p className="text-xs text-blue-400">Dias</p></div>
                 <div className="p-4 bg-rose-50 rounded-xl text-center"><p className="text-2xl font-bold text-rose-700">{itinerary.likes.toLocaleString()}</p><p className="text-xs text-rose-600">Curtidas</p></div>
               </div>
               <div><h4 className="font-semibold text-white mb-3">✨ Destaques</h4><div className="flex flex-wrap gap-2">{itinerary.highlights.map((h, i) => <span key={i} className="px-3 py-1.5 bg-teal-100 text-teal-700 text-sm rounded-full font-medium">{h}</span>)}</div></div>
-              {itinerary.comments?.length > 0 && <div><h4 className="font-semibold text-white mb-3">💬 Avaliações Recentes</h4><div className="space-y-3">{itinerary.comments.slice(0, 3).map(c => <div key={c.id} className="p-4 bg-slate-950 rounded-xl"><div className="flex items-center gap-2 mb-2"><span className="text-xl">{c.avatar}</span><span className="font-medium text-slate-200">{c.user}</span><div className="flex items-center gap-1 ml-auto">{Array(c.rating).fill(0).map((_, i) => <Star key={i} size={12} className="text-amber-500 fill-amber-500" />)}</div></div><p className="text-sm text-slate-300">{c.text}</p><p className="text-xs text-slate-400 mt-2">{c.date}</p></div>)}</div></div>}
+              {itinerary.comments?.length > 0 && <div><h4 className="font-semibold text-white mb-3">💬 Avaliações Recentes</h4><div className="space-y-3">{itinerary.comments.slice(0, 3).map(c => <div key={c.id} className="p-4 bg-slate-800 rounded-xl border border-slate-600"><div className="flex items-center gap-2 mb-2"><span className="text-xl">{c.avatar}</span><span className="font-medium text-slate-200">{c.user}</span><div className="flex items-center gap-1 ml-auto">{Array(c.rating).fill(0).map((_, i) => <Star key={i} size={12} className="text-amber-500 fill-amber-500" />)}</div></div><p className="text-sm text-slate-200">{c.text}</p><p className="text-xs text-slate-200 mt-2">{c.date}</p></div>)}</div></div>}
             </div>
           )}
           {activeTab === 'itinerary' && itinerary.dailySchedule && <PremiumItineraryRenderer dailySchedule={itinerary.dailySchedule} destination={itinerary.destination} />}
@@ -1425,7 +1426,7 @@ const CommunityDetailModal = ({ itinerary, isOpen, onClose, onUse }) => {
           {activeTab === 'exchange' && <PredictiveExchangeEngine origin="Brasil" destination={itinerary.destination} tripBudget={itinerary.budget} tripDate="2026-04-20" />}
         </div>
         <div className="p-4 border-t border-slate-700 bg-slate-950 flex gap-3">
-          <button onClick={onClose} className="flex-1 py-3 border-2 border-slate-300 text-slate-200 rounded-xl font-medium hover:bg-slate-100">Fechar</button>
+          <button onClick={onClose} className="flex-1 py-3 border-2 border-slate-300 text-slate-200 rounded-xl font-medium hover:bg-slate-800">Fechar</button>
           <button onClick={() => { onUse(itinerary); onClose(); }} className="flex-1 py-3 bg-gradient-to-r from-indigo-600 to-emerald-600 text-white rounded-xl font-bold hover:shadow-lg flex items-center justify-center gap-2"><Sparkles size={18} /> Usar este Roteiro</button>
         </div>
       </div>
@@ -1477,27 +1478,27 @@ const TimelineActivityCard = ({ item, onEdit, onRemove, showActions = true, isFi
       
       {/* v4.0: Checkbox de conclusão no lugar do ponto */}
       {tripActive && isPayableItem ? (
-        <button onClick={handleCompleteClick} className={`absolute left-[5px] top-1 w-6 h-6 rounded-full border-2 flex items-center justify-center z-10 transition-all ${isCompleted ? 'bg-emerald-500 border-emerald-500' : 'bg-slate-900 border-slate-300 hover:border-emerald-400'}`}>
+        <button onClick={handleCompleteClick} className={`absolute left-[5px] top-1 w-6 h-6 rounded-full border-2 flex items-center justify-center z-10 transition-all ${isCompleted ? 'bg-emerald-600 border-emerald-500' : 'bg-slate-900 border-slate-300 hover:border-emerald-400'}`}>
           {isCompleted && <Check size={14} className="text-white" />}
         </button>
       ) : (
         <div className={`absolute left-[7px] top-1 w-4 h-4 rounded-full border-2 border-white shadow-md ${periodStyle.dot} z-10 group-hover:scale-125 transition-transform`} />
       )}
       
-      <div className={`ml-2 p-4 rounded-xl border transition-all ${isCompleted ? 'bg-emerald-50 border-emerald-300' : isSpecialItem ? 'bg-gradient-to-r from-slate-50 to-slate-100 border-slate-700' : `${periodStyle.bg} ${periodStyle.border}`} hover:shadow-lg group-hover:border-indigo-400`}>
+      <div className={`ml-2 p-4 rounded-xl border transition-all ${isCompleted ? 'bg-emerald-900/20 border-emerald-500/50' : isSpecialItem ? 'bg-slate-800 border-slate-600' : `${periodStyle.bg} ${periodStyle.border}`} hover:shadow-lg group-hover:border-indigo-400`}>
         <div className="flex items-center gap-4">
-          <div className={`p-3 rounded-xl ${isCompleted ? 'bg-emerald-500' : isSpecialItem ? 'bg-slate-200' : `bg-gradient-to-br ${periodStyle.gradient}`} shadow-md`}>
-            <ItemIcon size={20} className={isCompleted ? 'text-white' : isSpecialItem ? 'text-slate-300' : 'text-white'} />
+          <div className={`p-3 rounded-xl ${isCompleted ? 'bg-emerald-600' : isSpecialItem ? 'bg-slate-700' : `bg-gradient-to-br ${periodStyle.gradient}`} shadow-md`}>
+            <ItemIcon size={20} className={isCompleted ? 'text-white' : isSpecialItem ? 'text-white' : 'text-white'} />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <h4 className={`font-semibold ${isCompleted ? 'text-emerald-700 line-through' : isSpecialItem ? 'text-slate-200' : 'text-white'}`}>{item.name}</h4>
-              {item.rating && <span className="flex items-center gap-0.5 text-xs text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-full"><Star size={10} className="fill-amber-500" /> {item.rating}</span>}
-              {isCompleted && <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">✓ Concluído</span>}
+              <h4 className={`font-semibold ${isCompleted ? 'text-emerald-400 line-through' : isSpecialItem ? 'text-white' : 'text-white'}`}>{item.name}</h4>
+              {item.rating && <span className="flex items-center gap-0.5 text-xs text-amber-400 bg-amber-900/30 px-1.5 py-0.5 rounded-full"><Star size={10} className="fill-amber-400" /> {item.rating}</span>}
+              {isCompleted && <span className="text-xs bg-emerald-900/30 text-emerald-400 px-2 py-0.5 rounded-full">✓ Concluído</span>}
               {/* v4.0: Badge de menor preço */}
-              {priceHistory?.isLowestPrice && !isCompleted && <span className="text-xs bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full flex items-center gap-1"><Flame size={10} /> Menor preço 30d</span>}
+              {priceHistory?.isLowestPrice && !isCompleted && <span className="text-xs bg-orange-600/30 text-orange-400 px-2 py-0.5 rounded-full flex items-center gap-1"><Flame size={10} /> Menor preço 30d</span>}
             </div>
-            <div className="flex items-center gap-3 mt-1 text-xs text-slate-500 flex-wrap">
+            <div className="flex items-center gap-3 mt-1 text-xs text-slate-300 flex-wrap">
               {item.location && <span className="flex items-center gap-1"><MapPin size={11} /> {item.location}</span>}
               {item.duration && !isSpecialItem && <span className="flex items-center gap-1"><Clock size={11} /> {item.duration}h</span>}
               {item.startTime && <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${periodStyle.bg} ${periodStyle.text}`}>{item.startTime}{item.endTime ? ` - ${item.endTime}` : ''}</span>}
@@ -1506,28 +1507,28 @@ const TimelineActivityCard = ({ item, onEdit, onRemove, showActions = true, isFi
             {/* v4.0: Links de Booking Dinâmicos */}
             {!isCompleted && isPayableItem && (
               <div className="mt-2">
-                <button onClick={() => setShowBookingLinks(!showBookingLinks)} className="text-xs text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+                <button onClick={() => setShowBookingLinks(!showBookingLinks)} className="text-xs text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
                   <ExternalLink size={12} /> {showBookingLinks ? 'Ocultar links' : 'Ver opções de reserva'}
                 </button>
                 {showBookingLinks && (
                   <div className="mt-2 flex flex-wrap gap-2">
                     {item.type === 'flight' && (
                       <>
-                        <a href={bookingLinks.googleFlights} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-all">Google Flights</a>
-                        <a href={bookingLinks.skyscanner} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-cyan-100 text-cyan-700 rounded-full hover:bg-cyan-200 transition-all">Skyscanner</a>
-                        <a href={bookingLinks.kayak} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded-full hover:bg-orange-200 transition-all">Kayak</a>
+                        <a href={bookingLinks.googleFlights} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-blue-600/30 text-blue-400 rounded-full hover:bg-blue-600/50 transition-all">Google Flights</a>
+                        <a href={bookingLinks.skyscanner} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-cyan-600/30 text-cyan-400 rounded-full hover:bg-cyan-600/50 transition-all">Skyscanner</a>
+                        <a href={bookingLinks.kayak} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-orange-600/30 text-orange-400 rounded-full hover:bg-orange-600/50 transition-all">Kayak</a>
                       </>
                     )}
                     {item.type === 'hotel' && (
                       <>
-                        <a href={bookingLinks.booking} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-all">Booking.com</a>
-                        <a href={bookingLinks.hotels} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-red-100 text-red-700 rounded-full hover:bg-red-200 transition-all">Hotels.com</a>
+                        <a href={bookingLinks.booking} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-blue-900/30 text-blue-400 rounded-full hover:bg-blue-200 transition-all">Booking.com</a>
+                        <a href={bookingLinks.hotels} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-red-900/30 text-red-400 rounded-full hover:bg-red-200 transition-all">Hotels.com</a>
                         <a href={bookingLinks.airbnb} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-pink-100 text-pink-700 rounded-full hover:bg-pink-200 transition-all">Airbnb</a>
                       </>
                     )}
                     {!['flight', 'hotel'].includes(item.type) && (
                       <>
-                        <a href={bookingLinks.getYourGuide} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-red-100 text-red-700 rounded-full hover:bg-red-200 transition-all">GetYourGuide</a>
+                        <a href={bookingLinks.getYourGuide} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-red-900/30 text-red-400 rounded-full hover:bg-red-200 transition-all">GetYourGuide</a>
                         <a href={bookingLinks.tripadvisor} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full hover:bg-green-200 transition-all">TripAdvisor</a>
                         <a href={bookingLinks.viator} target="_blank" rel="noopener noreferrer" className="px-2 py-1 text-xs bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200 transition-all">Viator</a>
                       </>
@@ -1542,8 +1543,8 @@ const TimelineActivityCard = ({ item, onEdit, onRemove, showActions = true, isFi
               <div>
                 {isCompleted && realPrice !== undefined ? (
                   <div>
-                    <p className="font-bold text-emerald-600">R$ {realPrice.toLocaleString()}</p>
-                    <p className="text-xs text-slate-400 line-through">R$ {item.price.toLocaleString()}</p>
+                    <p className="font-bold text-emerald-400">R$ {realPrice.toLocaleString()}</p>
+                    <p className="text-xs text-slate-300 line-through">R$ {item.price.toLocaleString()}</p>
                   </div>
                 ) : (
                   <p className="font-bold text-indigo-600">R$ {item.price.toLocaleString()}</p>
@@ -1552,8 +1553,8 @@ const TimelineActivityCard = ({ item, onEdit, onRemove, showActions = true, isFi
             )}
             {!isSpecialItem && showActions && !tripActive && (
               <div className="flex gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity no-print">
-                <button onClick={() => onEdit && onEdit(item)} className="p-1.5 bg-slate-100 hover:bg-indigo-100 rounded-lg text-slate-500 hover:text-indigo-600 transition-all" title="Trocar"><RefreshCw size={14} /></button>
-                <button onClick={() => onRemove && onRemove()} className="p-1.5 bg-slate-100 hover:bg-red-100 rounded-lg text-slate-500 hover:text-red-500 transition-all" title="Remover"><Trash2 size={14} /></button>
+                <button onClick={() => onEdit && onEdit(item)} className="p-1.5 bg-slate-800 hover:bg-indigo-800/30 rounded-lg text-slate-300 hover:text-indigo-600 transition-all" title="Trocar"><RefreshCw size={14} /></button>
+                <button onClick={() => onRemove && onRemove()} className="p-1.5 bg-slate-800 hover:bg-red-900/30 rounded-lg text-slate-300 hover:text-red-500 transition-all" title="Remover"><Trash2 size={14} /></button>
               </div>
             )}
           </div>
@@ -1567,14 +1568,14 @@ const TimelineActivityCard = ({ item, onEdit, onRemove, showActions = true, isFi
             <DollarSign size={18} className="text-emerald-500" />
             <h4 className="font-bold text-white">Quanto você pagou?</h4>
           </div>
-          <p className="text-xs text-slate-500 mb-2">Planejado: R$ {item.price?.toLocaleString()}</p>
+          <p className="text-xs text-slate-300 mb-2">Planejado: R$ {item.price?.toLocaleString()}</p>
           <input type="number" value={tempPrice} onChange={e => setTempPrice(Number(e.target.value))} className="w-full px-3 py-2 border border-slate-300 rounded-lg text-lg font-bold text-center focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="R$ 0" autoFocus />
           <div className="flex gap-2 mt-3">
-            <button onClick={() => setShowPricePopover(false)} className="flex-1 py-2 text-sm bg-slate-100 text-slate-300 rounded-lg hover:bg-slate-200 transition-all">Cancelar</button>
-            <button onClick={handleSavePrice} className="flex-1 py-2 text-sm bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-all">Confirmar</button>
+            <button onClick={() => setShowPricePopover(false)} className="flex-1 py-2 text-sm bg-slate-800 text-slate-300 rounded-lg hover:bg-slate-700 transition-all">Cancelar</button>
+            <button onClick={handleSavePrice} className="flex-1 py-2 text-sm bg-emerald-600 text-white rounded-lg hover:bg-emerald-600 transition-all">Confirmar</button>
           </div>
-          {tempPrice < item.price && <p className="text-xs text-emerald-600 mt-2 text-center">💰 Economia de R$ {(item.price - tempPrice).toLocaleString()}!</p>}
-          {tempPrice > item.price && <p className="text-xs text-amber-600 mt-2 text-center">⚠️ R$ {(tempPrice - item.price).toLocaleString()} acima do planejado</p>}
+          {tempPrice < item.price && <p className="text-xs text-emerald-400 mt-2 text-center">💰 Economia de R$ {(item.price - tempPrice).toLocaleString()}!</p>}
+          {tempPrice > item.price && <p className="text-xs text-amber-400 mt-2 text-center">⚠️ R$ {(tempPrice - item.price).toLocaleString()} acima do planejado</p>}
         </div>
       )}
     </div>
@@ -1625,11 +1626,11 @@ const TimelineDaySection = ({ day, dayNumber, totalDays, dateInfo, items, flight
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
             <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-lg ${tripActive ? 'bg-gradient-to-br from-emerald-500 to-cyan-500' : 'bg-gradient-to-br from-indigo-500 to-emerald-500'}`}><span className="text-white font-bold text-lg">{dayNumber}</span></div>
-            <div><p className={`font-bold ${tripActive ? 'text-white' : 'text-white'}`}>{dateInfo.weekday}</p><p className={`text-sm ${tripActive ? 'text-slate-400' : 'text-slate-500'}`}>{dateInfo.day}/{dateInfo.month}/{dateInfo.year}</p></div>
+            <div><p className={`font-bold ${tripActive ? 'text-white' : 'text-white'}`}>{dateInfo.weekday}</p><p className={`text-sm ${tripActive ? 'text-slate-300' : 'text-slate-300'}`}>{dateInfo.day}/{dateInfo.month}/{dateInfo.year}</p></div>
           </div>
-          {isRestDay && <span className="ml-auto px-3 py-1.5 bg-amber-100 text-amber-700 text-xs font-bold rounded-full flex items-center gap-1"><Bed size={12} /> Dia de Recuperação — Apenas Jantar</span>}
-          {isLastDay && <span className="ml-auto px-3 py-1.5 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">Último Dia</span>}
-          {tripActive && <span className="ml-auto px-3 py-1.5 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-full border border-emerald-500/30 flex items-center gap-1"><Play size={10} /> VIAGEM ATIVA</span>}
+          {isRestDay && <span className="ml-auto px-3 py-1.5 bg-amber-900/30 text-amber-400 text-xs font-bold rounded-full flex items-center gap-1"><Bed size={12} /> Dia de Recuperação — Apenas Jantar</span>}
+          {isLastDay && <span className="ml-auto px-3 py-1.5 bg-blue-900/30 text-blue-400 text-xs font-bold rounded-full">Último Dia</span>}
+          {tripActive && <span className="ml-auto px-3 py-1.5 bg-emerald-600/20 text-emerald-400 text-xs font-bold rounded-full border border-emerald-500/30 flex items-center gap-1"><Play size={10} /> VIAGEM ATIVA</span>}
         </div>
       </div>
       <div className="relative">
@@ -1653,7 +1654,7 @@ const TimelineDaySection = ({ day, dayNumber, totalDays, dateInfo, items, flight
             startDate={startDate}
           />
         ))}
-        {!isRestDay && <div className="relative pl-10 pb-4"><div className="absolute left-[14px] top-0 h-8 w-0.5 bg-gradient-to-b from-indigo-200 to-transparent" /><button onClick={() => onAddItem && onAddItem(day)} className="ml-2 w-full py-3 border-2 border-dashed border-slate-300 rounded-xl text-slate-400 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all flex items-center justify-center gap-2 no-print hover:shadow-md"><Plus size={18} /> Adicionar Atividade</button></div>}
+        {!isRestDay && <div className="relative pl-10 pb-4"><div className="absolute left-[14px] top-0 h-8 w-0.5 bg-gradient-to-b from-indigo-200 to-transparent" /><button onClick={() => onAddItem && onAddItem(day)} className="ml-2 w-full py-3 border-2 border-dashed border-slate-300 rounded-xl text-slate-300 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-900/20 transition-all flex items-center justify-center gap-2 no-print hover:shadow-md"><Plus size={18} /> Adicionar Atividade</button></div>}
       </div>
     </div>
   );
@@ -1665,38 +1666,38 @@ const CommunityCard = ({ itinerary, onUse, onLike, onViewDetails, isLiked, compa
   
   if (compact) {
     return (
-      <div className="bg-slate-900/80 backdrop-blur-md rounded-xl border border-white/50 p-3 hover:shadow-xl transition-all cursor-pointer group hover:bg-slate-900/90" onClick={() => onViewDetails && onViewDetails(itinerary)} style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.1)' }}>
+      <div className="bg-slate-800 rounded-xl border border-slate-600 p-3 hover:shadow-xl hover:border-indigo-500/50 transition-all cursor-pointer group" onClick={() => onViewDetails && onViewDetails(itinerary)}>
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-lg bg-cover bg-center flex-shrink-0 group-hover:scale-105 transition-transform shadow-md" style={{ backgroundImage: `url(${destData?.coverUrl})` }} />
-          <div className="flex-1 min-w-0"><h4 className="font-semibold text-sm text-white truncate group-hover:text-indigo-600 transition-colors">{itinerary.title}</h4><p className="text-xs text-slate-500">{itinerary.duration} dias • R$ {(itinerary.budget/1000).toFixed(0)}k</p></div>
-          <div className="flex items-center gap-1 text-amber-500"><Star size={12} className="fill-amber-500" /><span className="text-xs font-bold">{itinerary.rating}</span></div>
+          <div className="flex-1 min-w-0"><h4 className="font-semibold text-sm text-white truncate group-hover:text-indigo-400 transition-colors">{itinerary.title}</h4><p className="text-xs text-slate-200">{itinerary.duration} dias • R$ {(itinerary.budget/1000).toFixed(0)}k</p></div>
+          <div className="flex items-center gap-1 text-amber-400"><Star size={12} className="fill-amber-400" /><span className="text-xs font-bold">{itinerary.rating}</span></div>
         </div>
       </div>
     );
   }
   
   return (
-    <div className="bg-slate-900/80 backdrop-blur-md rounded-2xl border border-white/50 overflow-hidden hover:shadow-2xl transition-all group" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.1)' }}>
+    <div className="bg-slate-800 rounded-2xl border border-slate-600 overflow-hidden hover:shadow-2xl hover:border-indigo-500/50 transition-all group">
       <div className="relative h-44 bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url(${destData?.coverUrl})` }}>
         <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: `url(${destData?.coverUrl})` }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
         <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
           {itinerary.featured && <span className="px-2.5 py-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[10px] font-bold rounded-full shadow-lg flex items-center gap-1"><Crown size={10} /> DESTAQUE</span>}
-          {itinerary.badges?.slice(0, 1).map((badge, i) => <span key={i} className="px-2.5 py-1 bg-slate-900/90 backdrop-blur-sm text-slate-200 text-[10px] font-semibold rounded-full shadow-md">{badge}</span>)}
+          {itinerary.badges?.slice(0, 1).map((badge, i) => <span key={i} className="px-2.5 py-1 bg-indigo-600/90 backdrop-blur-sm text-white text-[10px] font-semibold rounded-full shadow-md">{badge}</span>)}
         </div>
-        <button onClick={(e) => { e.stopPropagation(); onLike && onLike(itinerary.id); }} className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center transition-all backdrop-blur-sm ${isLiked ? 'bg-rose-500 text-white scale-110' : 'bg-slate-900/20 text-white hover:bg-slate-900/40 hover:scale-110'}`}><Heart size={18} className={isLiked ? 'fill-white' : ''} /></button>
-        <div className="absolute bottom-3 left-3 right-3"><h3 className="text-white font-bold text-lg leading-tight drop-shadow-lg">{itinerary.title}</h3><p className="text-white/80 text-xs flex items-center gap-1 mt-1"><MapPin size={10} /> {itinerary.destination}</p></div>
+        <button onClick={(e) => { e.stopPropagation(); onLike && onLike(itinerary.id); }} className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center transition-all backdrop-blur-sm ${isLiked ? 'bg-rose-500 text-white scale-110' : 'bg-slate-900/60 text-white hover:bg-slate-900/80 hover:scale-110'}`}><Heart size={18} className={isLiked ? 'fill-white' : ''} /></button>
+        <div className="absolute bottom-3 left-3 right-3"><h3 className="text-white font-bold text-lg leading-tight drop-shadow-lg">{itinerary.title}</h3><p className="text-white/90 text-xs flex items-center gap-1 mt-1"><MapPin size={10} /> {itinerary.destination}</p></div>
       </div>
-      <div className="p-4 bg-slate-900/50 backdrop-blur-sm">
+      <div className="p-4 bg-slate-800">
         <div className="flex items-center gap-2 mb-3">
           <span className="text-2xl">{itinerary.author.avatar}</span>
-          <div className="flex-1"><p className="text-xs font-medium text-slate-200">{itinerary.author.name} {itinerary.author.verified && <UserCheck size={10} className="inline text-indigo-500" />}</p><p className="text-[10px] text-slate-400">{itinerary.duration} dias • R$ {itinerary.budget.toLocaleString()}</p></div>
-          <div className="flex items-center gap-1 px-2 py-1 bg-amber-50 rounded-full border border-amber-200"><Star size={14} className="text-amber-500 fill-amber-500" /><span className="text-sm font-bold text-amber-700">{itinerary.rating}</span></div>
+          <div className="flex-1"><p className="text-sm font-medium text-white">{itinerary.author.name} {itinerary.author.verified && <UserCheck size={10} className="inline text-emerald-400" />}</p><p className="text-xs text-slate-200">{itinerary.duration} dias • R$ {itinerary.budget.toLocaleString()}</p></div>
+          <div className="flex items-center gap-1 px-2 py-1 bg-amber-500/20 rounded-full border border-amber-500/50"><Star size={14} className="text-amber-400 fill-amber-400" /><span className="text-sm font-bold text-amber-400">{itinerary.rating}</span></div>
         </div>
-        <div className="flex flex-wrap gap-1 mb-3">{itinerary.tags.map(t => <span key={t} className="px-2 py-0.5 bg-slate-100/80 text-slate-300 text-[10px] rounded-full backdrop-blur-sm">{typeLabels[t] || t}</span>)}</div>
-        <div className="flex items-center justify-between pt-3 border-t border-slate-700/50">
-          <div className="flex items-center gap-3"><span className="flex items-center gap-1 text-slate-400 text-xs"><Heart size={14} className={isLiked ? 'fill-rose-500 text-rose-500' : ''} />{itinerary.likes.toLocaleString()}</span><span className="flex items-center gap-1 text-slate-400 text-xs"><MessageSquare size={14} />{itinerary.reviews}</span></div>
-          <button onClick={() => onViewDetails && onViewDetails(itinerary)} className="text-xs font-medium text-indigo-600 hover:text-indigo-700 flex items-center gap-1 px-3 py-1.5 bg-teal-50 rounded-lg hover:bg-indigo-100 transition-all"><Eye size={14} /> Ver Detalhes</button>
+        <div className="flex flex-wrap gap-1 mb-3">{itinerary.tags.map(t => <span key={t} className="px-2 py-0.5 bg-indigo-600/30 text-indigo-300 text-[10px] rounded-full font-medium">{typeLabels[t] || t}</span>)}</div>
+        <div className="flex items-center justify-between pt-3 border-t border-slate-700">
+          <div className="flex items-center gap-3"><span className="flex items-center gap-1 text-slate-300 text-xs"><Heart size={14} className={isLiked ? 'fill-rose-500 text-rose-500' : ''} />{itinerary.likes.toLocaleString()}</span><span className="flex items-center gap-1 text-slate-300 text-xs"><MessageSquare size={14} />{itinerary.reviews}</span></div>
+          <button onClick={() => onViewDetails && onViewDetails(itinerary)} className="text-xs font-medium text-white flex items-center gap-1 px-3 py-1.5 bg-indigo-600 rounded-lg hover:bg-indigo-500 transition-all"><Eye size={14} /> Ver Detalhes</button>
         </div>
       </div>
     </div>
@@ -1713,12 +1714,12 @@ const ProfilePage = ({ user, setUser, userProfile, setUserProfile, onBack }) => 
     <div className="max-w-4xl mx-auto">
       <button onClick={onBack} className="mb-6 flex items-center gap-2 text-slate-300 hover:text-indigo-600 transition-all"><ChevronUp className="rotate-[-90deg]" size={20} /> Voltar</button>
       <div className="bg-gradient-to-br from-indigo-600 to-emerald-600 rounded-2xl p-8 text-white text-center mb-6 shadow-xl"><div className="w-24 h-24 bg-slate-900/20 rounded-full flex items-center justify-center mx-auto mb-4 text-5xl">{user.avatar}</div><h1 className="text-2xl font-bold">{user.name}</h1><p className="text-teal-100">{user.email}</p><div className="mt-4 flex justify-center gap-8"><div><p className="text-2xl font-bold">{user.trips}</p><p className="text-xs text-teal-200">Viagens</p></div><div><p className="text-2xl font-bold">{user.joinDate}</p><p className="text-xs text-teal-200">Membro desde</p></div></div></div>
-      <div className="flex gap-2 mb-6">{['info', 'profile', 'trips', 'saved'].map(tab => <button key={tab} onClick={() => setActiveTab(tab)} className={`flex-1 py-3 rounded-xl font-medium transition-all ${activeTab === tab ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-100 text-slate-300 hover:bg-slate-200'}`}>{tab === 'info' ? 'Informações' : tab === 'profile' ? 'Perfil' : tab === 'trips' ? 'Viagens' : 'Salvos'}</button>)}</div>
+      <div className="flex gap-2 mb-6">{['info', 'profile', 'trips', 'saved'].map(tab => <button key={tab} onClick={() => setActiveTab(tab)} className={`flex-1 py-3 rounded-xl font-medium transition-all ${activeTab === tab ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}>{tab === 'info' ? 'Informações' : tab === 'profile' ? 'Perfil' : tab === 'trips' ? 'Viagens' : 'Salvos'}</button>)}</div>
       <div className="bg-slate-900 rounded-2xl border border-slate-700 p-6 shadow-sm">
-        {activeTab === 'info' && <div><div className="flex items-center justify-between mb-6"><h2 className="text-lg font-bold text-white">Informações Pessoais</h2>{!editing ? <button onClick={() => setEditing(true)} className="px-4 py-2 border-2 border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 font-medium transition-all">Editar</button> : <button onClick={() => { setUser(tempUser); setEditing(false); }} className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all">Salvar</button>}</div><div className="grid md:grid-cols-2 gap-4"><div><label className="text-sm font-medium text-slate-500 block mb-1">Nome</label><input type="text" value={tempUser.name} onChange={(e) => setTempUser({...tempUser, name: e.target.value})} disabled={!editing} className="w-full px-4 py-3 bg-slate-950 border rounded-xl disabled:opacity-70 transition-all" /></div><div><label className="text-sm font-medium text-slate-500 block mb-1">E-mail</label><input type="email" value={tempUser.email} onChange={(e) => setTempUser({...tempUser, email: e.target.value})} disabled={!editing} className="w-full px-4 py-3 bg-slate-950 border rounded-xl disabled:opacity-70 transition-all" /></div></div></div>}
-        {activeTab === 'profile' && <div><div className="flex items-center justify-between mb-6"><h2 className="text-lg font-bold text-white">Perfil do Viajante</h2>{!editing ? <button onClick={() => { setTempProfile(userProfile); setEditing(true); }} className="px-4 py-2 border-2 border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 font-medium transition-all">Editar</button> : <button onClick={() => { setUserProfile(tempProfile); setEditing(false); }} className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all">Salvar</button>}</div><h3 className="font-semibold text-slate-200 mb-2">Estilos de viagem <span className="text-xs text-slate-400">(até 3)</span></h3><div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">{TRAVELER_TYPES.map(type => { const isSelected = (tempProfile.types || []).includes(type.id); return <button key={type.id} onClick={() => toggleType(type.id)} disabled={!editing} className={`p-4 rounded-xl border-2 text-center transition-all hover:scale-105 ${isSelected ? 'border-indigo-500 bg-teal-50 shadow-md' : 'border-slate-700 hover:border-slate-300'} ${!editing && 'opacity-70'}`}><type.icon size={28} className={isSelected ? 'text-indigo-600 mx-auto' : 'text-slate-400 mx-auto'} /><p className="font-medium text-sm mt-2">{type.name}</p>{isSelected && <span className="text-[10px] text-indigo-600 font-semibold">✓</span>}</button>; })}</div><h3 className="font-semibold text-slate-200 mb-3">Interesses</h3><div className="flex flex-wrap gap-2">{INTEREST_TAGS.map(tag => <button key={tag} onClick={() => { if (!editing) return; setTempProfile({...tempProfile, interests: tempProfile.interests?.includes(tag) ? tempProfile.interests.filter(i => i !== tag) : [...(tempProfile.interests || []), tag]}); }} disabled={!editing} className={`px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105 ${tempProfile.interests?.includes(tag) ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-100 text-slate-300 hover:bg-slate-200'}`}>{tag}</button>)}</div></div>}
-        {activeTab === 'trips' && <div className="text-center py-12"><Map size={48} className="text-slate-300 mx-auto mb-4" /><h3 className="text-lg font-semibold text-white mb-2">Nenhuma viagem ainda</h3><p className="text-slate-500">Suas viagens aparecerão aqui</p></div>}
-        {activeTab === 'saved' && <div className="text-center py-12"><Bookmark size={48} className="text-slate-300 mx-auto mb-4" /><h3 className="text-lg font-semibold text-white mb-2">Nada salvo</h3><p className="text-slate-500">Roteiros salvos aparecerão aqui</p></div>}
+        {activeTab === 'info' && <div><div className="flex items-center justify-between mb-6"><h2 className="text-lg font-bold text-white">Informações Pessoais</h2>{!editing ? <button onClick={() => setEditing(true)} className="px-4 py-2 border-2 border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-900/20 font-medium transition-all">Editar</button> : <button onClick={() => { setUser(tempUser); setEditing(false); }} className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all">Salvar</button>}</div><div className="grid md:grid-cols-2 gap-4"><div><label className="text-sm font-medium text-slate-300 block mb-1">Nome</label><input type="text" value={tempUser.name} onChange={(e) => setTempUser({...tempUser, name: e.target.value})} disabled={!editing} className="w-full px-4 py-3 bg-slate-800 text-white border rounded-xl disabled:opacity-70 transition-all" /></div><div><label className="text-sm font-medium text-slate-300 block mb-1">E-mail</label><input type="email" value={tempUser.email} onChange={(e) => setTempUser({...tempUser, email: e.target.value})} disabled={!editing} className="w-full px-4 py-3 bg-slate-800 text-white border rounded-xl disabled:opacity-70 transition-all" /></div></div></div>}
+        {activeTab === 'profile' && <div><div className="flex items-center justify-between mb-6"><h2 className="text-lg font-bold text-white">Perfil do Viajante</h2>{!editing ? <button onClick={() => { setTempProfile(userProfile); setEditing(true); }} className="px-4 py-2 border-2 border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-900/20 font-medium transition-all">Editar</button> : <button onClick={() => { setUserProfile(tempProfile); setEditing(false); }} className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all">Salvar</button>}</div><h3 className="font-semibold text-slate-200 mb-2">Estilos de viagem <span className="text-xs text-slate-200">(até 3)</span></h3><div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">{TRAVELER_TYPES.map(type => { const isSelected = (tempProfile.types || []).includes(type.id); return <button key={type.id} onClick={() => toggleType(type.id)} disabled={!editing} className={`p-4 rounded-xl border-2 text-center transition-all hover:scale-105 ${isSelected ? 'border-indigo-500 bg-indigo-900/20 shadow-md' : 'border-slate-700 hover:border-slate-300'} ${!editing && 'opacity-70'}`}><type.icon size={28} className={isSelected ? 'text-indigo-600 mx-auto' : 'text-slate-400 mx-auto'} /><p className="font-medium text-sm mt-2">{type.name}</p>{isSelected && <span className="text-[10px] text-indigo-600 font-semibold">✓</span>}</button>; })}</div><h3 className="font-semibold text-slate-200 mb-3">Interesses</h3><div className="flex flex-wrap gap-2">{INTEREST_TAGS.map(tag => <button key={tag} onClick={() => { if (!editing) return; setTempProfile({...tempProfile, interests: tempProfile.interests?.includes(tag) ? tempProfile.interests.filter(i => i !== tag) : [...(tempProfile.interests || []), tag]}); }} disabled={!editing} className={`px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105 ${tempProfile.interests?.includes(tag) ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}>{tag}</button>)}</div></div>}
+        {activeTab === 'trips' && <div className="text-center py-12"><Map size={48} className="text-slate-300 mx-auto mb-4" /><h3 className="text-lg font-semibold text-white mb-2">Nenhuma viagem ainda</h3><p className="text-slate-200">Suas viagens aparecerão aqui</p></div>}
+        {activeTab === 'saved' && <div className="text-center py-12"><Bookmark size={48} className="text-slate-300 mx-auto mb-4" /><h3 className="text-lg font-semibold text-white mb-2">Nada salvo</h3><p className="text-slate-200">Roteiros salvos aparecerão aqui</p></div>}
       </div>
     </div>
   );
@@ -1908,8 +1909,8 @@ export default function App() {
             <div className="flex items-center gap-4">
               {user ? (
                 <>
-                  <button onClick={() => setCurrentView('planner')} className="text-slate-400 hover:text-indigo-400 font-medium transition-colors">Planejar</button>
-                  <button onClick={() => setCurrentView('community')} className="text-slate-400 hover:text-indigo-400 font-medium transition-colors">Clã</button>
+                  <button onClick={() => setCurrentView('planner')} className="text-slate-300 hover:text-indigo-400 font-medium transition-colors">Planejar</button>
+                  <button onClick={() => setCurrentView('community')} className="text-slate-300 hover:text-indigo-400 font-medium transition-colors">Clã</button>
                   <button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-emerald-600 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/30 transition-all"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button>
                 </>
               ) : (
@@ -1919,12 +1920,12 @@ export default function App() {
           </div>
         </nav>
         <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-indigo-300 text-sm font-semibold mb-6 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-900/200/20 border border-indigo-500/30 rounded-full text-indigo-300 text-sm font-semibold mb-6 backdrop-blur-sm">
             <Sparkles size={16} className="text-indigo-400" /> Sabedoria Coletiva • Conhecimento Validado 
             <span className="ml-2 px-2 py-0.5 bg-gradient-to-r from-indigo-500 to-emerald-500 text-white text-xs rounded-full font-bold">+10K ROTEIROS</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Milhares viajaram.<br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-emerald-400">Você herda a sabedoria.</span></h1>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-8">O KINU une a <strong className="text-indigo-400">inteligência coletiva</strong> de milhares de viajantes com <strong className="text-emerald-400">engenharia de precisão</strong>. Cada roteiro é conhecimento validado pelo clã.</p>
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-8">O KINU une a <strong className="text-indigo-400">inteligência coletiva</strong> de milhares de viajantes com <strong className="text-emerald-400">engenharia de precisão</strong>. Cada roteiro é conhecimento validado pelo clã.</p>
           <div className="flex gap-4 justify-center flex-wrap">
             <button onClick={() => { if (!user) setShowAuthModal(true); else setCurrentView('planner'); }} className="px-8 py-4 bg-gradient-to-r from-indigo-600 via-indigo-600 to-emerald-500 text-white rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-indigo-500/40 transition-all flex items-center gap-2 hover:scale-105"><Sparkles size={24} /> Iniciar Jornada</button>
             <button onClick={() => setCurrentView('community')} className="px-8 py-4 border-2 border-slate-600 text-slate-300 rounded-xl font-bold text-lg hover:border-emerald-500 hover:text-emerald-400 transition-all hover:scale-105">Explorar o Clã</button>
@@ -1944,7 +1945,7 @@ export default function App() {
               <div key={i} className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-4 border border-slate-700 hover:border-emerald-500/50 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 transition-all hover:scale-105 group text-center">
                 <div className={`w-12 h-12 bg-gradient-to-br ${f.color} rounded-xl flex items-center justify-center mb-3 mx-auto group-hover:scale-110 transition-transform shadow-lg`}><f.icon size={24} className="text-white" /></div>
                 <h3 className="text-sm font-bold text-white mb-1">{f.title}</h3>
-                <p className="text-slate-400 text-xs">{f.desc}</p>
+                <p className="text-slate-200 text-xs">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -1958,7 +1959,7 @@ export default function App() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-white font-bold text-lg">{name.split(',')[0]}</p>
-                  <p className="text-slate-300 text-sm">{dest.continent}</p>
+                  <p className="text-slate-200 text-sm">{dest.continent}</p>
                 </div>
               </div>
             ))}
@@ -1973,12 +1974,15 @@ export default function App() {
   if (currentView === 'community') {
     return (
       <div className="min-h-screen bg-slate-950">
+        <div className="fixed inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl" />
+        </div>
         <nav className="bg-slate-950/80 backdrop-blur-xl border-b border-slate-700 sticky top-0 z-40"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentView('landing')}><KinuLogo size={28} /><span className="text-xl font-bold text-white">KINU</span></div><div className="flex items-center gap-4"><button onClick={() => setCurrentView('planner')} className="text-slate-300 hover:text-indigo-400 font-medium">Planejar</button><button className="text-indigo-400 font-medium">Clã</button>{user && <button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-emerald-600 text-white rounded-lg"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button>}</div></div></nav>
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="text-center mb-8"><h1 className="text-3xl font-bold text-white">Conhecimento do Clã</h1><p className="text-slate-300 mt-2">Descubra Roteiros validados por milhares de viajantes. Herde a sabedoria.</p></div>
+        <div className="relative max-w-7xl mx-auto px-4 py-8">
+          <div className="text-center mb-8"><h1 className="text-3xl font-bold text-white">Conhecimento do Clã</h1><p className="text-slate-300 mt-2">Descubra roteiros validados por milhares de viajantes. Herde a sabedoria.</p></div>
           <div className="flex flex-wrap gap-3 justify-center mb-8">
-            <select value={communityFilter.destination} onChange={e => setCommunityFilter({...communityFilter, destination: e.target.value})} className="px-4 py-2 border border-slate-700 rounded-lg bg-slate-900"><option value="all">Todos os destinos</option>{Object.keys(DESTINATIONS_DATABASE).map(d => <option key={d} value={d}>{d}</option>)}</select>
-            <select value={communityFilter.type} onChange={e => setCommunityFilter({...communityFilter, type: e.target.value})} className="px-4 py-2 border border-slate-700 rounded-lg bg-slate-900"><option value="all">Todos os tipos</option>{['romantic', 'family', 'budget', 'luxury', 'culture', 'beach', 'adventure'].map(t => <option key={t} value={t}>{t}</option>)}</select>
+            <select value={communityFilter.destination} onChange={e => setCommunityFilter({...communityFilter, destination: e.target.value})} className="px-4 py-3 border border-slate-600 rounded-xl bg-slate-800 text-white font-medium focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none"><option value="all">🌍 Todos os destinos</option>{Object.keys(DESTINATIONS_DATABASE).map(d => <option key={d} value={d}>{d}</option>)}</select>
+            <select value={communityFilter.type} onChange={e => setCommunityFilter({...communityFilter, type: e.target.value})} className="px-4 py-3 border border-slate-600 rounded-xl bg-slate-800 text-white font-medium focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none"><option value="all">✨ Todos os tipos</option>{['romantic', 'family', 'budget', 'luxury', 'culture', 'beach', 'adventure'].map(t => <option key={t} value={t}>{t}</option>)}</select>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">{filteredCommunity.map(it => <CommunityCard key={it.id} itinerary={it} onUse={useCommunityItinerary} onLike={toggleLike} onViewDetails={(it) => setCommunityDetailModal({ isOpen: true, itinerary: it })} isLiked={likedItineraries.includes(it.id)} />)}</div>
         </div>
@@ -1994,7 +1998,7 @@ export default function App() {
         <div className="fixed inset-0 pointer-events-none">
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl" />
         </div>
-        <nav className="bg-slate-950/80 backdrop-blur-xl border-b border-slate-800 sticky top-0 z-40"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentView('landing')}><KinuLogo size={28} /><span className="text-xl font-bold text-white">KINU</span></div><div className="flex items-center gap-4"><button onClick={() => setCurrentView('planner')} className="text-slate-400 hover:text-indigo-400 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-400 hover:text-indigo-400 font-medium">Clã</button><button onClick={() => { setUser(null); setCurrentView('landing'); }} className="text-red-400 hover:text-red-300 font-medium flex items-center gap-1"><LogOut size={18} /> Sair</button></div></div></nav>
+        <nav className="bg-slate-950/80 backdrop-blur-xl border-b border-slate-800 sticky top-0 z-40"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentView('landing')}><KinuLogo size={28} /><span className="text-xl font-bold text-white">KINU</span></div><div className="flex items-center gap-4"><button onClick={() => setCurrentView('planner')} className="text-slate-300 hover:text-indigo-400 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-300 hover:text-indigo-400 font-medium">Clã</button><button onClick={() => { setUser(null); setCurrentView('landing'); }} className="text-red-400 hover:text-red-300 font-medium flex items-center gap-1"><LogOut size={18} /> Sair</button></div></div></nav>
         <div className="relative max-w-7xl mx-auto px-4 py-8"><ProfilePage user={user} setUser={setUser} userProfile={userProfile} setUserProfile={setUserProfile} onBack={() => setCurrentView('planner')} /></div>
       </div>
     );
@@ -2012,23 +2016,23 @@ export default function App() {
       <div className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-emerald-600 text-white text-center py-2 px-4 text-sm font-bold no-print">
         🔮 KINU v1.0 | Sabedoria do Clã • Motor de Câmbio Preditivo • Concierge KINU • Malas 3D ⚡
       </div>
-      <nav className="bg-slate-950/80 backdrop-blur-xl border-b border-slate-800 sticky top-0 z-40 no-print"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentView('landing')}><KinuLogo size={28} /><span className="text-xl font-bold text-white">KINU</span><span className="text-xs px-2.5 py-1 bg-gradient-to-r from-indigo-500 to-emerald-500 text-white rounded-full font-bold ml-2">v1.0</span></div><div className="flex items-center gap-4"><button onClick={() => setCurrentView('planner')} className="text-indigo-400 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-400 hover:text-indigo-400 font-medium">Clã</button>{user && <button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-emerald-600 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/20"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button>}</div></div></nav>
+      <nav className="bg-slate-950/80 backdrop-blur-xl border-b border-slate-800 sticky top-0 z-40 no-print"><div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentView('landing')}><KinuLogo size={28} /><span className="text-xl font-bold text-white">KINU</span><span className="text-xs px-2.5 py-1 bg-gradient-to-r from-indigo-500 to-emerald-500 text-white rounded-full font-bold ml-2">v1.0</span></div><div className="flex items-center gap-4"><button onClick={() => setCurrentView('planner')} className="text-indigo-400 font-medium">Planejar</button><button onClick={() => setCurrentView('community')} className="text-slate-300 hover:text-indigo-400 font-medium">Clã</button>{user && <button onClick={() => setCurrentView('profile')} className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-emerald-600 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/20"><span className="text-lg">{user.avatar}</span>{user.name.split(' ')[0]}</button>}</div></div></nav>
       <div className="relative max-w-7xl mx-auto px-4 py-8">
-        <div className="bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-700/50 p-6 mb-8 shadow-xl no-print">
+        <div className="bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-600 p-6 mb-8 shadow-xl no-print">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <div><label className="text-sm font-medium text-slate-300 block mb-2 flex items-center gap-1"><PlaneTakeoff size={14} /> Origem</label><select value={origin} onChange={e => setOrigin(e.target.value)} className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl">{BRAZILIAN_CITIES.map(c => <option key={c} value={c}>{c}</option>)}</select></div>
-            <div><label className="text-sm font-medium text-slate-300 block mb-2 flex items-center gap-1"><PlaneLanding size={14} /> Destino</label><select value={destination} onChange={e => { setDestination(e.target.value); setItineraryGenerated(false); }} className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl"><option value="">Selecione...</option>{Object.keys(DESTINATIONS_DATABASE).map(d => <option key={d} value={d}>{d}</option>)}</select></div>
-            <div><label className="text-sm font-medium text-slate-300 block mb-2 flex items-center gap-1"><Calendar size={14} /> Datas</label><div className="flex gap-2"><input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} className="flex-1 px-3 py-3 bg-slate-950 border border-slate-700 rounded-xl text-sm" /><input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} className="flex-1 px-3 py-3 bg-slate-950 border border-slate-700 rounded-xl text-sm" /></div></div>
-            <div><label className="text-sm font-medium text-slate-300 block mb-2 flex items-center gap-1"><Users size={14} /> Viajantes</label><div className="flex gap-2"><div className="flex-1 flex items-center gap-2 px-3 py-2 bg-slate-950 border border-slate-700 rounded-xl"><button onClick={() => setAdults(Math.max(1, adults - 1))} className="w-8 h-8 bg-slate-200 rounded-lg">-</button><span className="flex-1 text-center text-sm">{adults} adultos</span><button onClick={() => setAdults(adults + 1)} className="w-8 h-8 bg-slate-200 rounded-lg">+</button></div><div className="flex-1 flex items-center gap-2 px-3 py-2 bg-slate-950 border border-slate-700 rounded-xl"><button onClick={() => { setChildren(Math.max(0, children - 1)); setChildrenAges(childrenAges.slice(0, -1)); }} className="w-8 h-8 bg-slate-200 rounded-lg">-</button><span className="flex-1 text-center text-sm">{children} crian.</span><button onClick={() => { setChildren(children + 1); setChildrenAges([...childrenAges, 5]); }} className="w-8 h-8 bg-slate-200 rounded-lg">+</button></div></div></div>
+            <div><label className="text-sm font-medium text-white block mb-2 flex items-center gap-1"><PlaneTakeoff size={14} /> Origem</label><select value={origin} onChange={e => setOrigin(e.target.value)} className="w-full px-4 py-3 bg-slate-800 text-white border border-slate-600 rounded-xl focus:border-indigo-500 outline-none">{BRAZILIAN_CITIES.map(c => <option key={c} value={c}>{c}</option>)}</select></div>
+            <div><label className="text-sm font-medium text-white block mb-2 flex items-center gap-1"><PlaneLanding size={14} /> Destino</label><select value={destination} onChange={e => { setDestination(e.target.value); setItineraryGenerated(false); }} className="w-full px-4 py-3 bg-slate-800 text-white border border-slate-600 rounded-xl focus:border-indigo-500 outline-none"><option value="" className="bg-slate-800 text-white">Selecione...</option>{Object.keys(DESTINATIONS_DATABASE).map(d => <option key={d} value={d}>{d}</option>)}</select></div>
+            <div><label className="text-sm font-medium text-white block mb-2 flex items-center gap-1"><Calendar size={14} /> Datas</label><div className="flex gap-2"><input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} className="flex-1 px-3 py-3 bg-slate-800 text-white border border-slate-600 rounded-xl focus:border-indigo-500 outline-none text-sm" /><input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} className="flex-1 px-3 py-3 bg-slate-800 text-white border border-slate-600 rounded-xl focus:border-indigo-500 outline-none text-sm" /></div></div>
+            <div><label className="text-sm font-medium text-white block mb-2 flex items-center gap-1"><Users size={14} /> Viajantes</label><div className="flex gap-2"><div className="flex-1 flex items-center gap-2 px-3 py-2 bg-slate-800 text-white border border-slate-600 rounded-xl focus:border-indigo-500 outline-none"><button onClick={() => setAdults(Math.max(1, adults - 1))} className="w-8 h-8 bg-slate-700 text-white rounded-lg hover:bg-slate-600">-</button><span className="flex-1 text-center text-sm">{adults} adultos</span><button onClick={() => setAdults(adults + 1)} className="w-8 h-8 bg-slate-700 text-white rounded-lg hover:bg-slate-600">+</button></div><div className="flex-1 flex items-center gap-2 px-3 py-2 bg-slate-800 text-white border border-slate-600 rounded-xl focus:border-indigo-500 outline-none"><button onClick={() => { setChildren(Math.max(0, children - 1)); setChildrenAges(childrenAges.slice(0, -1)); }} className="w-8 h-8 bg-slate-700 text-white rounded-lg hover:bg-slate-600">-</button><span className="flex-1 text-center text-sm">{children} crian.</span><button onClick={() => { setChildren(children + 1); setChildrenAges([...childrenAges, 5]); }} className="w-8 h-8 bg-slate-700 text-white rounded-lg hover:bg-slate-600">+</button></div></div></div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 pt-4 border-t border-slate-800">
-            <div><label className="text-sm font-medium text-slate-300 block mb-2 flex items-center gap-1"><Wallet size={14} /> Orçamento Total</label><input type="number" value={totalBudget} onChange={e => setTotalBudget(Number(e.target.value))} className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl" /></div>
-            <div><label className="text-sm font-medium text-slate-300 block mb-2 flex items-center gap-1"><Clock size={14} /> Horário Ida</label><input type="time" value={outboundDepartureTime} onChange={e => setOutboundDepartureTime(e.target.value)} className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl" /></div>
-            <div><label className="text-sm font-medium text-slate-300 block mb-2 flex items-center gap-1"><Clock size={14} /> Horário Volta</label><input type="time" value={returnDepartureTime} onChange={e => setReturnDepartureTime(e.target.value)} className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl" /></div>
-            <div><label className="text-sm font-medium text-slate-300 block mb-2 flex items-center gap-1"><Sliders size={14} /> Prioridades</label><button onClick={() => setShowPriorityPanel(!showPriorityPanel)} className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl text-left flex items-center justify-between"><span className="text-sm">{tripPriorities.length > 0 ? `${tripPriorities.length} selecionadas` : 'Selecionar...'}</span>{showPriorityPanel ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</button></div>
+            <div><label className="text-sm font-medium text-white block mb-2 flex items-center gap-1"><Wallet size={14} /> Orçamento Total</label><input type="number" value={totalBudget} onChange={e => setTotalBudget(Number(e.target.value))} className="w-full px-4 py-3 bg-slate-800 text-white border border-slate-600 rounded-xl focus:border-indigo-500 outline-none" /></div>
+            <div><label className="text-sm font-medium text-white block mb-2 flex items-center gap-1"><Clock size={14} /> Horário Ida</label><input type="time" value={outboundDepartureTime} onChange={e => setOutboundDepartureTime(e.target.value)} className="w-full px-4 py-3 bg-slate-800 text-white border border-slate-600 rounded-xl focus:border-indigo-500 outline-none" /></div>
+            <div><label className="text-sm font-medium text-white block mb-2 flex items-center gap-1"><Clock size={14} /> Horário Volta</label><input type="time" value={returnDepartureTime} onChange={e => setReturnDepartureTime(e.target.value)} className="w-full px-4 py-3 bg-slate-800 text-white border border-slate-600 rounded-xl focus:border-indigo-500 outline-none" /></div>
+            <div><label className="text-sm font-medium text-white block mb-2 flex items-center gap-1"><Sliders size={14} /> Prioridades</label><button onClick={() => setShowPriorityPanel(!showPriorityPanel)} className="w-full px-4 py-3 bg-slate-800 text-white border border-slate-600 rounded-xl focus:border-indigo-500 outline-none text-left flex items-center justify-between"><span className="text-sm">{tripPriorities.length > 0 ? `${tripPriorities.length} selecionadas` : 'Selecionar...'}</span>{showPriorityPanel ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</button></div>
           </div>
-          {showPriorityPanel && <div className="mb-6 p-4 bg-slate-950 rounded-xl"><p className="text-sm text-slate-300 mb-3">Selecione até 3 prioridades:</p><div className="flex flex-wrap gap-2">{TRIP_PRIORITIES.map(p => <button key={p.id} onClick={() => togglePriority(p.id)} className={`px-4 py-2 rounded-xl text-sm font-medium flex items-center gap-2 transition-all ${tripPriorities.includes(p.id) ? 'bg-indigo-600 text-white' : 'bg-slate-900 border border-slate-700 hover:border-indigo-400'}`}><p.icon size={16} /> {p.name}</button>)}</div></div>}
-          <button onClick={generateItinerary} disabled={!destination || isGenerating} className={`w-full py-4 font-bold rounded-xl text-white flex items-center justify-center gap-2 shadow-lg transition-all ${!destination ? 'bg-slate-300 cursor-not-allowed' : isGenerating ? 'bg-indigo-400' : 'bg-gradient-to-r from-indigo-600 to-emerald-600 hover:shadow-indigo-500/30 hover:scale-[1.02]'}`}>{isGenerating ? <><RefreshCw size={20} className="animate-spin" /> Gerando roteiro...</> : <><Sparkles size={20} /> Gerar Roteiro com Sabedoria do Clã</>}</button>
+          {showPriorityPanel && <div className="mb-6 p-4 bg-slate-800 rounded-xl border border-slate-600"><p className="text-sm text-slate-200 mb-3">Selecione até 3 prioridades:</p><div className="flex flex-wrap gap-2">{TRIP_PRIORITIES.map(p => <button key={p.id} onClick={() => togglePriority(p.id)} className={`px-4 py-2 rounded-xl text-sm font-medium flex items-center gap-2 transition-all ${tripPriorities.includes(p.id) ? 'bg-indigo-600 text-white' : 'bg-slate-800/80 text-white border border-slate-600 hover:border-indigo-400 hover:text-white'}`}><p.icon size={16} /> {p.name}</button>)}</div></div>}
+          <button onClick={generateItinerary} disabled={!destination || isGenerating} className={`w-full py-4 font-bold rounded-xl text-white flex items-center justify-center gap-2 shadow-lg transition-all ${!destination ? 'bg-slate-700 text-slate-400 cursor-not-allowed' : isGenerating ? 'bg-indigo-400' : 'bg-gradient-to-r from-indigo-600 to-emerald-600 hover:shadow-indigo-500/30 hover:scale-[1.02]'}`}>{isGenerating ? <><RefreshCw size={20} className="animate-spin" /> Gerando roteiro...</> : <><Sparkles size={20} /> Gerar Roteiro com Sabedoria do Clã</>}</button>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -2036,11 +2040,11 @@ export default function App() {
             {itineraryGenerated && (
               <div className="space-y-6">
                 <div className="flex gap-2 mb-4 no-print flex-wrap">
-                  <button onClick={() => setItineraryTab('timeline')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'timeline' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-900 border border-slate-700 hover:border-indigo-400'}`}><Calendar size={18} /> Timeline</button>
-                  <button onClick={() => setItineraryTab('guide')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'guide' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-900 border border-slate-700 hover:border-indigo-400'}`}><BookOpen size={18} /> Guia</button>
-                  <button onClick={() => setItineraryTab('exchange')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'exchange' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-900 border border-slate-700 hover:border-indigo-400'}`}><Banknote size={18} /> Câmbio</button>
-                  <button onClick={() => setItineraryTab('extras')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'extras' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-900 border border-slate-700 hover:border-indigo-400'}`}><Luggage size={18} /> Malas</button>
-                  <button onClick={() => setItineraryTab('gestao')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'gestao' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-900 border border-slate-700 hover:border-indigo-400'}`}><Receipt size={18} /> Gestão</button>
+                  <button onClick={() => setItineraryTab('timeline')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'timeline' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800/80 text-white border border-slate-600 hover:border-indigo-400 hover:text-white'}`}><Calendar size={18} /> Timeline</button>
+                  <button onClick={() => setItineraryTab('guide')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'guide' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800/80 text-white border border-slate-600 hover:border-indigo-400 hover:text-white'}`}><BookOpen size={18} /> Guia</button>
+                  <button onClick={() => setItineraryTab('exchange')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'exchange' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800/80 text-white border border-slate-600 hover:border-indigo-400 hover:text-white'}`}><Banknote size={18} /> Câmbio</button>
+                  <button onClick={() => setItineraryTab('extras')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'extras' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800/80 text-white border border-slate-600 hover:border-indigo-400 hover:text-white'}`}><Luggage size={18} /> Malas</button>
+                  <button onClick={() => setItineraryTab('gestao')} className={`flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${itineraryTab === 'gestao' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800/80 text-white border border-slate-600 hover:border-indigo-400 hover:text-white'}`}><Receipt size={18} /> Gestão</button>
                 </div>
                 
                 {/* Relógio Local Dinâmico */}
@@ -2063,7 +2067,7 @@ export default function App() {
                 
                 {itineraryTab === 'guide' && (
                   <div className="bg-slate-900 rounded-2xl border border-slate-700 p-6 shadow-sm">
-                    <div className="flex items-center gap-3 mb-6"><div className="p-3 bg-gradient-to-br from-indigo-500 to-emerald-500 rounded-xl shadow-lg"><Globe size={24} className="text-white" /></div><div><h2 className="text-xl font-bold text-white">Guia do Destino</h2><p className="text-sm text-slate-500">{destination}</p></div></div>
+                    <div className="flex items-center gap-3 mb-6"><div className="p-3 bg-gradient-to-br from-indigo-500 to-emerald-500 rounded-xl shadow-lg"><Globe size={24} className="text-white" /></div><div><h2 className="text-xl font-bold text-white">Guia do Destino</h2><p className="text-sm text-slate-200">{destination}</p></div></div>
                     <DestinationGuide destination={destination} />
                   </div>
                 )}
@@ -2085,7 +2089,7 @@ export default function App() {
                 )}
               </div>
             )}
-            {!destination && <div className="bg-slate-900 rounded-2xl border border-slate-700 p-12 text-center"><Globe size={64} className="text-teal-200 mx-auto mb-4" /><h3 className="text-xl font-bold text-white mb-2">Escolha um destino</h3><p className="text-slate-500">Selecione para onde você quer ir</p></div>}
+            {!destination && <div className="bg-slate-900 rounded-2xl border border-slate-700 p-12 text-center"><Globe size={64} className="text-teal-200 mx-auto mb-4" /><h3 className="text-xl font-bold text-white mb-2">Escolha um destino</h3><p className="text-slate-200">Selecione para onde você quer ir</p></div>}
           </div>
 
           <div className="space-y-6 no-print sidebar-print">
@@ -2095,7 +2099,7 @@ export default function App() {
               {itineraryGenerated && (
                 <>
                   <BudgetSpeedometer total={totalBudget} spent={costs.total} isOverBudget={isOverBudget} />
-                  <div className={`mt-2 inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm ${isOverBudget ? 'bg-red-500/30' : 'bg-slate-900/20'}`}>
+                  <div className={`mt-2 inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm ${isOverBudget ? 'bg-red-900/200/30' : 'bg-slate-900/20'}`}>
                     {isOverBudget ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
                     {isOverBudget ? `Excedido: R$ ${Math.abs(remaining).toLocaleString()}` : `Disponível: R$ ${remaining.toLocaleString()}`}
                   </div>
@@ -2110,8 +2114,8 @@ export default function App() {
               )}
             </div>
             {itineraryGenerated && insights.length > 0 && <div className="bg-slate-900 rounded-2xl border border-slate-700 p-4 shadow-sm"><h3 className="font-bold text-white mb-3 flex items-center gap-2"><Sparkles size={18} className="text-indigo-600" /> Insights da IA</h3><div className="space-y-3">{insights.map((insight, i) => <AIInsightCard key={i} insight={insight} onAction={handleInsightAction} />)}</div></div>}
-            {destination && <div className="bg-slate-900/80 backdrop-blur-sm rounded-2xl border border-slate-700 p-4 shadow-sm"><h3 className="font-bold text-white mb-3 flex items-center gap-2"><Crown size={18} className="text-amber-500" /> Top Roteiros - {destination.split(',')[0]}</h3><div className="space-y-2">{COMMUNITY_ITINERARIES.filter(i => i.destination === destination).slice(0, 3).map(it => <CommunityCard key={it.id} itinerary={it} onUse={useCommunityItinerary} onLike={toggleLike} onViewDetails={(it) => setCommunityDetailModal({ isOpen: true, itinerary: it })} isLiked={likedItineraries.includes(it.id)} compact />)}{COMMUNITY_ITINERARIES.filter(i => i.destination === destination).length === 0 && <p className="text-sm text-slate-400 text-center py-4">Nenhum roteiro ainda</p>}</div></div>}
-            {itineraryGenerated && <button onClick={handlePrint} disabled={isOverBudget} className={`w-full py-4 font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all ${isOverBudget ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white hover:shadow-emerald-500/30 hover:scale-[1.02]'}`}>{isOverBudget ? <><AlertTriangle size={20} />Ajuste o orçamento</> : <><Download size={20} />Baixar PDF Completo</>}</button>}
+            {destination && <div className="bg-slate-900/80 backdrop-blur-sm rounded-2xl border border-slate-700 p-4 shadow-sm"><h3 className="font-bold text-white mb-3 flex items-center gap-2"><Crown size={18} className="text-amber-500" /> Top Roteiros - {destination.split(',')[0]}</h3><div className="space-y-2">{COMMUNITY_ITINERARIES.filter(i => i.destination === destination).slice(0, 3).map(it => <CommunityCard key={it.id} itinerary={it} onUse={useCommunityItinerary} onLike={toggleLike} onViewDetails={(it) => setCommunityDetailModal({ isOpen: true, itinerary: it })} isLiked={likedItineraries.includes(it.id)} compact />)}{COMMUNITY_ITINERARIES.filter(i => i.destination === destination).length === 0 && <p className="text-sm text-slate-300 text-center py-4">Nenhum roteiro ainda</p>}</div></div>}
+            {itineraryGenerated && <button onClick={handlePrint} disabled={isOverBudget} className={`w-full py-4 font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all ${isOverBudget ? 'bg-slate-300 text-slate-300 cursor-not-allowed' : 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white hover:shadow-emerald-500/30 hover:scale-[1.02]'}`}>{isOverBudget ? <><AlertTriangle size={20} />Ajuste o orçamento</> : <><Download size={20} />Baixar PDF Completo</>}</button>}
           </div>
         </div>
       </div>
@@ -2140,7 +2144,7 @@ export default function App() {
       {itineraryGenerated && !showConcierge && (
         <button onClick={() => setShowConcierge(true)} className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-indigo-600 to-emerald-600 rounded-full shadow-2xl shadow-indigo-500/30 flex items-center justify-center text-white hover:scale-110 transition-all z-40 group no-print">
           <KinuLogo size={28} />
-          <span className="absolute -top-2 -right-2 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center text-xs font-bold animate-pulse border-2 border-slate-950">🔮</span>
+          <span className="absolute -top-2 -right-2 w-6 h-6 bg-emerald-600 rounded-full flex items-center justify-center text-xs font-bold animate-pulse border-2 border-slate-950">🔮</span>
           <span className="absolute right-full mr-3 px-3 py-1.5 bg-slate-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap border border-slate-700">Concierge KINU</span>
         </button>
       )}
