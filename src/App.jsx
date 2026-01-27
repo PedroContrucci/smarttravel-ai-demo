@@ -3,45 +3,222 @@ import { Plane, Hotel, Utensils, Camera, MapPin, Calendar, Users, Wallet, Trendi
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart, ReferenceLine, PieChart, Pie, Cell } from 'recharts';
 
 // ============================================================
-// 🔮 KINU v1.0 - TRAVEL OS
-// Sua jornada, nossa inteligência coletiva.
-// Sabedoria do Clã | Dark Premium | Glassmorphism
+// 🌐 TRAVEL OS - WHITE LABEL / HYBRID VERSION
+// Configurable via environment variable: NEXT_PUBLIC_BRAND
+// Supports: 'KINU', 'TREVO', or 'CUSTOM'
 // ============================================================
-console.log('%c🔮 KINU v1.0 — Sua jornada, nossa inteligência coletiva', 'background: linear-gradient(135deg, #020617 0%, #4F46E5 50%, #10b981 100%); color: white; font-size: 20px; padding: 12px; border-radius: 8px; font-weight: bold;');
 
-// KINU Logo SVG Component
-const KinuLogo = ({ size = 32, className = '' }) => (
-  <svg width={size} height={size} viewBox="0 0 100 100" className={className}>
+// ⚙️ CONFIGURAÇÃO: Lê da variável de ambiente OU usa fallback
+// No Vercel: Configure NEXT_PUBLIC_BRAND = 'KINU' ou 'TREVO'
+const ACTIVE_BRAND = 
+  (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_BRAND) ||  // Next.js
+  (typeof import.meta !== 'undefined' && import.meta.env?.VITE_BRAND) || // Vite
+  (typeof process !== 'undefined' && process.env?.REACT_APP_BRAND) ||    // CRA
+  'KINU'; // Fallback padrão
+
+// ========== BRAND CONFIGURATIONS ==========
+const BRAND_CONFIGS = {
+  KINU: {
+    name: 'KINU',
+    tagline: 'Sua jornada, nossa inteligência coletiva.',
+    version: '1.0.0',
+    emoji: '🔮',
+    colors: {
+      primary: 'indigo',
+      secondary: 'emerald',
+      gradient: 'from-indigo-600 to-emerald-600',
+      gradientVia: 'from-indigo-600 via-indigo-700 to-emerald-600',
+    },
+    terms: {
+      community: 'Clã',
+      communityTitle: 'Conhecimento do Clã',
+      wisdom: 'Sabedoria Coletiva',
+      concierge: 'Concierge KINU',
+      exchange: 'Motor de Câmbio KINU',
+      generateButton: 'Gerar Roteiro com Sabedoria do Clã',
+      generating: 'Gerando roteiro...',
+      startButton: 'Iniciar Jornada',
+      enterButton: 'Entrar no Clã',
+      signupButton: 'Juntar-se ao Clã',
+    },
+    hero: {
+      title: 'Milhares viajaram.',
+      highlight: 'Você herda a sabedoria.',
+      subtitle: 'O KINU une a inteligência coletiva de milhares de viajantes com engenharia de precisão. Cada roteiro é conhecimento validado pelo clã.',
+    },
+    conciergeIntro: 'A sabedoria do clã está ao seu dispor.',
+    successBadge: '✅',
+  },
+  TREVO: {
+    name: 'TREVO',
+    tagline: 'A sua sorte, planejada.',
+    version: '1.0.0',
+    emoji: '🍀',
+    colors: {
+      primary: 'emerald',
+      secondary: 'emerald',
+      gradient: 'from-emerald-600 to-emerald-500',
+      gradientVia: 'from-emerald-600 via-emerald-700 to-emerald-500',
+    },
+    terms: {
+      community: 'Comunidade',
+      communityTitle: 'Roteiros de Sorte',
+      wisdom: 'Engenharia de Sorte',
+      concierge: 'Trevo AI',
+      exchange: 'Sorte no Câmbio',
+      generateButton: '🍀 Gerar Roteiro de Sorte',
+      generating: 'Calculando sua sorte...',
+      startButton: 'Começar com Sorte',
+      enterButton: 'Entrar',
+      signupButton: 'Criar Conta',
+    },
+    hero: {
+      title: 'Transformamos dados',
+      highlight: 'em sorte para você.',
+      subtitle: 'O TREVO usa engenharia de precisão para transformar milhares de dados em sorte planejada para sua viagem.',
+    },
+    conciergeIntro: 'Eu transformo dados em sorte para você.',
+    successBadge: '🍀',
+  },
+  CUSTOM: {
+    name: 'TRAVEL OS',
+    tagline: 'Sua viagem, nossa tecnologia.',
+    version: '1.0.0',
+    emoji: '✈️',
+    colors: {
+      primary: 'blue',
+      secondary: 'cyan',
+      gradient: 'from-blue-600 to-cyan-500',
+      gradientVia: 'from-blue-600 via-blue-700 to-cyan-500',
+    },
+    terms: {
+      community: 'Comunidade',
+      communityTitle: 'Roteiros da Comunidade',
+      wisdom: 'Inteligência de Viagem',
+      concierge: 'Travel AI',
+      exchange: 'Motor de Câmbio',
+      generateButton: 'Gerar Meu Roteiro',
+      generating: 'Gerando...',
+      startButton: 'Começar Agora',
+      enterButton: 'Entrar',
+      signupButton: 'Criar Conta',
+    },
+    hero: {
+      title: 'Planeje sua viagem',
+      highlight: 'com inteligência.',
+      subtitle: 'Tecnologia de ponta para criar o roteiro perfeito para você.',
+    },
+    conciergeIntro: 'Como posso ajudar sua viagem?',
+    successBadge: '✓',
+  }
+};
+
+// Obtém a configuração ativa
+const BRAND = BRAND_CONFIGS[ACTIVE_BRAND] || BRAND_CONFIGS.KINU;
+
+// Console log com branding
+console.log(`%c${BRAND.emoji} ${BRAND.name} v${BRAND.version} — ${BRAND.tagline}`, `background: linear-gradient(135deg, #020617 0%, ${BRAND.colors.primary === 'indigo' ? '#4F46E5' : BRAND.colors.primary === 'emerald' ? '#10b981' : '#3b82f6'} 50%, #10b981 100%); color: white; font-size: 20px; padding: 12px; border-radius: 8px; font-weight: bold;`);
+
+// ========== TREVO: Clover V Component (V como trevo de 4 folhas invertido) ==========
+const TrevoCloverV = ({ size = 24, className = '' }) => (
+  <svg 
+    width={size} 
+    height={size * 1.2} 
+    viewBox="0 0 100 120" 
+    className={`inline-block ${className}`}
+    style={{ verticalAlign: 'middle', marginBottom: '2px' }}
+  >
     <defs>
-      <linearGradient id="kinuGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#6366f1" />
-        <stop offset="50%" stopColor="#818cf8" />
-        <stop offset="100%" stopColor="#10b981" />
+      <linearGradient id="trevoVGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#10b981" />
+        <stop offset="50%" stopColor="#34d399" />
+        <stop offset="100%" stopColor="#6ee7b7" />
       </linearGradient>
     </defs>
-    <path 
-      d="M30,50 Q30,20 50,20 Q70,20 70,40 Q70,60 50,60 Q30,60 30,80 Q30,95 50,80 Q70,65 70,50" 
-      fill="none" 
-      stroke="url(#kinuGradient)" 
-      strokeWidth="8" 
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+    <g fill="url(#trevoVGradient)" transform="rotate(180, 50, 60)">
+      <ellipse cx="35" cy="45" rx="20" ry="20" />
+      <ellipse cx="65" cy="45" rx="20" ry="20" />
+      <ellipse cx="35" cy="72" rx="20" ry="20" />
+      <ellipse cx="65" cy="72" rx="20" ry="20" />
+      <rect x="45" y="82" width="10" height="28" rx="5" />
+    </g>
+    <circle cx="50" cy="60" r="10" fill="#020617" />
   </svg>
 );
 
-// KINU Brand Constants
-const KINU_BRAND = {
-  name: 'KINU',
-  tagline: 'Sua jornada, nossa inteligência coletiva.',
-  version: '1.0.0',
-  clanTerms: {
-    community: 'Clã',
-    itinerary: 'Conhecimento Validado',
-    members: 'Viajantes do Clã',
-    wisdom: 'Sabedoria Coletiva'
+// ========== DYNAMIC BRAND NAME (TREVO usa V como trevo) ==========
+const BrandName = ({ size = 'xl', className = '' }) => {
+  const textSize = size === 'xl' ? 'text-xl' : size === '2xl' ? 'text-2xl' : size === '3xl' ? 'text-3xl' : 'text-xl';
+  const cloverSize = size === 'xl' ? 22 : size === '2xl' ? 28 : size === '3xl' ? 36 : 22;
+  
+  if (ACTIVE_BRAND === 'TREVO') {
+    return (
+      <span className={`font-bold text-white inline-flex items-center ${textSize} ${className}`}>
+        <span>TRE</span>
+        <TrevoCloverV size={cloverSize} />
+        <span>O</span>
+      </span>
+    );
   }
+  
+  // KINU ou outras marcas: nome normal
+  return (
+    <span className={`font-bold text-white ${textSize} ${className}`}>
+      {BRAND.name}
+    </span>
+  );
 };
+
+// ========== DYNAMIC LOGO COMPONENT ==========
+const BrandLogo = ({ size = 32, className = '' }) => {
+  if (ACTIVE_BRAND === 'TREVO') {
+    return (
+      <svg width={size} height={size} viewBox="0 0 100 100" className={className}>
+        <defs>
+          <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#10b981" />
+            <stop offset="50%" stopColor="#34d399" />
+            <stop offset="100%" stopColor="#059669" />
+          </linearGradient>
+        </defs>
+        <g fill="url(#brandGradient)">
+          <ellipse cx="38" cy="35" rx="18" ry="18" />
+          <ellipse cx="62" cy="35" rx="18" ry="18" />
+          <ellipse cx="38" cy="58" rx="18" ry="18" />
+          <ellipse cx="62" cy="58" rx="18" ry="18" />
+          <rect x="46" y="65" width="8" height="25" rx="4" />
+        </g>
+        <circle cx="50" cy="47" r="8" fill="#020617" />
+      </svg>
+    );
+  }
+  // Default KINU logo
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" className={className}>
+      <defs>
+        <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#6366f1" />
+          <stop offset="50%" stopColor="#818cf8" />
+          <stop offset="100%" stopColor="#10b981" />
+        </linearGradient>
+      </defs>
+      <path 
+        d="M30,50 Q30,20 50,20 Q70,20 70,40 Q70,60 50,60 Q30,60 30,80 Q30,95 50,80 Q70,65 70,50" 
+        fill="none" 
+        stroke="url(#brandGradient)" 
+        strokeWidth="8" 
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+// Alias for compatibility
+const KinuLogo = BrandLogo;
+
+// Legacy brand constants for compatibility
+const KINU_BRAND = BRAND;
 
 // ========== v4.0: DARK MODE CONTEXT ==========
 const ThemeContext = createContext({ isDark: false, toggle: () => {} });
